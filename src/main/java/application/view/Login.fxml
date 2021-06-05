@@ -19,7 +19,7 @@
             <PasswordField fx:id="passwordField" layoutX="104.0" layoutY="290.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: #00adb5; -fx-border-width: 0px 0px 2px 0px;" />
             <FontAwesomeIcon fill="#00adb5" iconName="USER" layoutX="78.0" layoutY="245.0" size="20" />
             <FontAwesomeIcon fill="#00adb5" iconName="KEY" layoutX="75.0" layoutY="314.0" size="20" />
-            <Button fx:id="loginButton" layoutX="150.0" layoutY="357.0" mnemonicParsing="false" onAction="#loginClicked" prefHeight="35.0" prefWidth="79.0" style="-fx-background-color: #00adb5; -fx-text-fill: #eeeeee;" text="Login">
+            <Button fx:id="loginButton" layoutX="150.0" layoutY="357.0" mnemonicParsing="false" onAction="#loginClicked" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #00adb5; -fx-text-fill: #eeeeee;" text="Login">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
@@ -41,7 +41,9 @@
    <left>
       <AnchorPane prefHeight="500.0" prefWidth="350.0" style="-fx-background-color: #00adb5;" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fx:id="logoView" fitHeight="325.0" fitWidth="355.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="logoView" fitHeight="325.0" fitWidth="355.0" pickOnBounds="true" preserveRatio="true" />
+            <Label layoutX="80.0" layoutY="325.0" style="-fx-text-fill: #eeeeee;" text="Non sei ancora registrato?" />
+            <Button fx:id="registrationButton" layoutX="121.0" layoutY="358.0" mnemonicParsing="false" onAction="#registrationClicked" prefHeight="40.0" prefWidth="90.0" style="-fx-background-color: #eeeeee; -fx-text-fill: #00adb5;" text="Registrati" />
          </children>
       </AnchorPane>
    </left>

@@ -14,7 +14,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class LoginController {
+public class LoginController 
+{
 	private String PROFTYPE="prof";
 	private String STUDENTTYPE="student";
 	
@@ -33,15 +34,28 @@ public class LoginController {
     @FXML
     private PasswordField passwordField;
 
+    @FXML
+    private Button registrationButton;
+
+
 
 
     @FXML
-    void loginClicked(ActionEvent event) {
-
+    void loginClicked(ActionEvent event) 
+    {
+    	authentication();
     }
 
     @FXML
-    void forgotPasswordClicked(ActionEvent event) {
+    void forgotPasswordClicked(ActionEvent event) 
+    {
+
+    }
+    
+    @FXML
+    void registrationClicked(ActionEvent event) throws Exception 
+    {
+    	SceneHandler.getInstance().setRegistration();
 
     }
     @FXML
@@ -61,21 +75,23 @@ public class LoginController {
     }
     
     
-    private void authentication(boolean login)
+    private void authentication()
     {
-    	String result= Client.getInstance().authentication(userField.getText(), passwordField.getText(), login);
+    	String result= Client.getInstance().authentication(userField.getText(), passwordField.getText());
     	if(result.equals(Protocol.OK))
     	{
     		try 
     		{
 				String type= DatabaseHandler.getInstance().getType(userField.getText());
-				if(type.equals(PROFTYPE));
+				if(type.equals(PROFTYPE))
 				{
-					SceneHandler.setProfHomePage();
+					System.out.println("accesso prof");
+					//SceneHandler.setProfHomePage();
 				}
 				else if(type.equals(STUDENTTYPE))
 				{
-					SceneHandler.setStudentHomePage();
+					System.out.println("accesso studente");
+					//SceneHandler.setStudentHomePage();
 				}
 				else
 					System.exit(0);
@@ -84,7 +100,7 @@ public class LoginController {
     		catch (Exception e) 
     		{
 				
-				SceneHandler.getInstance().showError("error during loading chat");
+				SceneHandler.getInstance().showError("Error during loading dashboard");
 			}
     		
     	}
@@ -96,6 +112,7 @@ public class LoginController {
 			
     
     }
+    
     
     
 

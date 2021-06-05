@@ -1,6 +1,7 @@
 package application;
 
 import java.awt.event.MouseAdapter;
+import java.io.IOException;
 
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -44,32 +45,37 @@ public class SceneHandler
 			instance = new SceneHandler();
 		return instance;
 	}        
-  /*  
-    public void setChatScene() throws Exception 
+    
+    public void setRegistration() throws Exception 
     {
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/ChatFrame.fxml"));
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/registrationForm.fxml"));
     	Parent root = (Parent) loader.load();    	
-    	//ChatFrameController controller=loader.getController();
-    	//Thread t= new Thread(Client.getInstance());
-    	t.setDaemon(true);
-    	t.start();
-    	controller.start();
-		scene.setRoot(root);
-    	stage.hide();
-    	stage.setResizable(true);
-    	stage.setWidth(800);
-    	stage.setHeight(800);
-    	stage.show();
+    	addMouseDragging(root);
+		scene = new Scene(root, 600, 700);
+		stage.setScene(scene);
+		stage.setTitle("Class Manager");
+		//stage.initStyle(StageStyle.UNDECORATED);
+		stage.setResizable(false);
+		stage.show();
     }
-    */
+   
     
     public void showError(String message) 
     {
     	Alert alert = new Alert(AlertType.ERROR);
-		alert.setTitle("Error");
+		alert.setTitle("Errore");
 		alert.setHeaderText("");
 		alert.setContentText(message);
 		alert.showAndWait();
+    }
+    public void showWarning(String message)
+    {
+    	Alert alert = new Alert(AlertType.WARNING);
+		alert.setTitle("Attenzione");
+		alert.setHeaderText("");
+		alert.setContentText(message);
+		alert.showAndWait();
+    	
     }
     
     private void addMouseDragging(Parent root)

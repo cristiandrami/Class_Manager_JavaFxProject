@@ -5,6 +5,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+import application.net.client.UserAccess;
 import application.net.common.Protocol;
 import application.net.common.User;
 
@@ -52,11 +53,12 @@ public class MessagesHandler extends Thread
 		//il server deve gestire 3 operazioni
 		//1) login
 		//2) registrazione
-		//3) scambio di messaggi con gli altri utenti 
+		
 		
 		//prima faccio o login o registrazione 
 		//solo dopo posso scambiare i messaggi
 		//mi serve il PROTOCOLLO DI COMUNICAZIONE
+		
 		
 		try {
 				this.in= new ObjectInputStream(socket.getInputStream());
@@ -66,10 +68,16 @@ public class MessagesHandler extends Thread
 				
 				//se l'input è per fare il login allota provo a fare il check e se non va bene mando un messaggio di errore e ritorno
 					input = (String) in.readObject();
+					
+					
+					
 					if(input.equals(Protocol.LOGIN))
 					{
+							
 						
-							User user=(User) in.readObject();
+							UserAccess user=(UserAccess) in.readObject();
+						
+				
 							if(!DatabaseHandler.getInstance().checkUser(user))
 							{
 								sendMessage(Protocol.AUTHENTICATION_ERROR);
@@ -117,9 +125,11 @@ public class MessagesHandler extends Thread
 					{
 						//c'è stato un errore di protocollo
 						sendMessage(Protocol.ERROR);
+						
 						closeStreams();
 						return;
 					}
+					
 					
 				//vedo se non sono già loggato in caso ritorno
 					if(!UsersHandler.insertUser(username, this))
@@ -130,6 +140,7 @@ public class MessagesHandler extends Thread
 					}
 					
 					
+					
 					//qui è tutto ok è andato tutto a buon fine
 					sendMessage(Protocol.OK);
 					
@@ -138,10 +149,10 @@ public class MessagesHandler extends Thread
 					
 					
 					//STO IN ASCOLTO
-					while(true)
+					/*while(true)
 					{
 						
-					}
+					}*/
 			}
 		catch(Exception e)
 		{
@@ -154,8 +165,10 @@ public class MessagesHandler extends Thread
 				
 			}
 			else
-			{
+			{   //System.out.println("Errore qui");
 				sendMessage(Protocol.ERROR);
+				
+				
 			}
 			
 			out=null;

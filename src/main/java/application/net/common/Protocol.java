@@ -5,9 +5,9 @@ public class Protocol {
 	public final static String REGISTRATION= "registration";
 	public final static String OK= "ok";
 	public final static String ERROR= "error during connection";
-	public final static String AUTHENTICATION_ERROR= "invalid username/password";
-	public final static String USER_LOGGED_ERROR= "user already logged in";
-	public final static String USER_EXISTS_ERROR= "user already exist";
+	public final static String AUTHENTICATION_ERROR= "Username o password non valide";
+	public final static String USER_LOGGED_ERROR= "L'utente è già loggato";
+	public final static String USER_EXISTS_ERROR= "L'username è già stato scelto, riprova con uno nuovo";
 	
 	//il client invia al server o "login" o "registration" 
 	// se i client invia login allora il server si predispone al login 

@@ -38,9 +38,8 @@ public class Server implements Runnable
 		{
 			try 
 			{
-				System.out.println("[SERVER] waiting for connection...");
+				
 				Socket socket= server.accept();
-				System.out.println("[SERVER] Client connected...");
 				
 				MessagesHandler m= new MessagesHandler(socket);
 				executor.submit(m);

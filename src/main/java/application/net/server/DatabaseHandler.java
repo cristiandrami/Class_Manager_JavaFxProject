@@ -9,6 +9,7 @@ import java.sql.SQLException;
 
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
+import application.net.client.UserAccess;
 import application.net.common.User;
 
 public class DatabaseHandler 
@@ -45,20 +46,19 @@ public class DatabaseHandler
 		
 	
 		
-		PreparedStatement p= con.prepareStatement("INSERT INTO User VALUES(?,?,?,?,?,?,?,?,?);");
+		PreparedStatement p= con.prepareStatement("INSERT INTO User VALUES(?,?,?,?,?,?,?,?);");
 		p.setString(1, null);
 		p.setString(2, user.getUsername());
 		p.setString(3, user.getNome());
 		p.setString(4, user.getCognome());
-		p.setString(5, user.getUsername());
 		
 		
 		
 		//devo  mettermi la password criptata, nel db devo salvarmi anche il sale
-		p.setString(6, BCrypt.hashpw(user.getPassword(),  BCrypt.gensalt(12)));	
-		p.setString(7, user.getData());
-		p.setString(8, user.getClasse());
-		p.setString(9, user.getType());
+		p.setString(5, BCrypt.hashpw(user.getPassword(),  BCrypt.gensalt(12)));	
+		p.setString(6, user.getData());
+		p.setString(7, user.getClasse());
+		p.setString(8, user.getType());
 		p.executeUpdate();
 		p.close();
 		
@@ -86,7 +86,7 @@ public class DatabaseHandler
 		
 	}
 	
-	public synchronized boolean checkUser(User user) throws SQLException
+	public synchronized boolean checkUser(UserAccess user) throws SQLException
 	{
 		if(con==null || con.isClosed()|| user==null)
 			return false;
@@ -128,6 +128,50 @@ public class DatabaseHandler
 		p.close();
 		
 		return result;
+	}
+	public synchronized String getTypeFromCode(String code) throws SQLException 
+	{
+		if(con==null || con.isClosed()|| code.equals(""))
+			return "";
+		
+		String query= "SELECT tipologia FROM CodiciClassi WHERE codiceAccesso=?;";
+		PreparedStatement p= con.prepareStatement(query);
+		p.setString(1, code);
+		
+		ResultSet rs= p.executeQuery();
+		String result="";
+	
+		if( rs.next())
+		{
+			result= rs.getString("tipologia");
+			
+		}
+		p.close();
+		
+		return result;
+	}
+
+	public synchronized String getclassFromCode(String code) throws SQLException 
+	{
+		if(con==null || con.isClosed()|| code.equals(""))
+			return "";
+		
+		String query= "SELECT nomeClasse FROM CodiciClassi WHERE codiceAccesso=?;";
+		PreparedStatement p= con.prepareStatement(query);
+		p.setString(1, code);
+		
+		ResultSet rs= p.executeQuery();
+		String result="";
+	
+		if( rs.next())
+		{
+			result= rs.getString("nomeClasse");
+			
+		}
+		p.close();
+		
+		return result;
+		
 	}
 
 }

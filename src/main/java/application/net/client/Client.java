@@ -1,5 +1,168 @@
 package application.net.client;
 
-public class Client {
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
+import java.net.UnknownHostException;
 
+import application.SceneHandler;
+import application.net.common.Protocol;
+import application.net.common.User;
+import application.net.server.UsersHandler;
+
+
+//meglio averla come singleton
+public class Client implements Runnable
+{
+	private static Client instance=null;
+	private Socket socket;
+	
+	//per comunicare col server
+	private ObjectOutputStream out;
+	//in non devo crearlo qui perchè 
+	private ObjectInputStream in;
+	
+	
+	//allocaree sempre l'out altrimenti se faccio prima in lui resta in attesa dal server e nel server ancora non ho creato l'out vado in blocco
+	
+	private Client()
+	{
+		try 
+		{
+			socket= new Socket("localhost",8000);
+			out= new ObjectOutputStream(socket.getOutputStream());
+			
+		}
+		catch(IOException e)
+		{
+			out=null;
+			SceneHandler.getInstance().showError("Cannot connect to server");
+			
+		}
+	}
+	
+	public static Client getInstance()
+	{
+		if(instance==null)
+			instance= new Client();
+		return instance;
+	}
+
+	@Override
+	public void run() 
+	{
+		if(in==null)
+			return;
+		
+		while(out!=null && in!=null)
+		{
+			String mess;
+			try 
+			{
+				mess = (String) in.readObject();
+
+			} 
+			catch (Exception e) 
+			{
+				out=null;
+				SceneHandler.getInstance().showError("Connection lost");
+			} 
+		} 
+		
+	
+		
+	}
+	
+	//se login è true voglio entrare, se è false l'utente vuole registrarsi
+	//se sulla regitrazione c'è un errore il server chiude la comunicazione
+	//creo un metodo di reset della comunicazione
+	public String authentication(String username, String password)
+	{
+		sendMessage(Protocol.LOGIN);
+		UserAccess user= new UserAccess(username, password);
+		sendMessage(user,true);
+			
+
+		try 
+		{
+			in=new ObjectInputStream(socket.getInputStream());
+			String result= (String) in.readObject();
+			return result;
+	
+		} 
+		catch (Exception e) 
+		{
+			out=null;
+			System.out.println("Errore qui");
+			return Protocol.ERROR;
+			
+		}
+		
+		
+	}
+	
+	//ma se sbaglio e nella chat mando un oggetto che non è una stringa?
+	private boolean sendMessage(Object message, boolean empty)
+	{
+		//non possso inviare il messaggio se non sono connesso al server
+		if(out==null)
+			return false;
+		
+		try 
+		{
+			out.writeObject(message);
+			out.flush();
+		} 
+		catch (IOException e) 
+		{
+			out=null;
+			return false;
+			
+		}
+		
+		
+		return true;
+	}
+	
+	public String registration(String username,String nome,String cognome,String password, String nascita, String classe, String tipo, String code)
+	{
+		sendMessage(Protocol.REGISTRATION);
+		sendMessage(new User(username,nome, cognome,  password, nascita, classe, tipo, code),true);
+			
+
+		try 
+		{
+			in=new ObjectInputStream(socket.getInputStream());
+			String result= (String) in.readObject();
+			return result;
+	
+		} 
+		catch (Exception e) 
+		{
+			out=null;
+			return Protocol.ERROR;
+		}
+		
+		
+	}
+	
+	
+	
+	//questo lo posso usare con la chat senza avere problemi
+	
+	public boolean sendMessage(String message)
+	{
+		//così capiamo che sto usando quello di sopra e non ho problemi tra i due
+		return sendMessage(message,true);
+	}
+	
+	public void reset()
+	{
+		instance=null;
+		out=null;
+		in=null;
+		socket=null;
+	}
+	
 }
