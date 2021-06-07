@@ -3,6 +3,8 @@ package application;
 import java.awt.event.MouseAdapter;
 import java.io.IOException;
 
+
+
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -58,6 +61,20 @@ public class SceneHandler
 		stage.setResizable(false);
 		stage.show();
     }
+    public void setProfHomePage() throws IOException 
+	{
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/homePageProf.fxml"));
+    	Parent root = (Parent) loader.load();    	
+    	addMouseDragging(root);
+		scene = new Scene(root, 1050, 760);
+		stage.setScene(scene);
+		stage.setTitle("Class Manager");
+		stage.initStyle(StageStyle.UNDECORATED);
+		stage.setResizable(true);
+		stage.show();
+
+		
+	}
    
     
     public void showError(String message) 
@@ -108,19 +125,6 @@ public class SceneHandler
     	
     }
 
-	public void setProfHomePage() throws IOException 
-	{
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/profHomePage.fxml"));
-    	Parent root = (Parent) loader.load();    	
-    	addMouseDragging(root);
-		scene = new Scene(root, 1050, 760);
-		stage.setScene(scene);
-		stage.setTitle("Class Manager");
-		stage.initStyle(StageStyle.UNDECORATED);
-		stage.setResizable(true);
-		stage.show();
-
-		
-	}
+	
 
 }
