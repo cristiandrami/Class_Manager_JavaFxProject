@@ -16,8 +16,8 @@ import javafx.scene.image.ImageView;
 
 public class LoginController 
 {
-	private String PROFTYPE="prof";
-	private String STUDENTTYPE="student";
+	private String PROFTYPE="professore";
+	private String STUDENTTYPE="studente";
 	
     @FXML
     private ImageView logoView;
@@ -83,10 +83,11 @@ public class LoginController
     		try 
     		{
 				String type= DatabaseHandler.getInstance().getType(userField.getText());
+				System.out.println(type);
 				if(type.equals(PROFTYPE))
 				{
 					System.out.println("accesso prof");
-					//SceneHandler.setProfHomePage();
+					SceneHandler.getInstance().setProfHomePage();
 				}
 				else if(type.equals(STUDENTTYPE))
 				{

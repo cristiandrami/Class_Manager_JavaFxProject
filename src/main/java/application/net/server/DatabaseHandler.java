@@ -9,6 +9,7 @@ import java.sql.SQLException;
 
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
+import application.controller.RegistrationFormController;
 import application.net.client.UserAccess;
 import application.net.common.User;
 
@@ -46,6 +47,9 @@ public class DatabaseHandler
 		
 	
 		
+		
+	
+		
 		PreparedStatement p= con.prepareStatement("INSERT INTO User VALUES(?,?,?,?,?,?,?,?);");
 		p.setString(1, null);
 		p.setString(2, user.getUsername());
@@ -61,6 +65,17 @@ public class DatabaseHandler
 		p.setString(8, user.getType());
 		p.executeUpdate();
 		p.close();
+		
+		if(user.getType().equals(RegistrationFormController.PROFTYPE))
+		{
+			p= con.prepareStatement("INSERT INTO ProfessoreMateria VALUES(?,?);");
+			p.setString(1, user.getUsername());
+			p.setString(2, user.getMateria());
+			p.executeUpdate();
+			p.close();
+			
+		}
+		
 		
 		return true;
 		
@@ -129,6 +144,7 @@ public class DatabaseHandler
 		
 		return result;
 	}
+	
 	public synchronized String getTypeFromCode(String code) throws SQLException 
 	{
 		if(con==null || con.isClosed()|| code.equals(""))
@@ -168,6 +184,24 @@ public class DatabaseHandler
 			result= rs.getString("nomeClasse");
 			
 		}
+		p.close();
+		
+		return result;
+		
+	}
+
+	public boolean existsSubject(String materia) throws SQLException 
+	{
+		if(con==null || con.isClosed()|| materia==null)
+			return false;
+		
+		String query= "SELECT * FROM Materie WHERE nomeMateria=?;";
+		PreparedStatement p= con.prepareStatement(query);
+		p.setString(1, materia);
+		
+		ResultSet rs= p.executeQuery();
+		
+		boolean result= rs.next();
 		p.close();
 		
 		return result;

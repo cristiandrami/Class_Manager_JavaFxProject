@@ -5,6 +5,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+import application.controller.RegistrationFormController;
 import application.net.client.UserAccess;
 import application.net.common.Protocol;
 import application.net.common.User;
@@ -102,6 +103,14 @@ public class MessagesHandler extends Thread
 							
 						}
 						
+						else if(user.getType().equals(RegistrationFormController.PROFTYPE) && !DatabaseHandler.getInstance().existsSubject(user.getMateria()))
+						{
+							sendMessage(Protocol.SUBJECT_ERROR);
+							closeStreams();
+							return;
+							
+						}
+						
 						//qui cerco di aggiungerlo
 						else 
 						{
@@ -166,9 +175,7 @@ public class MessagesHandler extends Thread
 			}
 			else
 			{   //System.out.println("Errore qui");
-				sendMessage(Protocol.ERROR);
-				
-				
+				sendMessage(Protocol.ERROR);	
 			}
 			
 			out=null;

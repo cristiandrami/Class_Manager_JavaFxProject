@@ -7,6 +7,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 import application.SceneHandler;
+
 import application.net.common.Protocol;
 import application.net.common.User;
 import application.net.server.UsersHandler;
@@ -125,10 +126,10 @@ public class Client implements Runnable
 		return true;
 	}
 	
-	public String registration(String username,String nome,String cognome,String password, String nascita, String classe, String tipo, String code)
+	public String registration(String username,String nome,String cognome,String password, String nascita, String classe, String tipo, String code,String materia)
 	{
 		sendMessage(Protocol.REGISTRATION);
-		sendMessage(new User(username,nome, cognome,  password, nascita, classe, tipo, code),true);
+		sendMessage(new User(username,nome, cognome,  password, nascita, classe, tipo, code, materia),true);
 			
 
 		try 
@@ -164,5 +165,7 @@ public class Client implements Runnable
 		in=null;
 		socket=null;
 	}
+
+	
 	
 }

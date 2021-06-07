@@ -18,9 +18,9 @@ public class User implements Serializable
 	private String cognome;
 	private String data;
 	private String classe;
+	private String materia;
 	
-	
-	public User(String user,String nome, String cognome, String password,String data, String classe, String tipo, String code)
+	public User(String user,String nome, String cognome, String password,String data, String classe, String tipo, String code, String materia)
 	{
 		this.username=user;
 		this.password=password;
@@ -30,6 +30,7 @@ public class User implements Serializable
 		this.cognome=cognome;
 		this.data=data;
 		this.classe=classe;
+		this.materia=materia;
 		
 	}
 	
@@ -62,6 +63,10 @@ public class User implements Serializable
 
 	public String getCognome() {
 		return cognome;
+	}
+
+	public String getMateria() {
+		return materia;
 	}
 
 }

@@ -51,7 +51,7 @@ public class SceneHandler
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/registrationForm.fxml"));
     	Parent root = (Parent) loader.load();    	
     	addMouseDragging(root);
-		scene = new Scene(root, 600, 700);
+		scene = new Scene(root, 695, 805);
 		stage.setScene(scene);
 		stage.setTitle("Class Manager");
 		//stage.initStyle(StageStyle.UNDECORATED);
@@ -107,5 +107,20 @@ public class SceneHandler
 		});
     	
     }
+
+	public void setProfHomePage() throws IOException 
+	{
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/profHomePage.fxml"));
+    	Parent root = (Parent) loader.load();    	
+    	addMouseDragging(root);
+		scene = new Scene(root, 1050, 760);
+		stage.setScene(scene);
+		stage.setTitle("Class Manager");
+		stage.initStyle(StageStyle.UNDECORATED);
+		stage.setResizable(true);
+		stage.show();
+
+		
+	}
 
 }

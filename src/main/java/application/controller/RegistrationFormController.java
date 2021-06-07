@@ -28,8 +28,8 @@ public class RegistrationFormController
 	
 	
 	
-	private String PROFTYPE="professore";
-	private String STUDENTTYPE="studente";
+	public static final String PROFTYPE="professore";
+	public static final String STUDENTTYPE="studente";
 	Pattern usernamePat;
 	Pattern passPat;
 	
@@ -59,6 +59,9 @@ public class RegistrationFormController
 
     @FXML
     private PasswordField passwordField;
+    
+    @FXML
+    private TextField materiaField;
 
     @FXML
     private TextField username;
@@ -73,7 +76,7 @@ public class RegistrationFormController
     	{
 			String type= DatabaseHandler.getInstance().getTypeFromCode(codeField.getText());
 			String classe= DatabaseHandler.getInstance().getclassFromCode(codeField.getText());
-			String date = datePicker.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+			
 			//String classe="1A";
 			//String type="professore";
 			if(type.equals("") || classe.equals(""))
@@ -100,7 +103,7 @@ public class RegistrationFormController
 			}
 				
 				
-			registration(type, classe, date);
+			registration(type, classe);
 			
 		} 
     	catch (SQLException e) 
@@ -116,42 +119,53 @@ public class RegistrationFormController
     }
 
     
-    private void registration(String type, String classe, String date)
+    private void registration(String type, String classe)
     {
     	
-    	//String username,String nome,String cognome,String password, String nascita, String classe, String tipo, String code
-    	String result= Client.getInstance().registration(username.getText(), nameField.getText(), surnameField.getText(), passwordField.getText(), date, classe, type, codeField.getText());
-    	if(result.equals(Protocol.OK))
-    	{
-    		try 
-    		{
-				
-				if(type.equals(PROFTYPE))
-				{
-					System.out.println("accesso prof");
-					//SceneHandler.setProfHomePage();
-				}
-				else if(type.equals(STUDENTTYPE))
-				{
-					System.out.println("accesso studente");
-					//SceneHandler.setStudentHomePage();
-				}
-				else
-					System.exit(0);
-				
-			} 
-    		catch (Exception e) 
-    		{
-				
-				SceneHandler.getInstance().showError("Error during loading dashboard");
-			}
-    		
-    	}
-    	else
-    	{
-    		SceneHandler.getInstance().showError(result);
-    		Client.getInstance().reset();
-    	}
+    		//String username,String nome,String cognome,String password, String nascita, String classe, String tipo, String code
+    	
+    			String materia=materiaField.getText().toLowerCase();
+    			String usern= username.getText();
+    			String name= nameField.getText();
+    			String surname= surnameField.getText();
+    			String password=passwordField.getText();
+    			String date = datePicker.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+    			String code=codeField.getText();
+    			String result= Client.getInstance().registration(usern, name, surname, password, date, classe, type, code, materia);
+    			
+            	if(result.equals(Protocol.OK))
+            	{
+            		try 
+            		{
+        				
+        				if(type.equals(PROFTYPE))
+        				{
+        					System.out.println("accesso prof");
+        					SceneHandler.getInstance().setProfHomePage();
+        				}
+        				else if(type.equals(STUDENTTYPE))
+        				{
+        					System.out.println("accesso studente");
+        					//SceneHandler.setStudentHomePage();
+        				}
+        				else
+        					System.exit(0);
+        				
+        			} 
+            		catch (Exception e) 
+            		{
+        				
+        				SceneHandler.getInstance().showError("Error during loading dashboard");
+        			}
+            		
+            	}
+            	else
+            	{
+            		SceneHandler.getInstance().showError(result);
+            		Client.getInstance().reset();
+            	}
+	
+    	
     }
     
     private void addListeners()
@@ -194,13 +208,10 @@ public class RegistrationFormController
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) 
 			{
 				
-				if(validatePassword(newValue))
-					passwordField.styleProperty().set("-fx-background-color: #39ff39");
-				else
-					passwordField.styleProperty().set("-fx-background-color: #ff4040");
-				
 				if(checkRepeatPass(newValue, repeatPasswordField.getText()))
 					repeatPasswordField.styleProperty().set("-fx-background-color: #39ff39");
+				else
+					repeatPasswordField.styleProperty().set("-fx-background-color: #ff4040");
 					
 				
 			}
