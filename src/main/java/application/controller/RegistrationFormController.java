@@ -115,7 +115,9 @@ public class RegistrationFormController
     @FXML
     void onCloseClicked(ActionEvent event) 
     {
+    	Client.getInstance().reset();
     	System.exit(0);
+    
     }
 
     

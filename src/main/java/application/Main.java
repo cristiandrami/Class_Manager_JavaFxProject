@@ -9,8 +9,5 @@ public class Main
 	{
 		MainApplication.main(args);
 	}
-	
-	
-
 
 }

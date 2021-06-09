@@ -8,7 +8,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1050.0" stylesheets="@../../../resources/professorHomePage/profHomePage.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.ProfessorHomePageController ">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.ProfHomeController">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
@@ -61,7 +61,7 @@
             </GridPane>
          </center>
          <top>
-            <BorderPane prefHeight="112.0" prefWidth="1048.0" style="-fx-background-color: #00adb5;" BorderPane.alignment="CENTER">
+            <BorderPane prefHeight="224.0" prefWidth="1050.0" style="-fx-background-color: #00adb5;" BorderPane.alignment="CENTER">
                <center>
                   <ImageView fx:id="logoView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                      <image>
@@ -83,6 +83,19 @@
                      </BorderPane.margin>
                   </HBox>
                </top>
+               <bottom>
+                  <Label text="  Professor Home  Page" textFill="#eeeeee" BorderPane.alignment="TOP_CENTER">
+                     <BorderPane.margin>
+                        <Insets bottom="10.0" />
+                     </BorderPane.margin>
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIcon fill="#eeeeee" iconName="HOME" size="50" />
+                     </graphic>
+                  </Label>
+               </bottom>
             </BorderPane>
          </top>
       </BorderPane>

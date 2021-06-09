@@ -5,13 +5,16 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import java.util.ArrayList;
 
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
+import application.StudentsTableModel;
 import application.controller.RegistrationFormController;
 import application.net.client.UserAccess;
 import application.net.common.User;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class DatabaseHandler 
 {
@@ -205,6 +208,69 @@ public class DatabaseHandler
 		p.close();
 		
 		return result;
+		
+	}
+	
+	public synchronized ObservableList<StudentsTableModel> getStudentsList(String profUsername) throws SQLException 
+	{
+		if(con==null || con.isClosed()|| profUsername.equals(""))
+			return null;
+		
+		String classe="";
+		String materia="";
+		String query= "SELECT user.classeAppartenenza, ProfessoreMateria.materia FROM user, ProfessoreMateria "
+				+ "WHERE user.username=? and ProfessoreMateria.prof=?;";
+		PreparedStatement p= con.prepareStatement(query);
+		p.setString(1, profUsername);
+		p.setString(2, profUsername);
+		
+		ResultSet rs1= p.executeQuery();
+		if( rs1.next())
+		{
+			classe=rs1.getString("classeAppartenenza");
+			materia=rs1.getString("materia");
+		
+		}
+		
+		p.close();
+	
+		
+		String query2= "SELECT user.nome, user.cognome, user.dataNascita, studenti-voti.voto FROM user, studenti-voti "
+				+ "WHERE user.classeAppartenenza=? and user.username=studenti-voti.studente and studenti-voti.materia=?;";
+		PreparedStatement p2= con.prepareStatement(query);
+		p2.setString(1, classe);
+		p2.setString(2, materia);
+		
+		ResultSet rs2= p.executeQuery();
+	
+		
+		ObservableList<StudentsTableModel> studenti= FXCollections.observableArrayList();
+		
+	
+		if( rs2.next())
+		{
+			
+			try
+			{
+	            int voto = Integer.parseInt(rs2.getString("voto"));
+	            String nome= rs2.getString("nome");
+				String cognome= rs2.getString("cognome");
+				String data= rs2.getString("dataNascita");
+				studenti.add(new StudentsTableModel(nome, cognome, data, voto));
+				
+				
+	            
+	        }
+	        catch (NumberFormatException ex){
+	            ex.printStackTrace();
+	        }
+			
+			
+			
+		}
+		p2.close();
+		
+		return studenti;
 		
 	}
 

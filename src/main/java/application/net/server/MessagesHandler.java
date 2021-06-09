@@ -158,10 +158,15 @@ public class MessagesHandler extends Thread
 					
 					
 					//STO IN ASCOLTO
-					/*while(true)
+					while(true)
 					{
+						String request= (String) in.readObject();
+						if(request.equals(Protocol.GETSTUDENTSFORPROF))
+						{
+							sendObject(DatabaseHandler.getInstance().getStudentsList(username));
+						}
 						
-					}*/
+					}
 			}
 		catch(Exception e)
 		{
@@ -170,6 +175,7 @@ public class MessagesHandler extends Thread
 			{
 				//l'utente è stato disconnesso
 				UsersHandler.removeUser(username);
+				System.out.println("l'utente "+username+"si è scollegato");
 				
 				
 			}
@@ -208,5 +214,31 @@ public class MessagesHandler extends Thread
 		}
 		
 	}
+	
+	public void sendObject(Object ob)
+	{
+		if(out==null)
+			return;
+		try 
+		{
+			out.writeObject(ob);
+			out.flush();
+		} 
+		catch (IOException e) 
+		{
+			if(!username.equals(""))
+			{
+				// SE QUI ho avuto qualche problema di connessione tolgo l'utente da quelli online
+				//l'utente è stato disconnesso
+				UsersHandler.removeUser(username);
+			
+				
+				
+			}
+		}
+		
+	}
+	
+	
 
 }

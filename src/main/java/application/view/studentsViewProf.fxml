@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+<?import com.jfoenix.controls.pannable.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.StudentViewTableController">
+   <center>
+      <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="800.0" spacing="80.0" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </BorderPane.margin>
+         <children>
+            <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #aad8d3;">
+               <bottom>
+                  <Label text="Totale studenti" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets bottom="10.0" />
+                     </BorderPane.margin>
+                     <graphic>
+                        <FontAwesomeIcon fill="#00adb5" iconName="GROUP" size="20" />
+                     </graphic>
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+               </bottom>
+               <center>
+                  <Label fx:id="totalStudentsLabel" text="Label" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
+                  </Label>
+               </center>
+            </BorderPane>
+            <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #f55c47;">
+               <bottom>
+                  <Label text="Insufficienze" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIcon fill="#00adb5" iconName="CLOSE" size="20" />
+                     </graphic>
+                     <BorderPane.margin>
+                        <Insets bottom="10.0" />
+                     </BorderPane.margin>
+                  </Label>
+               </bottom>
+               <center>
+                  <Label fx:id="insufficientLabel" text="Label" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
+                  </Label>
+               </center>
+            </BorderPane>
+            <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #9fe6a0;">
+               <bottom>
+                  <Label text="Sufficienze" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIcon fill="#00adb5" iconName="CHECK" size="20" />
+                     </graphic>
+                     <BorderPane.margin>
+                        <Insets bottom="10.0" />
+                     </BorderPane.margin>
+                  </Label>
+               </bottom>
+               <center>
+                  <Label fx:id="sufficientLabel" text="Label" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
+                  </Label>
+               </center>
+            </BorderPane>
+         </children>
+      </HBox>
+   </center>
+   <bottom>
+      <TableView fx:id="tableView" prefHeight="383.0" prefWidth="1030.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="nameColumn" prefWidth="75.0" text="Nome" />
+          <TableColumn fx:id="surnameColumn" prefWidth="75.0" text="Cognome" />
+            <TableColumn fx:id="bornDateColumn" prefWidth="114.0" text="Data di nascita" />
+            <TableColumn fx:id="voteColumn" prefWidth="178.0" text="Voto" />
+        </columns>
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" />
+         </BorderPane.margin>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+   </bottom>
+   <top>
+      <BorderPane prefHeight="166.0" prefWidth="1050.0" style="-fx-background-color: #00adb5;" BorderPane.alignment="CENTER">
+         <center>
+            <ImageView fx:id="logoView" fitHeight="106.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+               <image>
+                  <Image url="@../src/main/resources/loginResources/logoLogin.jpg" />
+               </image></ImageView>
+         </center>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <top>
+            <Button fx:id="closeButton" mnemonicParsing="false" onAction="#onCloseClicked" style="-fx-background-color: #00adb5;;" BorderPane.alignment="CENTER_RIGHT">
+               <graphic>
+                  <FontAwesomeIcon fill="#eeeeee" iconName="CLOSE" size="25" />
+               </graphic>
+            </Button>
+         </top>
+      </BorderPane>
+   </top>
+</BorderPane>

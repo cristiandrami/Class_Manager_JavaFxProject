@@ -54,27 +54,64 @@ public class SceneHandler
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/registrationForm.fxml"));
     	Parent root = (Parent) loader.load();    	
     	addMouseDragging(root);
-		scene = new Scene(root, 695, 805);
+		scene.setRoot(root);
 		stage.setScene(scene);
 		stage.setTitle("Class Manager");
-		//stage.initStyle(StageStyle.UNDECORATED);
+		stage.setHeight(805);
+		stage.setWidth(695);
 		stage.setResizable(false);
 		stage.show();
     }
+    public void setLogin() throws Exception 
+    {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/Login.fxml"));
+    	Parent root = (Parent) loader.load();
+    	addMouseDragging(root);
+		scene.setRoot(root);
+		stage.setScene(scene);
+		stage.setTitle("Class Manager");
+		stage.setHeight(500);
+		stage.setWidth(700);
+		stage.setResizable(false);
+		stage.show();
+    }
+    
     public void setProfHomePage() throws IOException 
 	{
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/homePageProf.fxml"));
+
     	Parent root = (Parent) loader.load();    	
     	addMouseDragging(root);
-		scene = new Scene(root, 1050, 760);
-		stage.setScene(scene);
+		scene.setRoot(root);
+		//root.getStylesheets().add(getClass().getResource("/application/resources/professorHomePage/profHomePage.css").toExternalForm());
+		//stage.setScene(scene);
+		scene.getStylesheets().add(getClass().getResource("/css/profHomePage.css").toExternalForm());
+		stage.setHeight(760);
+		stage.setWidth(1050);
 		stage.setTitle("Class Manager");
-		stage.initStyle(StageStyle.UNDECORATED);
+		//stage.initStyle(StageStyle.UNDECORATED);
 		stage.setResizable(true);
 		stage.show();
 
 		
 	}
+    public void setStudentViewProfessor() throws IOException
+    {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/studentsViewProf.fxml"));
+
+    	Parent root = (Parent) loader.load();    	
+    	addMouseDragging(root);
+		scene.setRoot(root);
+		
+		scene.getStylesheets().add(getClass().getResource("/css/tableView.css").toExternalForm());
+		stage.setHeight(760);
+		stage.setWidth(1050);
+		stage.setTitle("Class Manager");
+		//stage.initStyle(StageStyle.UNDECORATED);
+		stage.setResizable(true);
+		stage.show();
+
+    }
    
     
     public void showError(String message) 

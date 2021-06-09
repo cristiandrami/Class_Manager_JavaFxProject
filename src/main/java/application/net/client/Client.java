@@ -5,12 +5,15 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 
 import application.SceneHandler;
-
+import application.StudentsTableModel;
 import application.net.common.Protocol;
 import application.net.common.User;
 import application.net.server.UsersHandler;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 
 //meglio averla come singleton
@@ -147,6 +150,27 @@ public class Client implements Runnable
 		
 		
 	}
+	public ObservableList<StudentsTableModel> getStudentsList() 
+	{
+		sendMessage(Protocol.GETSTUDENTSFORPROF);
+		
+		try 
+		{
+			in=new ObjectInputStream(socket.getInputStream());
+			ObservableList<StudentsTableModel> tableList= (ObservableList<StudentsTableModel>) in.readObject();
+			return tableList;
+	
+		} 
+		catch (Exception e) 
+		{
+			out=null;
+			return null;
+		}
+		
+		
+		
+		
+	}
 	
 	
 	
@@ -165,6 +189,8 @@ public class Client implements Runnable
 		in=null;
 		socket=null;
 	}
+
+	
 
 	
 	

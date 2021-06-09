@@ -70,6 +70,7 @@ public class LoginController
     @FXML
     void exitClicked(ActionEvent event) 
     {
+    	Client.getInstance().reset();
     	System.exit(0);
 
     }
