@@ -4,11 +4,14 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 
+import application.StudentsTableModel;
 import application.controller.RegistrationFormController;
 import application.net.client.UserAccess;
 import application.net.common.Protocol;
 import application.net.common.User;
+import javafx.collections.ObservableList;
 
 public class MessagesHandler extends Thread
 {
@@ -160,10 +163,27 @@ public class MessagesHandler extends Thread
 					//STO IN ASCOLTO
 					while(true)
 					{
+						//System.out.println("server in ascolto");
 						String request= (String) in.readObject();
 						if(request.equals(Protocol.GETSTUDENTSFORPROF))
 						{
-							sendObject(DatabaseHandler.getInstance().getStudentsList(username));
+							ArrayList<StudentsTableModel> list=DatabaseHandler.getInstance().getStudentsList(username);
+							//System.out.println("list size "+ list.size());
+							sendArrayStudents(list);
+						}
+						
+						else if(request.equals(Protocol.GETSUFFICIENTSTUDENS))
+						{
+							//System.out.println("sto inviando il risultato della richiesta");
+							sendMessage(DatabaseHandler.getInstance().getSufficientStudents(username));
+						}
+						else if(request.equals(Protocol.GETUNSUFFICIENTSTUDENS))
+						{
+							sendMessage(DatabaseHandler.getInstance().getUnsufficientStudents(username));
+						}
+						else if(request.equals(Protocol.GETTOTALSTUDENTS))
+						{
+							sendMessage(DatabaseHandler.getInstance().getTotalStudents(username));
 						}
 						
 					}
@@ -175,7 +195,7 @@ public class MessagesHandler extends Thread
 			{
 				//l'utente è stato disconnesso
 				UsersHandler.removeUser(username);
-				System.out.println("l'utente "+username+"si è scollegato");
+				System.out.println("l'utente "+username+" si è scollegato");
 				
 				
 			}
@@ -215,14 +235,20 @@ public class MessagesHandler extends Thread
 		
 	}
 	
-	public void sendObject(Object ob)
+	public void sendArrayStudents(ArrayList<StudentsTableModel> ob)
 	{
+		//System.out.println("sto spedendo la lista");
 		if(out==null)
+		{
+			//System.out.println("oggetto nullo");
 			return;
+		}
+			
 		try 
 		{
 			out.writeObject(ob);
 			out.flush();
+			//System.out.println("lista spedita");
 		} 
 		catch (IOException e) 
 		{
@@ -231,6 +257,7 @@ public class MessagesHandler extends Thread
 				// SE QUI ho avuto qualche problema di connessione tolgo l'utente da quelli online
 				//l'utente è stato disconnesso
 				UsersHandler.removeUser(username);
+				//System.out.println("problema con la spedizione");
 			
 				
 				

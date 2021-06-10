@@ -1,10 +1,16 @@
 package application;
 
-public class StudentsTableModel 
+import java.io.Serializable;
+
+public class StudentsTableModel implements Serializable
 {
-	private String nome, cognome, dataNascita;
-	private int voto;
-	public StudentsTableModel(String nome, String cognome, String dataNascita, int voto) {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2387294425459424451L;
+	private String nome, cognome, dataNascita, voto;
+	
+	public StudentsTableModel(String nome, String cognome, String dataNascita, String voto) {
 		super();
 		this.nome = nome;
 		this.cognome = cognome;
@@ -29,10 +35,10 @@ public class StudentsTableModel
 	public void setDataNascita(String dataNascita) {
 		this.dataNascita = dataNascita;
 	}
-	public int getVoto() {
+	public String getVoto() {
 		return voto;
 	}
-	public void setVoto(int voto) {
+	public void setVoto(String voto) {
 		this.voto = voto;
 	}
 	

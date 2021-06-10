@@ -6,13 +6,13 @@
 .table-view .column-header .label
 {
     -fx-text-fill: #eeeeee;
-    -fx-alignment: CENTER_LEFT;
+    -fx-alignment: CENTER;
 }
 
 .table-view .cell
 {
     -fx-cell-size: 30;
-    -fx-background-color: #00adb5;
-    -fx-alignment: CENTER_LEFT;
+    -fx-background-color: #eeeeee;
+    -fx-alignment: CENTER;
     -fx-text-fill: black; 
 }

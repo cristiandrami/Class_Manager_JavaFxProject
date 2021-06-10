@@ -37,6 +37,8 @@ public class Client implements Runnable
 			socket= new Socket("localhost",8000);
 			out= new ObjectOutputStream(socket.getOutputStream());
 			
+			in=new ObjectInputStream(socket.getInputStream());
+			
 		}
 		catch(IOException e)
 		{
@@ -59,20 +61,23 @@ public class Client implements Runnable
 		if(in==null)
 			return;
 		
-		while(out!=null && in!=null)
-		{
-			String mess;
-			try 
+		
+			while(out!=null && in!=null)
 			{
-				mess = (String) in.readObject();
+				String mess;
+				try 
+				{
+					mess = (String) in.readObject();
 
+				} 
+				catch (Exception e) 
+				{
+					out=null;
+					SceneHandler.getInstance().showError("Connection lost");
+				} 
 			} 
-			catch (Exception e) 
-			{
-				out=null;
-				SceneHandler.getInstance().showError("Connection lost");
-			} 
-		} 
+	
+		
 		
 	
 		
@@ -90,7 +95,6 @@ public class Client implements Runnable
 
 		try 
 		{
-			in=new ObjectInputStream(socket.getInputStream());
 			String result= (String) in.readObject();
 			return result;
 	
@@ -137,7 +141,7 @@ public class Client implements Runnable
 
 		try 
 		{
-			in=new ObjectInputStream(socket.getInputStream());
+			
 			String result= (String) in.readObject();
 			return result;
 	
@@ -156,19 +160,77 @@ public class Client implements Runnable
 		
 		try 
 		{
-			in=new ObjectInputStream(socket.getInputStream());
-			ObservableList<StudentsTableModel> tableList= (ObservableList<StudentsTableModel>) in.readObject();
-			return tableList;
-	
+			ArrayList<StudentsTableModel> tableList;
+			tableList = (ArrayList<StudentsTableModel>) in.readObject();
+			ObservableList<StudentsTableModel> studentList= FXCollections.observableArrayList();
+			for(StudentsTableModel student: tableList)
+				studentList.add(student);
+			//System.out.println(tableList.size());
+			return studentList;
 		} 
 		catch (Exception e) 
 		{
 			out=null;
 			return null;
 		}
+
+	}
+	
+	public String getSufficientStudents()
+	{
+		System.out.println("invio la richiesta");
+		sendMessage(Protocol.GETSUFFICIENTSTUDENS);
 		
+		try 
+		{
+			
+			String result= (String) in.readObject();
+			return result;
+	
+		} 
+		catch (Exception e) 
+		{
+			out=null;
+			return Protocol.ERROR;
+		}
 		
+	}
+	
+	public String getUnsufficientStudents() 
+	{
+		sendMessage(Protocol.GETUNSUFFICIENTSTUDENS);
 		
+			
+		try 
+		{
+			
+			String result= (String) in.readObject();
+			return result;
+	
+		} 
+		catch (Exception e) 
+		{
+			out=null;
+			return Protocol.ERROR;
+		}
+	}
+	
+	public String getTotalStudents() 
+	{
+		sendMessage(Protocol.GETTOTALSTUDENTS);
+		
+		try 
+		{
+			
+			String result= (String) in.readObject();
+			return result;
+	
+		} 
+		catch (Exception e) 
+		{
+			out=null;
+			return Protocol.ERROR;
+		}
 		
 	}
 	
@@ -189,6 +251,10 @@ public class Client implements Runnable
 		in=null;
 		socket=null;
 	}
+
+	
+
+	
 
 	
 

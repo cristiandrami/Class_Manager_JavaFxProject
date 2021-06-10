@@ -13,10 +13,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class StudentViewTableController 
+public class StudentViewTableController  
 {
-	 @FXML
+	 	@FXML
 	    private Label totalStudentsLabel;
+	 	
+	    @FXML
+	    private Label insufficientLabel;
 
 	    @FXML
 	    private ImageView logoView;
@@ -51,14 +54,17 @@ public class StudentViewTableController
 
 
 
-	    @FXML
-	    private Label insufficientLabel;
-
 	    
 	    @FXML
-	    void initilize()
+	    void initialize()
 	    {
+	    	
+	    	sufficientLabel.setText(Client.getInstance().getSufficientStudents());
+	    	insufficientLabel.setText(Client.getInstance().getUnsufficientStudents());
+	    	totalStudentsLabel.setText(Client.getInstance().getTotalStudents());
+	    	
 	    	tableList= Client.getInstance().getStudentsList();
+	    	
 
 	    	logoView.imageProperty().set(new Image(getClass().getResourceAsStream("/loginResources/logoLogin.jpg"))); 
 	    	nameColumn.setCellValueFactory(new PropertyValueFactory<>("nome"));
