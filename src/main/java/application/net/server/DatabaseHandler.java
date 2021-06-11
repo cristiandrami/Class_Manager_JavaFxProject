@@ -5,7 +5,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.security.crypto.bcrypt.BCrypt;
@@ -460,6 +462,55 @@ public class DatabaseHandler
 		
 		
 		return total;
+		
+	}
+
+	public synchronized boolean sendAssignment(String profUsername, String assignment) throws SQLException 
+	{
+		if(con==null || con.isClosed()|| profUsername.equals(""))
+			return false;
+		
+		String classe="";
+		String materia="";
+		String query= "SELECT user.classeAppartenenza, ProfessoreMateria.materia FROM user, ProfessoreMateria "
+				+ "WHERE user.username=? and ProfessoreMateria.prof=?;";
+		PreparedStatement p= con.prepareStatement(query);
+		p.setString(1, profUsername);
+		p.setString(2, profUsername);
+		
+		ResultSet rs1= p.executeQuery();
+		if( rs1.next())
+		{
+			classe=rs1.getString("classeAppartenenza");
+			materia=rs1.getString("materia");
+		
+		}
+		
+		
+		
+		p.close();
+		
+		Date date = new Date();  
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
+		String data=formatter.format(date);
+		
+		p= con.prepareStatement("INSERT INTO compitiAssegnati VALUES(?,?,?,?,?);");
+		p.setString(1, null);
+		p.setString(2, materia);
+		p.setString(3,  classe);
+		p.setString(4, assignment);
+		p.setString(5,  data);
+		p.executeUpdate();
+		p.close();
+		
+		
+		return true;
+		
+		
+	
+	
+		
 		
 	}
 

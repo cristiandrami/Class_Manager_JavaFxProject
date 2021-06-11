@@ -112,6 +112,22 @@ public class SceneHandler
 		stage.show();
 
     }
+    
+    public void setAssignmnetProfPage() throws IOException 
+    {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/assignmentProfessor.fxml"));
+
+    	Parent root = (Parent) loader.load();    	
+    	addMouseDragging(root);
+		scene.setRoot(root);
+		stage.setHeight(760);
+		stage.setWidth(1050);
+		stage.setTitle("Class Manager");
+		stage.setResizable(true);
+		stage.show();
+		
+		
+	}
    
     
     public void showError(String message) 
@@ -131,6 +147,16 @@ public class SceneHandler
 		alert.showAndWait();
     	
     }
+    
+    public void showInformation(String message) 
+    {
+    	Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Perfetto");
+		alert.setHeaderText("");
+		alert.setContentText(message);
+		alert.showAndWait();
+		
+	}
     
     private void addMouseDragging(Parent root)
     {
@@ -161,6 +187,10 @@ public class SceneHandler
 		});
     	
     }
+
+	
+
+	
 
 	
 

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.ProfAssignmentController">
+   <children>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <BorderPane prefHeight="225.0" prefWidth="1050.0" style="-fx-background-color: #00adb5;" BorderPane.alignment="CENTER">
+               <center>
+                  <ImageView fx:id="logoView" fitHeight="150.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                     <image>
+                        <Image url="@../../../resources/loginResources/logoLogin.jpg" />
+                     </image>
+                  </ImageView>
+               </center>
+               <top>
+                  <HBox alignment="TOP_RIGHT" prefHeight="32.0" prefWidth="1048.0" BorderPane.alignment="TOP_RIGHT">
+                     <children>
+                        <Button fx:id="closeButton" mnemonicParsing="false" onAction="#closeClicked" style="-fx-background-color: #00adb5;">
+                           <graphic>
+                              <FontAwesomeIcon fill="#eeeeee" iconName="CLOSE" size="25" />
+                           </graphic>
+                        </Button>
+                     </children>
+                     <BorderPane.margin>
+                        <Insets />
+                     </BorderPane.margin>
+                  </HBox>
+               </top>
+               <bottom>
+                  <Label text="Assignment Page" textFill="#eeeeee" BorderPane.alignment="TOP_CENTER">
+                     <BorderPane.margin>
+                        <Insets bottom="10.0" />
+                     </BorderPane.margin>
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIcon fill="#eeeeee" iconName="CALENDAR" size="50" />
+                     </graphic>
+                  </Label>
+               </bottom>
+            </BorderPane>
+         </top>
+         <center>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label text="Inserisci in questa area i compiti da assegnare agli studenti" textFill="#00adb5">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <TextArea fx:id="assignmentTextArea" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="600.0" />
+                  <Button fx:id="sendAssignment" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#sendAssignmentClicked" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #00adb5;" text="Assegna compito" textFill="#eeeeee">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

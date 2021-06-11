@@ -29,10 +29,13 @@ public class ProfHomeController {
     @FXML
     void studentsClicked(ActionEvent event) 
     {
-    	try {
+    	try 
+    	{
 			SceneHandler.getInstance().setStudentViewProfessor();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		} 
+    	catch (IOException e)
+    	{
+			
 			e.printStackTrace();
 		}
 
@@ -41,14 +44,24 @@ public class ProfHomeController {
  
 
     @FXML
-    void assgimentClicked(ActionEvent event) {
+    void assgimentClicked(ActionEvent event) 
+    {
+    	try 
+    	{
+			SceneHandler.getInstance().setAssignmnetProfPage();
+		} catch (IOException e) 
+    	{
+			
+			e.printStackTrace();
+		}
 
     }
 
 
 
     @FXML
-    void votesClicked(ActionEvent event) {
+    void votesClicked(ActionEvent event) 
+    {
     	System.out.println("hai cliccato");
     }
 

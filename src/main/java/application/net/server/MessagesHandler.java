@@ -185,6 +185,15 @@ public class MessagesHandler extends Thread
 						{
 							sendMessage(DatabaseHandler.getInstance().getTotalStudents(username));
 						}
+						else if(request.equals(Protocol.SENDASSIGNMENT))
+						{
+							String assignment= (String)in.readObject();
+							if(DatabaseHandler.getInstance().sendAssignment(username, assignment))
+								sendMessage(Protocol.OK);
+							else 
+								sendMessage(Protocol.ERROR);
+							
+						}
 						
 					}
 			}
