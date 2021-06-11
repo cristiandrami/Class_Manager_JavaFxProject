@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class ProfAssignmentController 
@@ -35,7 +36,12 @@ public class ProfAssignmentController
     	}
     	
     	if(Client.getInstance().sendAssigment(assignment))
+    	{
     		SceneHandler.getInstance().showInformation("Compiti assegnati correttamente");
+    		assignmentTextArea.setText("");
+    		
+    	}
+    		
     		
     	
 
@@ -48,6 +54,13 @@ public class ProfAssignmentController
     	Client.getInstance().reset();
     	System.exit(0);
 
+    }
+    
+    @FXML
+    void initialize()
+    {
+    	logoView.imageProperty().set(new Image(getClass().getResourceAsStream("/loginResources/logoLogin.jpg"))); 
+    	
     }
 
 }

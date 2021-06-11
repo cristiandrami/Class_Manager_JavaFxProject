@@ -14,7 +14,7 @@
          <top>
             <BorderPane prefHeight="225.0" prefWidth="1050.0" style="-fx-background-color: #00adb5;" BorderPane.alignment="CENTER">
                <center>
-                  <ImageView fx:id="logoView" fitHeight="150.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                  <ImageView fx:id="logoView" fitHeight="141.0" fitWidth="146.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                      <image>
                         <Image url="@../../../resources/loginResources/logoLogin.jpg" />
                      </image>
@@ -35,7 +35,7 @@
                   </HBox>
                </top>
                <bottom>
-                  <Label text="Assignment Page" textFill="#eeeeee" BorderPane.alignment="TOP_CENTER">
+                  <Label text=" Asseganzione Compiti" textFill="#eeeeee" BorderPane.alignment="TOP_CENTER">
                      <BorderPane.margin>
                         <Insets bottom="10.0" />
                      </BorderPane.margin>
@@ -43,7 +43,7 @@
                         <Font size="25.0" />
                      </font>
                      <graphic>
-                        <FontAwesomeIcon fill="#eeeeee" iconName="CALENDAR" size="50" />
+                        <FontAwesomeIcon fill="#eeeeee" iconName="CALENDAR" size="40" />
                      </graphic>
                   </Label>
                </bottom>
@@ -57,7 +57,10 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <TextArea fx:id="assignmentTextArea" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="600.0" />
+                  <TextArea fx:id="assignmentTextArea" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="600.0" promptText="Inserisci compiti da assegnare...">
+                     <font>
+                        <Font size="15.0" />
+                     </font></TextArea>
                   <Button fx:id="sendAssignment" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#sendAssignmentClicked" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #00adb5;" text="Assegna compito" textFill="#eeeeee">
                      <font>
                         <Font size="15.0" />
