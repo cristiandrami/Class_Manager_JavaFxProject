@@ -37,7 +37,6 @@ public class SceneHandler
 		scene = new Scene(root, 700, 500);
 		stage.setScene(scene);
 		stage.setTitle("Class Manager");
-		stage.initStyle(StageStyle.UNDECORATED);
 		stage.setResizable(false);
 		stage.show();
 	}
@@ -107,7 +106,7 @@ public class SceneHandler
 		stage.setHeight(760);
 		stage.setWidth(1050);
 		stage.setTitle("Class Manager");
-		//stage.initStyle(StageStyle.UNDECORATED);
+		
 		stage.setResizable(true);
 		stage.show();
 
@@ -123,6 +122,25 @@ public class SceneHandler
 		stage.setHeight(760);
 		stage.setWidth(1050);
 		stage.setTitle("Class Manager");
+		
+		stage.setResizable(true);
+		stage.show();
+		
+		
+	}
+    
+    public void setProfessorVotesGestionPage() throws IOException 
+    {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/professorVotesGestionPage.fxml"));
+
+    	Parent root = (Parent) loader.load();    	
+    	addMouseDragging(root);
+		scene.setRoot(root);
+		stage.setHeight(760);
+		stage.setWidth(1050);
+		scene.getStylesheets().add(getClass().getResource("/css/tableView.css").toExternalForm());
+		stage.setTitle("Class Manager");
+		
 		stage.setResizable(true);
 		stage.show();
 		

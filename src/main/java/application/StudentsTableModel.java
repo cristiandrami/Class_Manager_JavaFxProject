@@ -8,9 +8,9 @@ public class StudentsTableModel implements Serializable
 	 * 
 	 */
 	private static final long serialVersionUID = 2387294425459424451L;
-	private String nome, cognome, dataNascita, voto;
+	private String nome, cognome, dataNascita, voto, username;
 	
-	public StudentsTableModel(String nome, String cognome, String dataNascita, String voto) {
+	public StudentsTableModel(String username, String nome, String cognome, String dataNascita, String voto) {
 		super();
 		this.nome = nome;
 		this.cognome = cognome;

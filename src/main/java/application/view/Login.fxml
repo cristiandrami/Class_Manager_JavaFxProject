@@ -13,7 +13,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.LoginController">
    <right>
-      <AnchorPane prefHeight="500.0" prefWidth="378.0" BorderPane.alignment="CENTER">
+      <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="378.0" BorderPane.alignment="CENTER">
          <children>
             <TextField fx:id="userField" layoutX="104.0" layoutY="221.0" promptText="Username" style="-fx-background-color: transparent; -fx-border-color: #00adb5; -fx-border-width: 0px 0px 2px 0px;" />
             <PasswordField fx:id="passwordField" layoutX="104.0" layoutY="290.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: #00adb5; -fx-border-width: 0px 0px 2px 0px;" />

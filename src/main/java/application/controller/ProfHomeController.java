@@ -62,7 +62,15 @@ public class ProfHomeController {
     @FXML
     void votesClicked(ActionEvent event) 
     {
-    	System.out.println("hai cliccato");
+    	try 
+    	{
+			SceneHandler.getInstance().setProfessorVotesGestionPage();
+		} catch (IOException e) 
+    	{
+			
+			e.printStackTrace();
+		}
+    	
     }
 
 

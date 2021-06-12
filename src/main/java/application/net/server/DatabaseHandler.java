@@ -277,7 +277,7 @@ public class DatabaseHandler
 		p.close();
 	
 		
-		String query2= "SELECT user.nome, user.cognome, user.dataNascita, studentiVoti.voto FROM user, studentiVoti "
+		String query2= "SELECT user.username, user.nome, user.cognome, user.dataNascita, studentiVoti.voto FROM user, studentiVoti "
 				+ "WHERE user.classeAppartenenza=? and user.username=studentiVoti.studente and studentiVoti.materia=?;";
 		PreparedStatement p2= con.prepareStatement(query2);
 		p2.setString(1, classe);
@@ -289,6 +289,7 @@ public class DatabaseHandler
 	
 		while( rs2.next())
 		{
+				String username=rs2.getString("username");
 	           	String voto = rs2.getString("voto");
 	            String nome= rs2.getString("nome");
 				String cognome= rs2.getString("cognome");
@@ -299,7 +300,7 @@ public class DatabaseHandler
 				
 				
 				
-				studenti.add(new StudentsTableModel(nome, cognome, data, voto));
+				studenti.add(new StudentsTableModel(username, nome, cognome, data, voto));
 
 		}
 		p2.close();

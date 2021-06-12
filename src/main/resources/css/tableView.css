@@ -12,7 +12,6 @@
 .table-view .cell
 {
     -fx-cell-size: 30;
-    -fx-background-color: #eeeeee;
     -fx-alignment: CENTER;
     -fx-text-fill: black; 
 }
