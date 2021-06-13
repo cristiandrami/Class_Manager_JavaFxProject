@@ -2,7 +2,7 @@ package application.controller.professor;
 
 import application.SceneHandler;
 import application.StudentsTableModel;
-import application.net.client.Client;
+import application.net.client.ProfessorClient;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -108,14 +108,14 @@ public class ProfessorVotesGestionPage {
     			return;
     		}
     		
-    		if(Client.getInstance().updateStudentVote(studentUsername, newVote))
+    		if(ProfessorClient.getInstance().updateStudentVote(studentUsername, newVote))
     		{
     			SceneHandler.getInstance().showInformation("Il voto di "+studentName+" "+ studentSurname +" è stato aggiornato correttamente");
     			studentName="";
     			studentSurname="";
     			studentUsername="";
     			studentBornDate="";
-    			tableList=Client.getInstance().getStudentsList();
+    			tableList=ProfessorClient.getInstance().getStudentsList();
     			studentsTable.setItems(tableList);
     			mainPane.setOpacity(1);
             	updatePane.setOpacity(0);
@@ -136,7 +136,7 @@ public class ProfessorVotesGestionPage {
     @FXML
     void initialize()
     {
-    	tableList= Client.getInstance().getStudentsList();
+    	tableList= ProfessorClient.getInstance().getStudentsList();
     	nameColumn.setCellValueFactory(new PropertyValueFactory<>("nome"));
     	surnameColumn.setCellValueFactory(new PropertyValueFactory<>("cognome"));
     	bornDateColumn.setCellValueFactory(new PropertyValueFactory<>("dataNascita"));

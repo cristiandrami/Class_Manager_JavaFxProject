@@ -1,7 +1,7 @@
 package application.controller.professor;
 
 import application.StudentsTableModel;
-import application.net.client.Client;
+import application.net.client.ProfessorClient;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -44,7 +44,7 @@ public class StudentViewTableController
 	    
 	    @FXML
 	    void onCloseClicked(ActionEvent event) {
-	    	Client.getInstance().reset();
+	    	ProfessorClient.getInstance().reset();
 	    	System.exit(0);
 
 	    }
@@ -59,11 +59,11 @@ public class StudentViewTableController
 	    void initialize()
 	    {
 	    	
-	    	sufficientLabel.setText(Client.getInstance().getSufficientStudents());
-	    	insufficientLabel.setText(Client.getInstance().getUnsufficientStudents());
-	    	totalStudentsLabel.setText(Client.getInstance().getTotalStudents());
+	    	sufficientLabel.setText(ProfessorClient.getInstance().getSufficientStudents());
+	    	insufficientLabel.setText(ProfessorClient.getInstance().getUnsufficientStudents());
+	    	totalStudentsLabel.setText(ProfessorClient.getInstance().getTotalStudents());
 	    	
-	    	tableList= Client.getInstance().getStudentsList();
+	    	tableList= ProfessorClient.getInstance().getStudentsList();
 	    	
 
 	    	logoView.imageProperty().set(new Image(getClass().getResourceAsStream("/loginResources/logoLogin.jpg"))); 

@@ -1,7 +1,7 @@
 package application.controller.professor;
 
 import application.SceneHandler;
-import application.net.client.Client;
+import application.net.client.ProfessorClient;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -35,7 +35,7 @@ public class ProfAssignmentController
     		return;
     	}
     	
-    	if(Client.getInstance().sendAssigment(assignment))
+    	if(ProfessorClient.getInstance().sendAssigment(assignment))
     	{
     		SceneHandler.getInstance().showInformation("Compiti assegnati correttamente");
     		assignmentTextArea.setText("");
@@ -51,7 +51,7 @@ public class ProfAssignmentController
     @FXML
     void closeClicked(ActionEvent event) 
     {
-    	Client.getInstance().reset();
+    	ProfessorClient.getInstance().reset();
     	System.exit(0);
 
     }

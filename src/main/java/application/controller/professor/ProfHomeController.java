@@ -3,7 +3,7 @@ package application.controller.professor;
 import java.io.IOException;
 
 import application.SceneHandler;
-import application.net.client.Client;
+import application.net.client.ProfessorClient;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -77,7 +77,7 @@ public class ProfHomeController {
 
     @FXML
     void logoutClicked(ActionEvent event) {
-    	Client.getInstance().reset();
+    	ProfessorClient.getInstance().reset();
     	try 
     	{
 			SceneHandler.getInstance().setLogin();
@@ -94,7 +94,7 @@ public class ProfHomeController {
     @FXML
     void closeClicked(ActionEvent event) 
     {
-    	Client.getInstance().reset();
+    	ProfessorClient.getInstance().reset();
     	System.exit(0);
     	
     }

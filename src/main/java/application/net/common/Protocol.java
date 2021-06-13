@@ -12,6 +12,8 @@ public class Protocol {
 	public static final String SENDASSIGNMENT = "send assignment";
 	public static final String UPDATESTUDENTVOTE = "update student vote";
 	
+	//*************************************STUDENT**********************************//
+	
 	
 	public final static String OK= "ok";
 	

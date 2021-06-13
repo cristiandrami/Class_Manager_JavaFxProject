@@ -17,9 +17,9 @@ import javafx.collections.ObservableList;
 
 
 //meglio averla come singleton
-public class Client implements Runnable
+public class ProfessorClient 
 {
-	private static Client instance=null;
+	private static ProfessorClient instance=null;
 	private Socket socket;
 	
 	//per comunicare col server
@@ -30,7 +30,7 @@ public class Client implements Runnable
 	
 	//allocaree sempre l'out altrimenti se faccio prima in lui resta in attesa dal server e nel server ancora non ho creato l'out vado in blocco
 	
-	private Client()
+	private ProfessorClient()
 	{
 		try 
 		{
@@ -48,40 +48,13 @@ public class Client implements Runnable
 		}
 	}
 	
-	public static Client getInstance()
+	public static ProfessorClient getInstance()
 	{
 		if(instance==null)
-			instance= new Client();
+			instance= new ProfessorClient();
 		return instance;
 	}
 
-	@Override
-	public void run() 
-	{
-		if(in==null)
-			return;
-		
-		
-			while(out!=null && in!=null)
-			{
-				String mess;
-				try 
-				{
-					mess = (String) in.readObject();
-
-				} 
-				catch (Exception e) 
-				{
-					out=null;
-					SceneHandler.getInstance().showError("Connection lost");
-				} 
-			} 
-	
-		
-		
-	
-		
-	}
 	
 	//se login è true voglio entrare, se è false l'utente vuole registrarsi
 	//se sulla regitrazione c'è un errore il server chiude la comunicazione

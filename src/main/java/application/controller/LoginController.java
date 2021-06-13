@@ -1,8 +1,12 @@
 package application.controller;
 
 
+import java.io.IOException;
+import java.sql.SQLException;
+
 import application.SceneHandler;
-import application.net.client.Client;
+import application.net.client.ProfessorClient;
+import application.net.client.StudentClient;
 import application.net.common.Protocol;
 import application.net.server.DatabaseHandler;
 import javafx.event.ActionEvent;
@@ -70,47 +74,52 @@ public class LoginController
     @FXML
     void exitClicked(ActionEvent event) 
     {
-    	Client.getInstance().reset();
+    	ProfessorClient.getInstance().reset();
     	System.exit(0);
 
     }
     
     
-    private void authentication()
+    private void authentication() 
     {
-    	String result= Client.getInstance().authentication(userField.getText(), passwordField.getText());
-    	if(result.equals(Protocol.OK))
-    	{
-    		try 
-    		{
-				String type= DatabaseHandler.getInstance().getType(userField.getText());
-				//System.out.println(type);
-				if(type.equals(PROFTYPE))
+    	String type="";
+    	String result="";
+		try 
+		{
+			type = DatabaseHandler.getInstance().getType(userField.getText());
+			//System.out.println(type);
+			if(type.equals(PROFTYPE))
+			{	
+				result= ProfessorClient.getInstance().authentication(userField.getText(), passwordField.getText());
+				if(result.equals(Protocol.OK))
+				try 
 				{
-					//System.out.println("accesso prof");
-					SceneHandler.getInstance().setProfHomePage();
-				}
-				else if(type.equals(STUDENTTYPE))
+						SceneHandler.getInstance().setProfHomePage();
+					
+				} 
+				catch (IOException e) 
 				{
-					//System.out.println("accesso studente");
-					//SceneHandler.setStudentHomePage();
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					
 				}
-				else
-					System.exit(0);
-				
-			} 
-    		catch (Exception e) 
-    		{
-				
-				SceneHandler.getInstance().showError("Error during loading dashboard");
 			}
-    		
-    	}
-    	else
-    	{
-    		SceneHandler.getInstance().showError(result);
-    		Client.getInstance().reset();
-    	}
+			else if(type.equals(STUDENTTYPE))
+			{
+				result= StudentClient.getInstance().authentication(userField.getText(), passwordField.getText());
+				//if(result.equals(Protocol.OK))
+					//SceneHandler.getInstance().setStudentHomePage();
+			}
+			
+		}
+		catch (SQLException e1) 
+		{
+			
+		}
+    	
+
+    	
+   
 			
     
     }

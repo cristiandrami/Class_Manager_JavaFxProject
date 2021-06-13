@@ -6,7 +6,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import application.SceneHandler;
-import application.net.client.Client;
+import application.net.client.ProfessorClient;
+import application.net.client.StudentClient;
 import application.net.common.Protocol;
 import application.net.server.DatabaseHandler;
 import javafx.beans.value.ChangeListener;
@@ -115,7 +116,7 @@ public class RegistrationFormController
     @FXML
     void onCloseClicked(ActionEvent event) 
     {
-    	Client.getInstance().reset();
+    	ProfessorClient.getInstance().reset();
     	System.exit(0);
     
     }
@@ -133,39 +134,59 @@ public class RegistrationFormController
     			String password=passwordField.getText();
     			String date = datePicker.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
     			String code=codeField.getText();
-    			String result= Client.getInstance().registration(usern, name, surname, password, date, classe, type, code, materia);
+    			if(type.equals(PROFTYPE))
+    			{
+    				String result= ProfessorClient.getInstance().registration(usern, name, surname, password, date, classe, type, code, materia);
+        			
+                	if(result.equals(Protocol.OK))
+                	{
+                		try 
+                		{
+
+          					SceneHandler.getInstance().setProfHomePage();
+
+            			} 
+                		catch (Exception e) 
+                		{
+            				
+            				SceneHandler.getInstance().showError("Error during loading dashboard");
+            			}
+                		
+                	}
+                	else
+                	{
+                		SceneHandler.getInstance().showError(result);
+                		ProfessorClient.getInstance().reset();
+                	}
+    				
+    			}
+    			else if(type.equals(STUDENTTYPE))
+    			{
+    				String result= StudentClient.getInstance().registration(usern, name, surname, password, date, classe, type, code, materia);
+        			
+                	if(result.equals(Protocol.OK))
+                	{
+                		try 
+                		{
+
+          					//SceneHandler.getInstance().setProfHomePage();
+
+            			} 
+                		catch (Exception e) 
+                		{
+            				
+            				SceneHandler.getInstance().showError("Error during loading dashboard");
+            			}
+                		
+                	}
+                	else
+                	{
+                		SceneHandler.getInstance().showError(result);
+                		ProfessorClient.getInstance().reset();
+                	}
+    				
+    			}
     			
-            	if(result.equals(Protocol.OK))
-            	{
-            		try 
-            		{
-        				
-        				if(type.equals(PROFTYPE))
-        				{
-        					System.out.println("accesso prof");
-        					SceneHandler.getInstance().setProfHomePage();
-        				}
-        				else if(type.equals(STUDENTTYPE))
-        				{
-        					System.out.println("accesso studente");
-        					//SceneHandler.setStudentHomePage();
-        				}
-        				else
-        					System.exit(0);
-        				
-        			} 
-            		catch (Exception e) 
-            		{
-        				
-        				SceneHandler.getInstance().showError("Error during loading dashboard");
-        			}
-            		
-            	}
-            	else
-            	{
-            		SceneHandler.getInstance().showError(result);
-            		Client.getInstance().reset();
-            	}
 	
     	
     }
@@ -229,6 +250,7 @@ public class RegistrationFormController
     	usernamePat= Pattern.compile("^[a-zA-Z]+[a-zA-Z0-9]*$");
     	passPat=Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,20}$");
     	addListeners();
+    	
     }
     
     private boolean checkRepeatPass(String pass, String repeat)
