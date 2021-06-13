@@ -1,4 +1,4 @@
-package application.controller;
+package application.controller.professor;
 
 import java.io.IOException;
 

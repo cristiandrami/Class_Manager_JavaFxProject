@@ -194,6 +194,19 @@ public class MessagesHandler extends Thread
 								sendMessage(Protocol.ERROR);
 							
 						}
+						else if(request.equals(Protocol.UPDATESTUDENTVOTE))
+						{
+							
+							String studentUsername= (String)in.readObject();
+							
+							Integer newVote= (Integer)in.readObject();
+							
+							if(DatabaseHandler.getInstance().updateVote(username, studentUsername, newVote))
+								sendMessage(Protocol.OK);
+							else 
+								sendMessage(Protocol.ERROR);
+							
+						}
 						
 					}
 			}

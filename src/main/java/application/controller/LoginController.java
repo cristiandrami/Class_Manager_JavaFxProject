@@ -84,15 +84,15 @@ public class LoginController
     		try 
     		{
 				String type= DatabaseHandler.getInstance().getType(userField.getText());
-				System.out.println(type);
+				//System.out.println(type);
 				if(type.equals(PROFTYPE))
 				{
-					System.out.println("accesso prof");
+					//System.out.println("accesso prof");
 					SceneHandler.getInstance().setProfHomePage();
 				}
 				else if(type.equals(STUDENTTYPE))
 				{
-					System.out.println("accesso studente");
+					//System.out.println("accesso studente");
 					//SceneHandler.setStudentHomePage();
 				}
 				else

@@ -8,7 +8,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<StackPane minHeight="600.0" minWidth="800.0" prefHeight="760.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.ProfessorVotesGestionPage">
+<StackPane minHeight="600.0" minWidth="800.0" prefHeight="760.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.professor.ProfessorVotesGestionPage">
    <children>
       <BorderPane fx:id="mainPane">
          <center>

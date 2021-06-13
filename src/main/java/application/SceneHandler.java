@@ -36,6 +36,8 @@ public class SceneHandler
     	addMouseDragging(root);
 		scene = new Scene(root, 700, 500);
 		stage.setScene(scene);
+		stage.setMinHeight(700);
+		stage.setMinWidth(900);
 		stage.setTitle("Class Manager");
 		stage.setResizable(false);
 		stage.show();
@@ -155,6 +157,7 @@ public class SceneHandler
 		alert.setHeaderText("");
 		alert.setContentText(message);
 		alert.showAndWait();
+		
     }
     public void showWarning(String message)
     {

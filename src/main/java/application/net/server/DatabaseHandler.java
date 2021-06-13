@@ -458,7 +458,7 @@ public class DatabaseHandler
 			
 		}
 		p2.close();
-		System.out.println(total);
+
 		
 		
 		
@@ -514,6 +514,51 @@ public class DatabaseHandler
 		
 		
 	}
+	
+	public synchronized boolean updateVote(String profUsername, String studentUsername, int newVote) throws SQLException 
+	{
+		if(con==null || con.isClosed()|| profUsername.equals(""))
+			return false;
+		
+		
+		
+		
+		String materia="";
+		String query= "SELECT ProfessoreMateria.materia FROM ProfessoreMateria "
+				+ "WHERE ProfessoreMateria.prof=?;";
+		PreparedStatement p= con.prepareStatement(query);
+		p.setString(1, profUsername);
+		
+		
+		ResultSet rs1= p.executeQuery();
+		if( rs1.next())
+		{
+			materia=rs1.getString("materia");
+		
+		}
+		
+		
+		
+		
+		p.close();
+		
+	
+		
+		
+		p=con.prepareStatement("UPDATE studentiVoti SET voto=? WHERE materia=? and studente=?;") ;
+		p.setInt(1, newVote);
+		p.setString(2, materia);
+		p.setString(3, studentUsername);
+		
+		p.executeUpdate();
+		p.close();
+		
+		return true;
+		
+		
+	}
+
+	
 
 }
 

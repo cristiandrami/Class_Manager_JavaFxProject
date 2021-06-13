@@ -255,6 +255,29 @@ public class Client implements Runnable
 		}
 	}
 	
+	public boolean updateStudentVote(String studentUsername, int newVote) 
+	{
+		sendMessage(Protocol.UPDATESTUDENTVOTE);
+		sendMessage(studentUsername);
+		sendMessage(newVote, true);
+		
+		try 
+		{
+			
+			String result= (String) in.readObject();
+			if(result.equals(Protocol.OK))
+				return true;
+			else return false;
+	
+		} 
+		catch (Exception e) 
+		{
+			out=null;
+			return false;
+		}
+		
+	}
+	
 	
 	
 	//questo lo posso usare con la chat senza avere problemi
@@ -272,6 +295,8 @@ public class Client implements Runnable
 		in=null;
 		socket=null;
 	}
+
+
 
 	
 

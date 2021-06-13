@@ -1,4 +1,4 @@
-package application.controller;
+package application.controller.professor;
 
 import application.StudentsTableModel;
 import application.net.client.Client;

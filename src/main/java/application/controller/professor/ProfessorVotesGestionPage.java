@@ -1,5 +1,6 @@
-package application.controller;
+package application.controller.professor;
 
+import application.SceneHandler;
 import application.StudentsTableModel;
 import application.net.client.Client;
 import javafx.collections.FXCollections;
@@ -18,6 +19,10 @@ import javafx.scene.layout.BorderPane;
 
 public class ProfessorVotesGestionPage {
 	//*****************************************MAIN PAGE************************************//
+	private String studentName="";
+	private String studentSurname="";
+	private String studentUsername="";
+	private String studentBornDate="";
 	
 	
 	@FXML
@@ -65,8 +70,26 @@ public class ProfessorVotesGestionPage {
     @FXML
     void updateSelectedClicked(ActionEvent event) 
     {
-    	mainPane.setOpacity(0.2);
-    	updatePane.setOpacity(1);
+    	
+    	StudentsTableModel student=studentsTable.getSelectionModel().getSelectedItem();
+    	if(student==null)
+    	{
+    		SceneHandler.getInstance().showWarning("C'è stato un problema con la scelta, assicurati di aver scelto uno studente della tabella");
+    		return;
+    	}
+    	else
+    	{
+    		studentName=student.getNome();
+    		studentSurname=student.getCognome();
+    		studentBornDate=student.getDataNascita();
+    		studentUsername=student.getUsername();
+    		studentLabelUpdate.setText(studentName+" "+studentSurname+"\nNato il: "+studentBornDate);
+    		voteLabelUpdate.setText("Voto corrente: "+student.getVoto());
+        	mainPane.setOpacity(0.2);
+        	updatePane.setOpacity(1);
+        	
+    	}
+    		
     	
 
     }
@@ -76,6 +99,37 @@ public class ProfessorVotesGestionPage {
     @FXML
     void updateVoteClicked(ActionEvent event) 
     {
+    	try
+    	{
+    		Integer newVote= Integer.parseInt(updateVoteField.getText());
+    		if(newVote<2 || newVote>10)
+    		{
+    			SceneHandler.getInstance().showWarning("Sembra esserci un problema con il voto inserito, assicurati che sia compreso tra 2 e 10");
+    			return;
+    		}
+    		
+    		if(Client.getInstance().updateStudentVote(studentUsername, newVote))
+    		{
+    			SceneHandler.getInstance().showInformation("Il voto di "+studentName+" "+ studentSurname +" è stato aggiornato correttamente");
+    			studentName="";
+    			studentSurname="";
+    			studentUsername="";
+    			studentBornDate="";
+    			tableList=Client.getInstance().getStudentsList();
+    			studentsTable.setItems(tableList);
+    			mainPane.setOpacity(1);
+            	updatePane.setOpacity(0);
+    			
+    		}
+    			
+    			
+    			
+    	}
+    	catch (NumberFormatException e) 
+    	{
+    	    SceneHandler.getInstance().showWarning("Sembra esserci un problema con il voto inserito, assicurati che sia nel formato corretto");
+    	    return;
+    	}
 
     }
     
