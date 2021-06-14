@@ -1,11 +1,15 @@
 package application.controller.professor;
 
+import java.io.IOException;
+
+import application.SceneHandler;
 import application.StudentsTableModel;
 import application.net.client.ProfessorClient;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -15,6 +19,7 @@ import javafx.scene.image.ImageView;
 
 public class StudentViewTableController  
 {
+		private ObservableList<StudentsTableModel> tableList= FXCollections.observableArrayList();
 	 	@FXML
 	    private Label totalStudentsLabel;
 	 	
@@ -41,6 +46,9 @@ public class StudentViewTableController
 
 	    @FXML
 	    private TableColumn<StudentsTableModel, String> nameColumn;
+
+	    @FXML
+	    private Button backButton;
 	    
 	    @FXML
 	    void onCloseClicked(ActionEvent event) {
@@ -48,9 +56,23 @@ public class StudentViewTableController
 	    	System.exit(0);
 
 	    }
+	    @FXML
+	    void backClicked(ActionEvent event) 
+	    {
+	    	try 
+	    	{
+				SceneHandler.getInstance().setProfHomePage();
+			}
+	    	catch (IOException e) 
+	    	{
+				System.out.println("Problema caricamento home page professore");
+			}
+	    	
+	    }
+
 	    
 	    
-	    private ObservableList<StudentsTableModel> tableList= FXCollections.observableArrayList();
+	    
 
 
 

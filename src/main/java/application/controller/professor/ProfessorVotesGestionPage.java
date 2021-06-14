@@ -1,5 +1,7 @@
 package application.controller.professor;
 
+import java.io.IOException;
+
 import application.SceneHandler;
 import application.StudentsTableModel;
 import application.net.client.ProfessorClient;
@@ -24,6 +26,8 @@ public class ProfessorVotesGestionPage {
 	private String studentUsername="";
 	private String studentBornDate="";
 	
+   
+	
 	
 	@FXML
     private BorderPane mainPane;
@@ -40,6 +44,8 @@ public class ProfessorVotesGestionPage {
     private TableColumn<String, StudentsTableModel> nameColumn;
 	@FXML
     private Button updateSelectedButton;
+	@FXML
+	private Button backButton;
 	@FXML
     private ImageView logoView;
 	
@@ -60,6 +66,10 @@ public class ProfessorVotesGestionPage {
 
     @FXML
     private Button updateVote;
+    
+    @FXML
+    private Button backUpdateButton;
+
     
     
 
@@ -117,6 +127,7 @@ public class ProfessorVotesGestionPage {
     			studentBornDate="";
     			tableList=ProfessorClient.getInstance().getStudentsList();
     			studentsTable.setItems(tableList);
+    			updateVoteField.setPromptText("Nuovo voto...");
     			mainPane.setOpacity(1);
             	updatePane.setOpacity(0);
     			
@@ -134,6 +145,20 @@ public class ProfessorVotesGestionPage {
     }
     
     @FXML
+    void backClicked(ActionEvent event) 
+    {
+    	try 
+    	{
+			SceneHandler.getInstance().setProfHomePage();
+		} 
+    	catch (IOException e) 
+    	{
+			
+    		System.out.println("Problema con il caricamento della home page del professore");
+		}
+    }
+    
+    @FXML
     void initialize()
     {
     	tableList= ProfessorClient.getInstance().getStudentsList();
@@ -144,6 +169,14 @@ public class ProfessorVotesGestionPage {
     	studentsTable.setItems(tableList);
     	updatePane.setStyle("-fx-border-color: #00adb5");
     	logoView.imageProperty().set(new Image(getClass().getResourceAsStream("/loginResources/logoLogin.jpg"))); 
+    }
+    
+    @FXML
+    void backUpdateClicked(ActionEvent event) 
+    {
+    	updateVoteField.setPromptText("Nuovo voto...");
+    	mainPane.setOpacity(1);
+    	updatePane.setOpacity(0);
     }
 
 

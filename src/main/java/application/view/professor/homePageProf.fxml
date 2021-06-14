@@ -63,26 +63,12 @@
          <top>
             <BorderPane prefHeight="224.0" prefWidth="1050.0" style="-fx-background-color: #00adb5;" BorderPane.alignment="CENTER">
                <center>
-                  <ImageView fx:id="logoView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                  <ImageView fx:id="logoView" fitHeight="157.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                      <image>
-                        <Image url="@../../../resources/loginResources/logoLogin.jpg" />
+                        <Image url="@./" />
                      </image>
                   </ImageView>
                </center>
-               <top>
-                  <HBox alignment="TOP_RIGHT" prefHeight="32.0" prefWidth="1048.0" BorderPane.alignment="TOP_RIGHT">
-                     <children>
-                        <Button fx:id="closeButton" mnemonicParsing="false" onAction="#closeClicked" style="-fx-background-color: #00adb5;">
-                           <graphic>
-                              <FontAwesomeIcon fill="#eeeeee" iconName="CLOSE" size="25" />
-                           </graphic>
-                        </Button>
-                     </children>
-                     <BorderPane.margin>
-                        <Insets />
-                     </BorderPane.margin>
-                  </HBox>
-               </top>
                <bottom>
                   <Label text="  Professor Home  Page" textFill="#eeeeee" BorderPane.alignment="TOP_CENTER">
                      <BorderPane.margin>

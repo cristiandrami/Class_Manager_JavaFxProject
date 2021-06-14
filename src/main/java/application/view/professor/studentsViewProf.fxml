@@ -94,7 +94,7 @@
             <TableColumn fx:id="voteColumn" prefWidth="178.0" text="Voto" />
         </columns>
          <BorderPane.margin>
-            <Insets bottom="10.0" left="10.0" right="10.0" />
+            <Insets bottom="20.0" left="10.0" right="10.0" />
          </BorderPane.margin>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -104,21 +104,37 @@
    <top>
       <BorderPane prefHeight="166.0" prefWidth="1050.0" style="-fx-background-color: #00adb5;" BorderPane.alignment="CENTER">
          <center>
-            <ImageView fx:id="logoView" fitHeight="106.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+            <ImageView fx:id="logoView" fitHeight="98.0" fitWidth="184.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                <image>
-                  <Image url="@../src/main/resources/loginResources/logoLogin.jpg" />
+                  <Image url="@./" />
                </image></ImageView>
          </center>
          <BorderPane.margin>
             <Insets />
          </BorderPane.margin>
          <top>
-            <Button fx:id="closeButton" mnemonicParsing="false" onAction="#onCloseClicked" style="-fx-background-color: #00adb5;;" BorderPane.alignment="CENTER_RIGHT">
+            <Button fx:id="backButton" mnemonicParsing="false" onAction="#backClicked" style="-fx-background-color: #00adb5;" BorderPane.alignment="TOP_LEFT">
+               <BorderPane.margin>
+                  <Insets left="10.0" top="10.0" />
+               </BorderPane.margin>
                <graphic>
-                  <FontAwesomeIcon fill="#eeeeee" iconName="CLOSE" size="25" />
+                  <FontAwesomeIcon fill="#eeeeee" iconName="ARROW_LEFT" size="30" />
                </graphic>
             </Button>
          </top>
+         <bottom>
+            <Label text=" Studenti " textFill="#eeeeee" BorderPane.alignment="CENTER">
+               <graphic>
+                  <FontAwesomeIcon fill="#eeeeee" iconName="GROUP" size="40" />
+               </graphic>
+               <font>
+                  <Font size="30.0" />
+               </font>
+               <BorderPane.margin>
+                  <Insets bottom="10.0" />
+               </BorderPane.margin>
+            </Label>
+         </bottom>
       </BorderPane>
    </top>
 </BorderPane>

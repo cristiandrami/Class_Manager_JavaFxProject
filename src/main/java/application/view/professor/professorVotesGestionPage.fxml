@@ -42,7 +42,7 @@
          <top>
             <BorderPane prefHeight="176.0" prefWidth="1050.0" style="-fx-background-color: #00adb5;" BorderPane.alignment="TOP_CENTER">
                <center>
-                  <ImageView fx:id="logoView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                  <ImageView fx:id="logoView" fitHeight="118.0" fitWidth="177.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                      <image>
                         <Image url="@./" />
                      </image>
@@ -61,6 +61,16 @@
                      </BorderPane.margin>
                   </Label>
                </bottom>
+               <top>
+                  <Button fx:id="backButton" mnemonicParsing="false" onAction="#backClicked" style="-fx-background-color: #00adb5;" BorderPane.alignment="TOP_LEFT">
+                     <BorderPane.margin>
+                        <Insets left="10.0" top="10.0" />
+                     </BorderPane.margin>
+                     <graphic>
+                        <FontAwesomeIcon fill="#eeeeee" iconName="ARROW_LEFT" size="30" />
+                     </graphic>
+                  </Button>
+               </top>
             </BorderPane>
          </top>
       </BorderPane>
@@ -81,12 +91,19 @@
                   </Label>
                </bottom>
                <top>
-                  <HBox prefHeight="34.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
+                  <HBox alignment="CENTER_RIGHT" prefHeight="34.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Button fx:id="backUpdateButton" mnemonicParsing="false" onAction="#backUpdateClicked" style="-fx-background-color: #00adb5;">
+                           <graphic>
+                              <FontAwesomeIcon fill="#eeeeee" iconName="CLOSE" size="25" />
+                           </graphic>
+                        </Button>
+                     </children></HBox>
                </top>
             </BorderPane>
          </top>
          <center>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" BorderPane.alignment="CENTER">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" style="-fx-background-color: #eeeeee;" BorderPane.alignment="CENTER">
                <children>
                   <Label fx:id="studentLabelUpdate" text="Label">
                      <font>

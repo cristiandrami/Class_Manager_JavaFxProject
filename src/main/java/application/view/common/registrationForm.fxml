@@ -17,11 +17,6 @@
                   <Font size="25.0" />
                </font>
             </Label>
-            <Button fx:id="closeButton" layoutX="656.0" layoutY="5.0" mnemonicParsing="false" onAction="#onCloseClicked" style="-fx-background-color: #393e46;">
-               <graphic>
-                  <FontAwesomeIcon fill="#eeeeee" iconName="CLOSE" size="20" />
-               </graphic>
-            </Button>
          </children>
       </Pane>
    </top>
@@ -54,7 +49,7 @@
          <children>
             <ImageView fx:id="logoView" fitHeight="223.0" fitWidth="197.0" layoutX="2.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../resources/loginResources/logoLogin.jpg" />
+                  <Image url="@./" />
                </image></ImageView>
          </children>
       </Pane>

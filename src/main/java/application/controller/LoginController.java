@@ -92,17 +92,24 @@ public class LoginController
 			{	
 				result= ProfessorClient.getInstance().authentication(userField.getText(), passwordField.getText());
 				if(result.equals(Protocol.OK))
-				try 
 				{
-						SceneHandler.getInstance().setProfHomePage();
-					
-				} 
-				catch (IOException e) 
-				{
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					
+					try 
+					{
+							SceneHandler.getInstance().setProfHomePage();
+						
+					} 
+					catch (IOException e) 
+					{
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						
+					}
 				}
+				else
+		    	{
+		    		SceneHandler.getInstance().showError(result);
+		    		ProfessorClient.getInstance().reset();
+		    	}
 			}
 			else if(type.equals(STUDENTTYPE))
 			{

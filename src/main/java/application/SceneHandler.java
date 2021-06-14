@@ -31,9 +31,9 @@ public class SceneHandler
 	public void init(Stage primaryStage) throws Exception 
 	{		
 		stage = primaryStage;
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/Login.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/common/Login.fxml"));
     	Parent root = (Parent) loader.load();
-    	addMouseDragging(root);
+    	//addMouseDragging(root);
 		scene = new Scene(root, 700, 500);
 		stage.setScene(scene);
 		stage.setMinHeight(700);
@@ -52,9 +52,9 @@ public class SceneHandler
     
     public void setRegistration() throws Exception 
     {
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/registrationForm.fxml"));
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/common/registrationForm.fxml"));
     	Parent root = (Parent) loader.load();    	
-    	addMouseDragging(root);
+    	//addMouseDragging(root);
 		scene.setRoot(root);
 		stage.setScene(scene);
 		stage.setTitle("Class Manager");
@@ -65,9 +65,9 @@ public class SceneHandler
     }
     public void setLogin() throws Exception 
     {
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/Login.fxml"));
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/common/Login.fxml"));
     	Parent root = (Parent) loader.load();
-    	addMouseDragging(root);
+    	//addMouseDragging(root);
 		scene.setRoot(root);
 		stage.setScene(scene);
 		stage.setTitle("Class Manager");
@@ -79,13 +79,12 @@ public class SceneHandler
     
     public void setProfHomePage() throws IOException 
 	{
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/homePageProf.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/professor/homePageProf.fxml"));
 
     	Parent root = (Parent) loader.load();    	
-    	addMouseDragging(root);
+    	//addMouseDragging(root);
 		scene.setRoot(root);
-		//root.getStylesheets().add(getClass().getResource("/application/resources/professorHomePage/profHomePage.css").toExternalForm());
-		//stage.setScene(scene);
+		stage.setScene(scene);
 		scene.getStylesheets().add(getClass().getResource("/css/profHomePage.css").toExternalForm());
 		stage.setHeight(760);
 		stage.setWidth(1050);
@@ -98,10 +97,10 @@ public class SceneHandler
 	}
     public void setStudentViewProfessor() throws IOException
     {
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/studentsViewProf.fxml"));
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/professor/studentsViewProf.fxml"));
 
     	Parent root = (Parent) loader.load();    	
-    	addMouseDragging(root);
+    	//addMouseDragging(root);
 		scene.setRoot(root);
 		
 		scene.getStylesheets().add(getClass().getResource("/css/tableView.css").toExternalForm());
@@ -116,10 +115,10 @@ public class SceneHandler
     
     public void setAssignmnetProfPage() throws IOException 
     {
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/assignmentProfessor.fxml"));
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/professor/assignmentProfessor.fxml"));
 
     	Parent root = (Parent) loader.load();    	
-    	addMouseDragging(root);
+    	//addMouseDragging(root);
 		scene.setRoot(root);
 		stage.setHeight(760);
 		stage.setWidth(1050);
@@ -133,10 +132,10 @@ public class SceneHandler
     
     public void setProfessorVotesGestionPage() throws IOException 
     {
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/professorVotesGestionPage.fxml"));
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/professor/professorVotesGestionPage.fxml"));
 
     	Parent root = (Parent) loader.load();    	
-    	addMouseDragging(root);
+    	//addMouseDragging(root);
 		scene.setRoot(root);
 		stage.setHeight(760);
 		stage.setWidth(1050);
@@ -179,7 +178,7 @@ public class SceneHandler
 		
 	}
     
-    private void addMouseDragging(Parent root)
+  /*  private void addMouseDragging(Parent root)
     {
     	root.setOnMousePressed(new EventHandler<MouseEvent>() 
     	{
@@ -208,6 +207,7 @@ public class SceneHandler
 		});
     	
     }
+    */
 
 	
 
