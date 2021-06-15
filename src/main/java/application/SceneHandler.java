@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.DialogPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -194,6 +195,8 @@ public class SceneHandler
     	alert.setTitle("Errore");
 		alert.setHeaderText("");
 		alert.setContentText(message);
+		DialogPane dialog=alert.getDialogPane();
+		dialog.getStylesheets().add(getClass().getResource("/css/alert.css").toExternalForm());
 		alert.showAndWait();
 		
     }
@@ -204,6 +207,8 @@ public class SceneHandler
 		alert.setTitle("Attenzione");
 		alert.setHeaderText("");
 		alert.setContentText(message);
+		DialogPane dialog=alert.getDialogPane();
+		dialog.getStylesheets().add(getClass().getResource("/css/alert.css").toExternalForm());
 		alert.showAndWait();
     	
     }
@@ -215,9 +220,12 @@ public class SceneHandler
 		alert.setTitle("Perfetto");
 		alert.setHeaderText("");
 		alert.setContentText(message);
+		DialogPane dialog=alert.getDialogPane();
+		dialog.getStylesheets().add(getClass().getResource("/css/alert.css").toExternalForm());
 		alert.showAndWait();
 		
-	}
+		
+    }
 
 	
 

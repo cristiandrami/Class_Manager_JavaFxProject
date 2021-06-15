@@ -80,6 +80,7 @@ import javafx.collections.ObservableList;
 				System.out.println("Errore qui");
 				return Protocol.ERROR;
 				
+				
 			}
 			
 			
@@ -150,13 +151,66 @@ import javafx.collections.ObservableList;
 				return null;
 			}
 		}
+		
+		public String getUnsufficientVotes() 
+		{
+			sendMessage(Protocol.GETUNSUFFICIENTSTUDENTVOTES);
+			try 
+			{
+				
+				String result= (String) in.readObject();
+				return result;
+		
+			} 
+			catch (Exception e) 
+			{
+				out=null;
+				return Protocol.ERROR;
+			}
+			
+		}
+		
+		public String getSufficientVotes() 
+		{
+			sendMessage(Protocol.GETSUFFICIENTSTUDENTVOTES);
+			try 
+			{
+				
+				String result= (String) in.readObject();
+				return result;
+		
+			} 
+			catch (Exception e) 
+			{
+				out=null;
+				return Protocol.ERROR;
+			}
+		}
+		
+		public String getWaitingVotes() 
+		{
+			sendMessage(Protocol.GETSTUDENTSWAITINGVOTES);
+			try 
+			{
+				
+				String result= (String) in.readObject();
+				return result;
+		
+			} 
+			catch (Exception e) 
+			{
+				out=null;
+				return Protocol.ERROR;
+			}
+			
+		}
+
+
 	
-		
-		//questo lo posso usare con la chat senza avere problemi
-		
+
 		public boolean sendMessage(String message)
 		{
-			//così capiamo che sto usando quello di sopra e non ho problemi tra i due
+			
 			return sendMessage(message,true);
 		}
 		
@@ -168,6 +222,10 @@ import javafx.collections.ObservableList;
 			socket=null;
 		}
 
+		
+
+		
+		
 	
 
 		

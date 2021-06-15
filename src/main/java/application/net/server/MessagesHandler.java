@@ -217,6 +217,23 @@ public class MessagesHandler extends Thread
 							//System.out.println("list size "+ list.size());
 							sendObject(list);
 						}
+						else if(request.equals(Protocol.GETUNSUFFICIENTSTUDENTVOTES))
+						{
+							//System.out.println("sto inviando il risultato della richiesta");
+							sendMessage(DatabaseHandler.getInstance().getUnsufficientVotes(username));
+						}
+						else if(request.equals(Protocol.GETSUFFICIENTSTUDENTVOTES))
+						{
+							//System.out.println("sto inviando il risultato della richiesta");
+							sendMessage(DatabaseHandler.getInstance().getSufficientVotes(username));
+						}
+						else if(request.equals(Protocol.GETSTUDENTSWAITINGVOTES))
+						{
+							//System.out.println("sto inviando il risultato della richiesta");
+							sendMessage(DatabaseHandler.getInstance().getWaitingVotes(username));
+							
+						}
+						
 						
 					}
 			}

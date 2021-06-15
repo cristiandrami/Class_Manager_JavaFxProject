@@ -159,6 +159,7 @@ public class DatabaseHandler
 		if( rs.next())
 		{
 			String password= rs.getString("password");
+			
 			result=BCrypt.checkpw(user.getPassword(), password);
 			
 		}
@@ -649,7 +650,7 @@ public class DatabaseHandler
 		
 	}
 
-	public synchronized String getUnsufficient(String studentUsername) throws SQLException 
+	public synchronized String getUnsufficientVotes(String studentUsername) throws SQLException 
 	{
 		if(con==null || con.isClosed()|| studentUsername.equals(""))
 			return null;
@@ -683,12 +684,6 @@ public class DatabaseHandler
 	            
 	            //System.out.println(nome+" "+voto);
 				
-				
-				
-				
-				
-				
-				
 
 		}
 		p2.close();
@@ -697,6 +692,49 @@ public class DatabaseHandler
 		
 		return unsufficient.toString();
 		
+	}
+
+	public String getWaitingVotes(String studentUsername) throws SQLException 
+	{
+		if(con==null || con.isClosed()|| studentUsername.equals(""))
+			return null;
+		
+		
+	
+		
+		String query= "SELECT studentiVoti.voto FROM studentiVoti "
+				+ "WHERE studentiVoti.studente=?;";
+		PreparedStatement p2= con.prepareStatement(query);
+		p2.setString(1, studentUsername);
+	
+		
+		ResultSet rs2= p2.executeQuery();
+		Integer waiting=0;
+	
+		while( rs2.next())
+		{
+			
+	           	String voto = rs2.getString("voto");
+	           	try
+	           	{
+	           		Integer v=Integer.parseInt(voto);
+	           		if(v==0)
+	           			waiting++;
+	           	}
+	           	catch (NumberFormatException e) 
+	           	{
+	           	    
+	           	}
+	            
+	            //System.out.println(nome+" "+voto);
+				
+
+		}
+		p2.close();
+		
+		
+		
+		return waiting.toString();
 	}
 
 

@@ -48,7 +48,7 @@
       </BorderPane>
    </top>
    <center>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
             <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="800.0" spacing="80.0">
                <children>
@@ -67,7 +67,7 @@
                         </Label>
                      </bottom>
                      <center>
-                        <Label fx:id="totalStudentsLabel" text="Label" BorderPane.alignment="CENTER">
+                        <Label fx:id="waitingVotesLabel" text="Label" BorderPane.alignment="CENTER">
                            <font>
                               <Font size="40.0" />
                            </font>
@@ -89,7 +89,7 @@
                         </Label>
                      </bottom>
                      <center>
-                        <Label fx:id="insufficientLabel" text="Label" BorderPane.alignment="CENTER">
+                        <Label fx:id="unsufficientLabel" text="Label" BorderPane.alignment="CENTER">
                            <font>
                               <Font size="40.0" />
                            </font>
@@ -120,7 +120,7 @@
                   </BorderPane>
                </children>
             </HBox>
-            <BarChart>
+            <BarChart fx:id="votesGraphic">
               <xAxis>
                 <CategoryAxis side="BOTTOM" />
               </xAxis>

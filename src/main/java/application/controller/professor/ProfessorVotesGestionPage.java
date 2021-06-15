@@ -2,6 +2,10 @@ package application.controller.professor;
 
 import java.io.IOException;
 
+import com.sun.javafx.geom.BaseBounds;
+import com.sun.javafx.geom.transform.BaseTransform;
+import com.sun.javafx.scene.BoundsAccessor;
+
 import application.SceneHandler;
 import application.net.client.ProfessorClient;
 import application.professor.ScheduledGetStudent;
@@ -12,12 +16,16 @@ import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.Effect;
+import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -102,7 +110,8 @@ public class ProfessorVotesGestionPage {
     		studentUsername=student.getUsername();
     		studentLabelUpdate.setText(studentName+" "+studentSurname+"\nNato il: "+studentBornDate);
     		voteLabelUpdate.setText("Voto corrente: "+student.getVoto());
-        	mainPane.setOpacity(0.2);
+        	//mainPane.setOpacity(0.2);
+    		mainPane.setEffect(new GaussianBlur());
         	updatePane.setOpacity(1);
         	
     	}
@@ -138,8 +147,9 @@ public class ProfessorVotesGestionPage {
     			studentsTable.setItems(tableList);
     			updateVoteField.setText("");
     			updateVoteField.setPromptText("Nuovo voto...");
-    			mainPane.setOpacity(1);
+    			//mainPane.setOpacity(1);
             	updatePane.setOpacity(0);
+            	mainPane.effectProperty().set(null);
             	updatePane.setVisible(false);
     			
     		}
@@ -200,7 +210,7 @@ public class ProfessorVotesGestionPage {
     	bornDateColumn.setCellValueFactory(new PropertyValueFactory<>("dataNascita"));
     	currentVoteColumn.setCellValueFactory(new PropertyValueFactory<>("voto"));
     	studentsTable.setItems(tableList);
-    	updatePane.setStyle("-fx-border-color: #00adb5");
+    	updatePane.setEffect(new DropShadow());
     	logoView.imageProperty().set(new Image(getClass().getResourceAsStream("/loginResources/logoLogin.jpg"))); 
     }
     
@@ -209,7 +219,8 @@ public class ProfessorVotesGestionPage {
     {
     	updateVoteField.setText("");
     	updateVoteField.setPromptText("Nuovo voto...");
-    	mainPane.setOpacity(1);
+    	//mainPane.setOpacity(1);
+    	mainPane.effectProperty().set(null);
     	updatePane.setOpacity(0);
     }
 

@@ -116,6 +116,7 @@ public class LoginController
 				result= StudentClient.getInstance().authentication(userField.getText(), passwordField.getText());
 				if(result.equals(Protocol.OK))
 				{
+					
 					try 
 					{
 							SceneHandler.getInstance().setStudentHomePage();
@@ -131,9 +132,11 @@ public class LoginController
 				else
 		    	{
 		    		SceneHandler.getInstance().showError(result);
-		    		ProfessorClient.getInstance().reset();
+		    		StudentClient.getInstance().reset();
 		    	}
 			}
+			else
+				SceneHandler.getInstance().showWarning("Non c'è nessun utente registrato con l'username inserito, perfavore assicurati di aver inserito l'username corretto" );
 			
 		}
 		catch (SQLException e1) 

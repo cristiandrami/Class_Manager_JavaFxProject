@@ -15,3 +15,6 @@
     -fx-alignment: CENTER;
     -fx-text-fill: black; 
 }
+.chart-bar {
+    -fx-bar-fill: #00adb5; 
+}

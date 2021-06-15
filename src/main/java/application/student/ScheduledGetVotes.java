@@ -1,10 +1,5 @@
 package application.student;
 
-
-
-import java.util.ArrayList;
-
-import application.net.client.ProfessorClient;
 import application.net.client.StudentClient;
 import javafx.collections.ObservableList;
 import javafx.concurrent.ScheduledService;
@@ -17,10 +12,9 @@ public class ScheduledGetVotes extends ScheduledService<ObservableList<VotesTabl
             @Override
             protected ObservableList<VotesTableModel> call() 
             {
-            	ObservableList<VotesTableModel> students=StudentClient.getInstance().getVotes();
-            	System.out.println(students.get(0).getName());
+            	ObservableList<VotesTableModel> votes=StudentClient.getInstance().getVotes();
             	//System.out.println(students);
-            	return students;
+            	return votes;
             }
         };
     }
