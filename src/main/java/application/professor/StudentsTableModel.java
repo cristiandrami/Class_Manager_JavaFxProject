@@ -1,4 +1,4 @@
-package application;
+package application.professor;
 
 import java.io.Serializable;
 

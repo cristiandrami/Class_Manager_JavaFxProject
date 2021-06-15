@@ -6,11 +6,12 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
 
-import application.StudentsTableModel;
 import application.controller.RegistrationFormController;
 import application.net.client.UserAccess;
 import application.net.common.Protocol;
 import application.net.common.User;
+import application.professor.StudentsTableModel;
+import application.student.VotesTableModel;
 import javafx.collections.ObservableList;
 
 public class MessagesHandler extends Thread
@@ -163,13 +164,14 @@ public class MessagesHandler extends Thread
 					//STO IN ASCOLTO
 					while(true)
 					{
+						//*************************************************** PROFESSOR ********************************//
 						//System.out.println("server in ascolto");
 						String request= (String) in.readObject();
 						if(request.equals(Protocol.GETSTUDENTSFORPROF))
 						{
 							ArrayList<StudentsTableModel> list=DatabaseHandler.getInstance().getStudentsList(username);
 							//System.out.println("list size "+ list.size());
-							sendArrayStudents(list);
+							sendObject(list);
 						}
 						
 						else if(request.equals(Protocol.GETSUFFICIENTSTUDENS))
@@ -206,6 +208,14 @@ public class MessagesHandler extends Thread
 							else 
 								sendMessage(Protocol.ERROR);
 							
+						}
+						
+						//*************************************************** STUDENT ********************************//
+						else if(request.equals(Protocol.GETVOTES))
+						{
+							ArrayList<VotesTableModel> list=DatabaseHandler.getInstance().getVotes(username);
+							//System.out.println("list size "+ list.size());
+							sendObject(list);
 						}
 						
 					}
@@ -257,7 +267,7 @@ public class MessagesHandler extends Thread
 		
 	}
 	
-	public void sendArrayStudents(ArrayList<StudentsTableModel> ob)
+	public void sendObject(Object ob)
 	{
 		//System.out.println("sto spedendo la lista");
 		if(out==null)

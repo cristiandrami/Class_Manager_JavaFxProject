@@ -12,10 +12,11 @@ import java.util.List;
 
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
-import application.StudentsTableModel;
 import application.controller.RegistrationFormController;
 import application.net.client.UserAccess;
 import application.net.common.User;
+import application.professor.StudentsTableModel;
+import application.student.VotesTableModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -232,7 +233,7 @@ public class DatabaseHandler
 		return result;
 		
 	}
-
+	//******************************************************************** PROFESSOR ***************************************************//
 	public synchronized boolean existsSubject(String materia) throws SQLException 
 	{
 		if(con==null || con.isClosed()|| materia==null)
@@ -557,6 +558,147 @@ public class DatabaseHandler
 		
 		
 	}
+	
+	//******************************************************************** STUDENT ***************************************************//
+	
+	public synchronized ArrayList<VotesTableModel> getVotes(String studentUsername) throws SQLException 
+	{
+		if(con==null || con.isClosed()|| studentUsername.equals(""))
+			return null;
+		
+		
+	
+		
+		String query= "SELECT studentiVoti.materia, studentiVoti.voto FROM studentiVoti "
+				+ "WHERE studentiVoti.studente=?;";
+		PreparedStatement p2= con.prepareStatement(query);
+		p2.setString(1, studentUsername);
+	
+		
+		ResultSet rs2= p2.executeQuery();
+		ArrayList<VotesTableModel> voti=new ArrayList<VotesTableModel>();
+		
+	
+		while( rs2.next())
+		{
+			
+	           	String voto = rs2.getString("voto");
+	            String nome= rs2.getString("materia");
+	            
+	            //System.out.println(nome+" "+voto);
+				
+				
+				if(voto.equals("0"))
+					voto="Non ancora scrutinato";
+				
+				
+				
+				voti.add(new VotesTableModel(nome,voto));
+
+		}
+		p2.close();
+		
+		
+		
+		return voti;
+		
+	}
+	
+	public synchronized String getSufficientVotes(String studentUsername) throws SQLException 
+	{
+		if(con==null || con.isClosed()|| studentUsername.equals(""))
+			return null;
+		
+		
+	
+		
+		String query= "SELECT studentiVoti.voto FROM studentiVoti "
+				+ "WHERE studentiVoti.studente=?;";
+		PreparedStatement p2= con.prepareStatement(query);
+		p2.setString(1, studentUsername);
+	
+		
+		ResultSet rs2= p2.executeQuery();
+		Integer sufficient=0;
+	
+		while( rs2.next())
+		{
+			
+	           	String voto = rs2.getString("voto");
+	           	try
+	           	{
+	           		Integer v=Integer.parseInt(voto);
+	           		if(v>=6)
+	           			sufficient++;
+	           	}
+	           	catch (NumberFormatException e) 
+	           	{
+	           	    
+	           	}
+	            
+	            //System.out.println(nome+" "+voto);
+
+				
+
+		}
+		p2.close();
+		
+		
+		
+		return sufficient.toString();
+		
+	}
+
+	public synchronized String getUnsufficient(String studentUsername) throws SQLException 
+	{
+		if(con==null || con.isClosed()|| studentUsername.equals(""))
+			return null;
+		
+		
+	
+		
+		String query= "SELECT studentiVoti.voto FROM studentiVoti "
+				+ "WHERE studentiVoti.studente=?;";
+		PreparedStatement p2= con.prepareStatement(query);
+		p2.setString(1, studentUsername);
+	
+		
+		ResultSet rs2= p2.executeQuery();
+		Integer unsufficient=0;
+	
+		while( rs2.next())
+		{
+			
+	           	String voto = rs2.getString("voto");
+	           	try
+	           	{
+	           		Integer v=Integer.parseInt(voto);
+	           		if(v<6 && v!=0)
+	           			unsufficient++;
+	           	}
+	           	catch (NumberFormatException e) 
+	           	{
+	           	    
+	           	}
+	            
+	            //System.out.println(nome+" "+voto);
+				
+				
+				
+				
+				
+				
+				
+
+		}
+		p2.close();
+		
+		
+		
+		return unsufficient.toString();
+		
+	}
+
 
 	
 

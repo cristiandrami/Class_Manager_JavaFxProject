@@ -3,11 +3,14 @@ package application.controller.professor;
 import java.io.IOException;
 
 import application.SceneHandler;
-import application.StudentsTableModel;
 import application.net.client.ProfessorClient;
+import application.professor.ScheduledGetStudent;
+import application.professor.StudentsTableModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -18,6 +21,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.util.Duration;
 
 public class ProfessorVotesGestionPage {
 	//*****************************************MAIN PAGE************************************//
@@ -25,6 +29,8 @@ public class ProfessorVotesGestionPage {
 	private String studentSurname="";
 	private String studentUsername="";
 	private String studentBornDate="";
+	
+	private ScheduledGetStudent refreshStudents= new ScheduledGetStudent();
 	
    
 	
@@ -89,6 +95,7 @@ public class ProfessorVotesGestionPage {
     	}
     	else
     	{
+    		updatePane.setVisible(true);
     		studentName=student.getNome();
     		studentSurname=student.getCognome();
     		studentBornDate=student.getDataNascita();
@@ -116,10 +123,12 @@ public class ProfessorVotesGestionPage {
     		{
     			SceneHandler.getInstance().showWarning("Sembra esserci un problema con il voto inserito, assicurati che sia compreso tra 2 e 10");
     			return;
+    			
     		}
     		
     		if(ProfessorClient.getInstance().updateStudentVote(studentUsername, newVote))
     		{
+    			
     			SceneHandler.getInstance().showInformation("Il voto di "+studentName+" "+ studentSurname +" è stato aggiornato correttamente");
     			studentName="";
     			studentSurname="";
@@ -127,9 +136,11 @@ public class ProfessorVotesGestionPage {
     			studentBornDate="";
     			tableList=ProfessorClient.getInstance().getStudentsList();
     			studentsTable.setItems(tableList);
+    			updateVoteField.setText("");
     			updateVoteField.setPromptText("Nuovo voto...");
     			mainPane.setOpacity(1);
             	updatePane.setOpacity(0);
+            	updatePane.setVisible(false);
     			
     		}
     			
@@ -161,6 +172,28 @@ public class ProfessorVotesGestionPage {
     @FXML
     void initialize()
     {
+    	
+		refreshStudents.setPeriod(Duration.seconds(30));
+ 	   
+	 	refreshStudents.setDelay(Duration.seconds(0.1));
+
+	 	refreshStudents.setOnSucceeded(new EventHandler<WorkerStateEvent>() 
+	 	{
+			
+			@Override
+			public void handle(WorkerStateEvent event) 
+			{
+				tableList= (ObservableList<StudentsTableModel>) event.getSource().getValue();
+				studentsTable.setItems(tableList);
+				
+			}
+		});
+	 	
+	
+		   
+		refreshStudents.start();
+		
+    	updatePane.setVisible(false);
     	tableList= ProfessorClient.getInstance().getStudentsList();
     	nameColumn.setCellValueFactory(new PropertyValueFactory<>("nome"));
     	surnameColumn.setCellValueFactory(new PropertyValueFactory<>("cognome"));
@@ -174,6 +207,7 @@ public class ProfessorVotesGestionPage {
     @FXML
     void backUpdateClicked(ActionEvent event) 
     {
+    	updateVoteField.setText("");
     	updateVoteField.setPromptText("Nuovo voto...");
     	mainPane.setOpacity(1);
     	updatePane.setOpacity(0);

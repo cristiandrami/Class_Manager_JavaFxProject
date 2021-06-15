@@ -25,6 +25,10 @@ public class ProfHomeController {
 
     @FXML
     private Button assignmentButton;
+    @FXML
+    private Button votesButton;
+    @FXML
+    private Button logoutButton;
 
     @FXML
     void studentsClicked(ActionEvent event) 
@@ -76,7 +80,8 @@ public class ProfHomeController {
 
 
     @FXML
-    void logoutClicked(ActionEvent event) {
+    void logoutClicked(ActionEvent event) 
+    {
     	ProfessorClient.getInstance().reset();
     	try 
     	{
@@ -89,15 +94,6 @@ public class ProfHomeController {
 
     }
 
-
-
-    @FXML
-    void closeClicked(ActionEvent event) 
-    {
-    	ProfessorClient.getInstance().reset();
-    	System.exit(0);
-    	
-    }
     
     @FXML 
     void initialize()

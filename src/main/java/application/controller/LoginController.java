@@ -114,8 +114,25 @@ public class LoginController
 			else if(type.equals(STUDENTTYPE))
 			{
 				result= StudentClient.getInstance().authentication(userField.getText(), passwordField.getText());
-				//if(result.equals(Protocol.OK))
-					//SceneHandler.getInstance().setStudentHomePage();
+				if(result.equals(Protocol.OK))
+				{
+					try 
+					{
+							SceneHandler.getInstance().setStudentHomePage();
+						
+					} 
+					catch (IOException e) 
+					{
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						
+					}
+				}
+				else
+		    	{
+		    		SceneHandler.getInstance().showError(result);
+		    		ProfessorClient.getInstance().reset();
+		    	}
 			}
 			
 		}

@@ -169,7 +169,7 @@ public class RegistrationFormController
                 		try 
                 		{
 
-          					//SceneHandler.getInstance().setProfHomePage();
+          					SceneHandler.getInstance().setStudentHomePage();
 
             			} 
                 		catch (Exception e) 

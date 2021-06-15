@@ -85,7 +85,7 @@ public class SceneHandler
     	//addMouseDragging(root);
 		scene.setRoot(root);
 		stage.setScene(scene);
-		scene.getStylesheets().add(getClass().getResource("/css/profHomePage.css").toExternalForm());
+		scene.getStylesheets().add(getClass().getResource("/css/homePage.css").toExternalForm());
 		stage.setHeight(760);
 		stage.setWidth(1050);
 		stage.setTitle("Class Manager");
@@ -147,12 +147,51 @@ public class SceneHandler
 		
 		
 	}
+    
+	public void setStudentHomePage() throws IOException 
+	{
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/student/homePageStudent.fxml"));
+
+    	Parent root = (Parent) loader.load();    	
+    	//addMouseDragging(root);
+		scene.setRoot(root);
+		stage.setScene(scene);
+		scene.getStylesheets().add(getClass().getResource("/css/homePage.css").toExternalForm());
+		stage.setHeight(760);
+		stage.setWidth(1050);
+		stage.setTitle("Class Manager");
+		//stage.initStyle(StageStyle.UNDECORATED);
+		stage.setResizable(true);
+		stage.show();
+		
+		
+	}
+	public void setPerformanceStudentPage() throws IOException 
+	{
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/student/studentPerformance.fxml"));
+
+    	Parent root = (Parent) loader.load();    	
+    	//addMouseDragging(root);
+		scene.setRoot(root);
+		stage.setScene(scene);
+		scene.getStylesheets().add(getClass().getResource("/css/tableView.css").toExternalForm());
+		stage.setHeight(760);
+		stage.setWidth(1050);
+		stage.setTitle("Class Manager");
+		//stage.initStyle(StageStyle.UNDECORATED);
+		stage.setResizable(true);
+		stage.show();
+		
+	}
+
    
     
     public void showError(String message) 
     {
+    	
     	Alert alert = new Alert(AlertType.ERROR);
-		alert.setTitle("Errore");
+    	alert.initOwner(stage);
+    	alert.setTitle("Errore");
 		alert.setHeaderText("");
 		alert.setContentText(message);
 		alert.showAndWait();
@@ -161,6 +200,7 @@ public class SceneHandler
     public void showWarning(String message)
     {
     	Alert alert = new Alert(AlertType.WARNING);
+    	alert.initOwner(stage);
 		alert.setTitle("Attenzione");
 		alert.setHeaderText("");
 		alert.setContentText(message);
@@ -171,12 +211,16 @@ public class SceneHandler
     public void showInformation(String message) 
     {
     	Alert alert = new Alert(AlertType.INFORMATION);
+    	alert.initOwner(stage);
 		alert.setTitle("Perfetto");
 		alert.setHeaderText("");
 		alert.setContentText(message);
 		alert.showAndWait();
 		
 	}
+
+	
+
     
   /*  private void addMouseDragging(Parent root)
     {

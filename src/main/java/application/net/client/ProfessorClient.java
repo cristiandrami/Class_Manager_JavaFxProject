@@ -8,10 +8,10 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 
 import application.SceneHandler;
-import application.StudentsTableModel;
 import application.net.common.Protocol;
 import application.net.common.User;
 import application.net.server.UsersHandler;
+import application.professor.StudentsTableModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 

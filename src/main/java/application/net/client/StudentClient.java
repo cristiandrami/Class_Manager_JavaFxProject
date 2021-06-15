@@ -5,11 +5,16 @@
 	import java.io.ObjectInputStream;
 	import java.io.ObjectOutputStream;
 	import java.net.Socket;
+import java.util.ArrayList;
 
-	import application.SceneHandler;
+import application.SceneHandler;
 
 	import application.net.common.Protocol;
 	import application.net.common.User;
+import application.professor.StudentsTableModel;
+import application.student.VotesTableModel;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 
 
@@ -124,6 +129,27 @@
 			
 			
 		}
+		
+		public ObservableList<VotesTableModel> getVotes() 
+		{
+			sendMessage(Protocol.GETVOTES);
+			
+			try 
+			{
+				ArrayList<VotesTableModel> tableList;
+				tableList = (ArrayList<VotesTableModel>) in.readObject();
+				ObservableList<VotesTableModel> votesList= FXCollections.observableArrayList();
+				for(VotesTableModel votes: tableList)
+					votesList.add(votes);
+				//System.out.println(tableList.size());
+				return votesList;
+			} 
+			catch (Exception e) 
+			{
+				out=null;
+				return null;
+			}
+		}
 	
 		
 		//questo lo posso usare con la chat senza avere problemi
@@ -141,6 +167,8 @@
 			in=null;
 			socket=null;
 		}
+
+	
 
 		
 }
