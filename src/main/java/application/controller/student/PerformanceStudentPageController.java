@@ -25,6 +25,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
 public class PerformanceStudentPageController 
@@ -34,18 +35,14 @@ public class PerformanceStudentPageController
 	private ScheduledGetUnsufficientVotes refreshUnsufficient= new ScheduledGetUnsufficientVotes();
 	private ScheduledGetSufficientVotes refreshSufficient= new ScheduledGetSufficientVotes();
 	private ScheduledGetWaitingVotes refreshWaiting= new ScheduledGetWaitingVotes();
-
+	private boolean firstRefreshGraphic=true;
+	
+	
+	
 	@FXML
     private ImageView logoView;
-	
-	
-	private CategoryAxis xAxis= new CategoryAxis();
-	private NumberAxis yAxis= new NumberAxis();
-
-	@FXML
-	private BarChart<String, Number> votesGraphic= new BarChart<>(xAxis, yAxis);
-	
-	private XYChart.Series<String,Number> graphicData=new XYChart.Series<String,Number>();
+    @FXML
+    private VBox vBoxContainer;
 	
     @FXML
     private Label unsufficientLabel;
@@ -89,10 +86,7 @@ public class PerformanceStudentPageController
     @FXML
     void initialize()
     {
-    	votesGraphic.setTitle("Andamento dei voti");
-    	xAxis.setLabel("Materia");
-		yAxis.setLabel("Voto");
-    	votesGraphic.getData().add(graphicData);
+    	
     	
     	startTableRefresh();
     	startUnsufficientVotesRefresh();
@@ -108,33 +102,108 @@ public class PerformanceStudentPageController
     	//tableView.setItems(tableList);
     }
     
-    private void startTableRefresh()
+    private void startGrapichRefresh()
     {
-    	refreshVotes.setPeriod(Duration.seconds(20));
-  	   
-    	refreshVotes.setDelay(Duration.seconds(0.1));
+    	refreshGraphic.setPeriod(Duration.seconds(20));
+    	   
+    	refreshGraphic.setDelay(Duration.seconds(0.1));
 
-    	refreshVotes.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+    	refreshGraphic.setOnSucceeded(new EventHandler<WorkerStateEvent>() 
+    	{
+    		
 
 			@Override
 			public void handle(WorkerStateEvent event) 
 			{
-				votes= (ObservableList<VotesTableModel>) event.getSource().getValue();
-				tableView.setItems(votes);
+				CategoryAxis xAxis= new CategoryAxis();
+				NumberAxis yAxis= new NumberAxis();
+				BarChart<String, Number> votesGraphic= new BarChart<>(xAxis, yAxis);
+				XYChart.Series<String,Number> graphicData=new XYChart.Series<String,Number>();
+				votesGraphic.setTitle("Andamento dei voti");
+				xAxis.setLabel("Materia");
+				yAxis.setLabel("Voto");
+				ObservableList<VotesTableModel> votes= (ObservableList<VotesTableModel>) event.getSource().getValue();
+				
+				//ora mi riempio le barre del grafico 
+				if(!(votes==null))
+				{
+					for(VotesTableModel v: votes)
+					{
+							if(v.getVote().equals("Non ancora scrutinato"))
+							{
+								graphicData.getData().add(new XYChart.Data<String, Number>(v.getName(), 0));
+							}
+							else 
+							{
+								try 
+								 {
+								    Integer voto = Integer.parseInt(v.getVote());
+								    graphicData.getData().add(new XYChart.Data<String, Number>(v.getName(), voto));
+									  
+								 }
+								 catch (NumberFormatException e) 
+								 {
+									    
+									  
+								 }
+							}
+		
+					}
+					
+					votesGraphic.getData().add(graphicData);
+					if(firstRefreshGraphic)
+					{
+						vBoxContainer.getChildren().add(1, votesGraphic);
+						firstRefreshGraphic=false;
+						
+					}
+					else
+					{
+						vBoxContainer.getChildren().remove(1);
+						vBoxContainer.getChildren().add(1, votesGraphic);
+					}
+					
+				}
+					
+				
+				
 				
 			}
     		
 		});
 
 	   
-    	refreshVotes.start();
+    	refreshGraphic.start();
+    	
+    }
+    private void startWaitingVotesRefresh()
+    {
+    	refreshWaiting.setPeriod(Duration.seconds(20));
+   	   
+    	refreshWaiting.setDelay(Duration.seconds(0.2));
+
+    	refreshWaiting.setOnSucceeded(new EventHandler<WorkerStateEvent>() 
+    	{
+
+			@Override
+			public void handle(WorkerStateEvent event) 
+			{
+				String waiting= (String) event.getSource().getValue();
+				waitingVotesLabel.setText(waiting);
+				
+			}
+    		
+		});
+
+	   
+    	refreshWaiting.start();
     }
     
     private void startUnsufficientVotesRefresh()
     {
     	refreshUnsufficient.setPeriod(Duration.seconds(20));
    	   
-    	refreshUnsufficient.setDelay(Duration.seconds(0.2));
+    	refreshUnsufficient.setDelay(Duration.seconds(0.3));
 
     	refreshUnsufficient.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
 
@@ -155,7 +224,7 @@ public class PerformanceStudentPageController
     {
     	refreshSufficient.setPeriod(Duration.seconds(20));
    	   
-    	refreshSufficient.setDelay(Duration.seconds(0.3));
+    	refreshSufficient.setDelay(Duration.seconds(0.4));
 
     	refreshSufficient.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
 
@@ -172,90 +241,34 @@ public class PerformanceStudentPageController
     	refreshSufficient.start();
     }
     
-    private void startWaitingVotesRefresh()
+    
+    
+    private void startTableRefresh()
     {
-    	refreshWaiting.setPeriod(Duration.seconds(20));
-   	   
-    	refreshWaiting.setDelay(Duration.seconds(0.4));
+    	refreshVotes.setPeriod(Duration.seconds(20));
+  	   
+    	refreshVotes.setDelay(Duration.seconds(0.5));
 
-    	refreshWaiting.setOnSucceeded(new EventHandler<WorkerStateEvent>() 
-    	{
+    	refreshVotes.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
 
 			@Override
 			public void handle(WorkerStateEvent event) 
 			{
-				String waiting= (String) event.getSource().getValue();
-				waitingVotesLabel.setText(waiting);
+				votes= (ObservableList<VotesTableModel>) event.getSource().getValue();
+				tableView.setItems(votes);
 				
 			}
     		
 		});
 
 	   
-    	refreshWaiting.start();
+    	refreshVotes.start();
     }
     
-    private void startGrapichRefresh()
-    {
-    	refreshGraphic.setPeriod(Duration.seconds(20));
-    	   
-    	refreshGraphic.setDelay(Duration.seconds(0.5));
-
-    	refreshGraphic.setOnSucceeded(new EventHandler<WorkerStateEvent>() 
-    	{
-    		
-
-			@Override
-			public void handle(WorkerStateEvent event) 
-			{
-				ObservableList<VotesTableModel> votes= (ObservableList<VotesTableModel>) event.getSource().getValue();
-				graphicData.getData().clear();
-				//ora mi riempio le barre del grafico 
-				for(VotesTableModel v: votes)
-				{
-					if(v.getVote().equals("Non ancora scrutinato"))
-					{
-						graphicData.getData().add(new XYChart.Data<String, Number>(v.getName(), 0));
-					}
-					else 
-					{
-						try 
-						 {
-						    Integer voto = Integer.parseInt(v.getVote());
-						    graphicData.getData().add(new XYChart.Data<String, Number>(v.getName(), voto));
-							  
-						 }
-						 catch (NumberFormatException e) 
-						 {
-							    
-							  
-						 }
-					}
-					
-					
-					 
-						
-						
-				}
-				
-				
-				
-			}
-    		
-		});
-
-	   
-    	refreshGraphic.start();
-    	
-    	
-    	
-		
-		
-
-		
-    	
-    }
+   
+   
     
+   
     
 
 

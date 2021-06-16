@@ -48,7 +48,7 @@
       </BorderPane>
    </top>
    <center>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" BorderPane.alignment="CENTER">
+      <VBox fx:id="vBoxContainer" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
             <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="800.0" spacing="80.0">
                <children>
@@ -67,7 +67,7 @@
                         </Label>
                      </bottom>
                      <center>
-                        <Label fx:id="waitingVotesLabel" text="Label" BorderPane.alignment="CENTER">
+                        <Label fx:id="waitingVotesLabel" BorderPane.alignment="CENTER">
                            <font>
                               <Font size="40.0" />
                            </font>
@@ -89,7 +89,7 @@
                         </Label>
                      </bottom>
                      <center>
-                        <Label fx:id="unsufficientLabel" text="Label" BorderPane.alignment="CENTER">
+                        <Label fx:id="unsufficientLabel" BorderPane.alignment="CENTER">
                            <font>
                               <Font size="40.0" />
                            </font>
@@ -111,7 +111,7 @@
                         </Label>
                      </bottom>
                      <center>
-                        <Label fx:id="sufficientLabel" text="Label" BorderPane.alignment="CENTER">
+                        <Label fx:id="sufficientLabel" BorderPane.alignment="CENTER">
                            <font>
                               <Font size="40.0" />
                            </font>
@@ -120,14 +120,6 @@
                   </BorderPane>
                </children>
             </HBox>
-            <BarChart fx:id="votesGraphic">
-              <xAxis>
-                <CategoryAxis side="BOTTOM" />
-              </xAxis>
-              <yAxis>
-                <NumberAxis side="LEFT" />
-              </yAxis>
-            </BarChart>
             <TableView fx:id="tableView" prefHeight="383.0" prefWidth="1030.0">
               <columns>
                 <TableColumn fx:id="nameColumn" prefWidth="75.0" text="Materia" />
