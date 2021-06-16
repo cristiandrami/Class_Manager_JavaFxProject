@@ -42,7 +42,14 @@ public class StudentHomePageController {
     @FXML
     void assignmentClicked(ActionEvent event) 
     {
-
+    	try 
+    	{
+			SceneHandler.getInstance().setAssignmentStudentPage();
+		} 
+    	catch (IOException e) 
+    	{
+			System.out.println("Problema con il caricamento della pagina dei compiti");
+		}
     }
 
 

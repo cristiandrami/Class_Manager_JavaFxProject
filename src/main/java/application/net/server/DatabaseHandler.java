@@ -16,6 +16,7 @@ import application.controller.RegistrationFormController;
 import application.net.client.UserAccess;
 import application.net.common.User;
 import application.professor.StudentsTableModel;
+import application.student.AssignmentModel;
 import application.student.VotesTableModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -694,7 +695,7 @@ public class DatabaseHandler
 		
 	}
 
-	public String getWaitingVotes(String studentUsername) throws SQLException 
+	public synchronized String getWaitingVotes(String studentUsername) throws SQLException 
 	{
 		if(con==null || con.isClosed()|| studentUsername.equals(""))
 			return null;
@@ -735,6 +736,55 @@ public class DatabaseHandler
 		
 		
 		return waiting.toString();
+	}
+
+	public synchronized ArrayList<AssignmentModel> getAssignmentsForStudent(String studentUsername) throws SQLException 
+	{
+		if(con==null || con.isClosed()|| studentUsername.equals(""))
+			return null;
+		
+		String classe="";
+		String query= "SELECT user.classeAppartenenza FROM user "
+				+ "WHERE user.username=?;";
+		PreparedStatement p= con.prepareStatement(query);
+		p.setString(1, studentUsername);
+		ResultSet rs1= p.executeQuery();
+		if( rs1.next())
+		{
+			classe=rs1.getString("classeAppartenenza");
+		
+		}
+		
+		
+		p.close();
+		
+		String query2= "SELECT compitiAssegnati.materia, compitiAssegnati.compito, compitiAssegnati.data FROM compitiAssegnati "
+				+ "WHERE compitiAssegnati.classe=?;";
+		PreparedStatement p2= con.prepareStatement(query2);
+		p2.setString(1, classe);
+		
+	
+		
+		ResultSet rs2= p2.executeQuery();
+		
+		ArrayList<AssignmentModel> assignments=new ArrayList<AssignmentModel>();
+		
+	
+		while( rs2.next())
+		{
+			
+	           	String materia = rs2.getString("materia");
+	            String compito= rs2.getString("compito");
+	            String data=rs2.getString("data");
+	            System.out.println(materia);
+	            assignments.add(new AssignmentModel(materia, compito, data));
+		}
+		p2.close();
+		
+		
+		
+		return assignments;
+		
 	}
 
 

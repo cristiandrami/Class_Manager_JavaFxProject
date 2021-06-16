@@ -185,6 +185,24 @@ public class SceneHandler
 		
 	}
 
+	public void setAssignmentStudentPage() throws IOException 
+	{
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/student/studentsAssignment.fxml"));
+
+    	Parent root = (Parent) loader.load();    	
+    	//addMouseDragging(root);
+		scene.setRoot(root);
+		stage.setScene(scene);
+		stage.setHeight(760);
+		stage.setWidth(1050);
+		stage.setTitle("Class Manager");
+		//stage.initStyle(StageStyle.UNDECORATED);
+		stage.setResizable(true);
+		stage.show();
+		
+	}
+
+	
    
     
     public void showError(String message) 

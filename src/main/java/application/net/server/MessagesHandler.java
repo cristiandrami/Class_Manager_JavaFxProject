@@ -11,6 +11,7 @@ import application.net.client.UserAccess;
 import application.net.common.Protocol;
 import application.net.common.User;
 import application.professor.StudentsTableModel;
+import application.student.AssignmentModel;
 import application.student.VotesTableModel;
 import javafx.collections.ObservableList;
 
@@ -233,6 +234,14 @@ public class MessagesHandler extends Thread
 							sendMessage(DatabaseHandler.getInstance().getWaitingVotes(username));
 							
 						}
+						else if(request.equals(Protocol.GETASSIGNMENTS))
+						{
+							//System.out.println("sto inviando il risultato della richiesta");
+					
+							ArrayList<AssignmentModel> list= DatabaseHandler.getInstance().getAssignmentsForStudent(username);
+							sendObject(list);
+							
+						}
 						
 						
 					}
@@ -245,6 +254,7 @@ public class MessagesHandler extends Thread
 				//l'utente è stato disconnesso
 				UsersHandler.removeUser(username);
 				System.out.println("l'utente "+username+" si è scollegato");
+				e.printStackTrace();
 				
 				
 			}

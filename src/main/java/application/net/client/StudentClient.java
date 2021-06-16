@@ -12,6 +12,7 @@ import application.SceneHandler;
 	import application.net.common.Protocol;
 	import application.net.common.User;
 import application.professor.StudentsTableModel;
+import application.student.AssignmentModel;
 import application.student.VotesTableModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -204,6 +205,22 @@ import javafx.collections.ObservableList;
 			}
 			
 		}
+		public ArrayList<AssignmentModel> getAssignments() 
+		{
+				sendMessage(Protocol.GETASSIGNMENTS);
+				
+				try 
+				{
+					ArrayList<AssignmentModel> assignments=(ArrayList<AssignmentModel>) in.readObject();
+					return assignments;
+				} 
+				catch (Exception e) 
+				{
+					out=null;
+					return null;
+				}
+		}
+
 
 
 	
@@ -222,6 +239,7 @@ import javafx.collections.ObservableList;
 			socket=null;
 		}
 
+	
 		
 
 		
