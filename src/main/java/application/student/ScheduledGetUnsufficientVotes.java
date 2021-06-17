@@ -1,4 +1,4 @@
-
+/*
 package application.student;
 import application.net.client.StudentClient;
 import javafx.collections.ObservableList;
@@ -20,4 +20,4 @@ public class ScheduledGetUnsufficientVotes extends ScheduledService<String>
     }
 }
 
-
+*/

@@ -152,7 +152,7 @@ import javafx.collections.ObservableList;
 				return null;
 			}
 		}
-		
+		/*
 		public String getUnsufficientVotes() 
 		{
 			sendMessage(Protocol.GETUNSUFFICIENTSTUDENTVOTES);
@@ -205,6 +205,7 @@ import javafx.collections.ObservableList;
 			}
 			
 		}
+		*/
 		public ArrayList<AssignmentModel> getAssignments() 
 		{
 				sendMessage(Protocol.GETASSIGNMENTS);

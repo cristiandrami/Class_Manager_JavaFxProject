@@ -2,11 +2,11 @@ package application.controller.student;
 
 import java.io.IOException;
 import application.SceneHandler;
-import application.professor.StudentsTableModel;
-import application.student.ScheduledGetSufficientVotes;
-import application.student.ScheduledGetUnsufficientVotes;
+//import application.student.ScheduledGetSufficientVotes;
+//import application.student.ScheduledGetUnsufficientVotes;
 import application.student.ScheduledGetVotes;
-import application.student.ScheduledGetWaitingVotes;
+//import application.student.ScheduledGetWaitingVotes;
+import application.student.StudentUtil;
 import application.student.VotesTableModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -25,7 +25,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
@@ -34,9 +33,9 @@ public class PerformanceStudentPageController
 {
 	private ScheduledGetVotes refreshVotes= new ScheduledGetVotes();
 	private ScheduledGetVotes refreshGraphic= new ScheduledGetVotes();
-	private ScheduledGetUnsufficientVotes refreshUnsufficient= new ScheduledGetUnsufficientVotes();
-	private ScheduledGetSufficientVotes refreshSufficient= new ScheduledGetSufficientVotes();
-	private ScheduledGetWaitingVotes refreshWaiting= new ScheduledGetWaitingVotes();
+	//private ScheduledGetUnsufficientVotes refreshUnsufficient= new ScheduledGetUnsufficientVotes();
+	//private ScheduledGetSufficientVotes refreshSufficient= new ScheduledGetSufficientVotes();
+	//private ScheduledGetWaitingVotes refreshWaiting= new ScheduledGetWaitingVotes();
 	private boolean firstRefreshGraphic=true;
 	
 	
@@ -93,25 +92,18 @@ public class PerformanceStudentPageController
     @FXML
     void initialize()
     {
-    	
-    	
-    	startTableRefresh();
-    	startUnsufficientVotesRefresh();
-    	startSufficientVotesRefresh();
-    	startWaitingVotesRefresh();
+
+    	startTableRefresh();	
     	startGrapichRefresh();
-    	
-    	
-    	
     	logoView.imageProperty().set(new Image(getClass().getResourceAsStream("/loginResources/logoLogin.jpg"))); 
     	nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
     	voteColumn.setCellValueFactory(new PropertyValueFactory<>("vote"));
-    	//tableView.setItems(tableList);
+    	
     }
     
     private void startGrapichRefresh()
     {
-    	refreshGraphic.setPeriod(Duration.seconds(20));
+    	refreshGraphic.setPeriod(Duration.seconds(15));
     	   
     	refreshGraphic.setDelay(Duration.seconds(0.1));
 
@@ -206,6 +198,7 @@ public class PerformanceStudentPageController
     	refreshGraphic.start();
     	
     }
+    /*
     private void startWaitingVotesRefresh()
     {
     	refreshWaiting.setPeriod(Duration.seconds(20));
@@ -270,22 +263,53 @@ public class PerformanceStudentPageController
 	   
     	refreshSufficient.start();
     }
+    */
     
     
     
     private void startTableRefresh()
     {
-    	refreshVotes.setPeriod(Duration.seconds(20));
+    	refreshVotes.setPeriod(Duration.seconds(15));
   	   
-    	refreshVotes.setDelay(Duration.seconds(0.5));
+    	refreshVotes.setDelay(Duration.seconds(0.2));
 
     	refreshVotes.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
 
 			@Override
 			public void handle(WorkerStateEvent event) 
 			{
+				Integer unsufficient=0;
+				Integer sufficient=0;
+				Integer waiting=0;
 				votes= (ObservableList<VotesTableModel>) event.getSource().getValue();
 				tableView.setItems(votes);
+				for(VotesTableModel v: votes)
+				{
+					if(v.getVote().equals(StudentUtil.VOTEABSENT))
+					{
+						waiting++;
+					}
+					else 
+					{
+						try 
+						 {
+						    Integer vote = Integer.parseInt(v.getVote());
+						    if(vote>=6)
+						    	sufficient++;
+						    else
+						    	unsufficient++;
+							  
+						 }
+						 catch (NumberFormatException e) 
+						 {
+							    
+							  
+						 }
+					}
+				}
+				unsufficientLabel.setText(unsufficient.toString());
+				waitingVotesLabel.setText(waiting.toString());
+				sufficientLabel.setText(sufficient.toString());
 				
 			}
     		

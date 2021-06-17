@@ -211,6 +211,17 @@ public class MessagesHandler extends Thread
 								sendMessage(Protocol.ERROR);
 							
 						}
+						else if (request.equals(Protocol.INSERTNOTE))
+						{
+							String student=(String) in.readObject();
+							String note=(String) in.readObject();
+
+							if(DatabaseHandler.getInstance().insertNote(username, student, note))
+								sendMessage(Protocol.OK);
+							else 
+								sendMessage(Protocol.ERROR);
+							
+						}
 						
 						//*************************************************** STUDENT ********************************//
 						else if(request.equals(Protocol.GETVOTES))

@@ -250,6 +250,28 @@ public class ProfessorClient
 		}
 		
 	}
+	public boolean insertStudentNote(String studentUsername, String message) 
+	{
+		sendMessage(Protocol.INSERTNOTE);
+		sendMessage(studentUsername);
+		sendMessage(message);
+		
+		try 
+		{
+			
+			String result= (String) in.readObject();
+			if(result.equals(Protocol.OK))
+				return true;
+			else return false;
+	
+		} 
+		catch (Exception e) 
+		{
+			out=null;
+			return false;
+		}
+	}
+
 	
 	
 	
@@ -268,6 +290,7 @@ public class ProfessorClient
 		in=null;
 		socket=null;
 	}
+
 
 
 

@@ -1,4 +1,4 @@
-package application.student;
+/*package application.student;
 
 import application.net.client.StudentClient;
 import javafx.concurrent.ScheduledService;
@@ -19,3 +19,4 @@ public class ScheduledGetSufficientVotes extends ScheduledService<String>
         };
     }
 }
+*/

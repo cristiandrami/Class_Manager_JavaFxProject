@@ -183,8 +183,24 @@ public class ProfessorVotesGestionPage {
     void initialize()
     {
     	
-		refreshStudents.setPeriod(Duration.seconds(30));
- 	   
+		refreshStudentsTable();
+		
+    	tableList= ProfessorClient.getInstance().getStudentsList();
+    	nameColumn.setCellValueFactory(new PropertyValueFactory<>("nome"));
+    	surnameColumn.setCellValueFactory(new PropertyValueFactory<>("cognome"));
+    	bornDateColumn.setCellValueFactory(new PropertyValueFactory<>("dataNascita"));
+    	currentVoteColumn.setCellValueFactory(new PropertyValueFactory<>("voto"));
+    	studentsTable.setItems(tableList);
+
+    	updatePane.setVisible(false);
+    	updatePane.setEffect(new DropShadow());
+    	logoView.imageProperty().set(new Image(getClass().getResourceAsStream("/loginResources/logoLogin.jpg"))); 
+    }
+    
+    private void refreshStudentsTable() 
+    {
+    	refreshStudents.setPeriod(Duration.seconds(30));
+  	   
 	 	refreshStudents.setDelay(Duration.seconds(0.1));
 
 	 	refreshStudents.setOnSucceeded(new EventHandler<WorkerStateEvent>() 
@@ -202,19 +218,10 @@ public class ProfessorVotesGestionPage {
 	
 		   
 		refreshStudents.start();
-		
-    	updatePane.setVisible(false);
-    	tableList= ProfessorClient.getInstance().getStudentsList();
-    	nameColumn.setCellValueFactory(new PropertyValueFactory<>("nome"));
-    	surnameColumn.setCellValueFactory(new PropertyValueFactory<>("cognome"));
-    	bornDateColumn.setCellValueFactory(new PropertyValueFactory<>("dataNascita"));
-    	currentVoteColumn.setCellValueFactory(new PropertyValueFactory<>("voto"));
-    	studentsTable.setItems(tableList);
-    	updatePane.setEffect(new DropShadow());
-    	logoView.imageProperty().set(new Image(getClass().getResourceAsStream("/loginResources/logoLogin.jpg"))); 
-    }
-    
-    @FXML
+	}
+
+
+	@FXML
     void backUpdateClicked(ActionEvent event) 
     {
     	updateVoteField.setText("");

@@ -560,6 +560,53 @@ public class DatabaseHandler
 		
 		
 	}
+	public synchronized boolean insertNote(String profUsername, String student, String note) throws SQLException 
+	{
+		if(con==null || con.isClosed()|| profUsername.equals(""))
+			return false;
+		
+		
+		
+		
+		String materia="";
+		String query= "SELECT ProfessoreMateria.materia FROM ProfessoreMateria "
+				+ "WHERE ProfessoreMateria.prof=?;";
+		PreparedStatement p= con.prepareStatement(query);
+		p.setString(1, profUsername);
+		
+		
+		ResultSet rs1= p.executeQuery();
+		if( rs1.next())
+		{
+			materia=rs1.getString("materia");
+		
+		}
+		
+		
+		
+		
+		p.close();
+		
+		Date date = new Date();  
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
+		String data=formatter.format(date);
+	
+		
+		
+		p= con.prepareStatement("INSERT INTO noteDisciplinari VALUES(?,?,?,?,?);");
+		p.setString(1, null);
+		p.setString(2, student);
+		p.setString(3, materia);
+		p.setString(4, note);
+		p.setString(5, data);
+		p.executeUpdate();
+		p.close();
+		return true;
+		
+		
+	}
+
 	
 	//******************************************************************** STUDENT ***************************************************//
 	
@@ -787,6 +834,7 @@ public class DatabaseHandler
 		
 	}
 
+	
 
 	
 
