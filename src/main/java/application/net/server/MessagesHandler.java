@@ -165,9 +165,10 @@ public class MessagesHandler extends Thread
 					//STO IN ASCOLTO
 					while(true)
 					{
+						String request= (String) in.readObject();
 						//*************************************************** PROFESSOR ********************************//
 						//System.out.println("server in ascolto");
-						String request= (String) in.readObject();
+						
 						if(request.equals(Protocol.GETSTUDENTSFORPROF))
 						{
 							ArrayList<StudentsTableModel> list=DatabaseHandler.getInstance().getStudentsList(username);
@@ -254,7 +255,7 @@ public class MessagesHandler extends Thread
 				//l'utente è stato disconnesso
 				UsersHandler.removeUser(username);
 				System.out.println("l'utente "+username+" si è scollegato");
-				e.printStackTrace();
+				
 				
 				
 			}

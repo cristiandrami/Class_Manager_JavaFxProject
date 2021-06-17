@@ -50,7 +50,7 @@
    <center>
       <VBox fx:id="vBoxContainer" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="800.0" spacing="80.0">
+            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="800.0" spacing="40.0">
                <children>
                   <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #aad8d3;">
                      <bottom>
@@ -112,6 +112,28 @@
                      </bottom>
                      <center>
                         <Label fx:id="sufficientLabel" BorderPane.alignment="CENTER">
+                           <font>
+                              <Font size="40.0" />
+                           </font>
+                        </Label>
+                     </center>
+                  </BorderPane>
+                  <BorderPane fx:id="averangeBorderPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #aad8d3;">
+                     <bottom>
+                        <Label text="La tua media" BorderPane.alignment="CENTER">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <graphic>
+                              <FontAwesomeIcon fill="#00adb5" iconName="BAR_CHART" size="15" />
+                           </graphic>
+                           <BorderPane.margin>
+                              <Insets bottom="10.0" />
+                           </BorderPane.margin>
+                        </Label>
+                     </bottom>
+                     <center>
+                        <Label fx:id="votesAverange" BorderPane.alignment="CENTER">
                            <font>
                               <Font size="40.0" />
                            </font>

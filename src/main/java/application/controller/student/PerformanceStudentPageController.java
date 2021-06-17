@@ -25,6 +25,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
@@ -41,6 +43,11 @@ public class PerformanceStudentPageController
 	
 	@FXML
     private ImageView logoView;
+    @FXML
+    private Label votesAverange;
+    @FXML
+    private BorderPane averangeBorderPane;
+
     @FXML
     private VBox vBoxContainer;
 	
@@ -123,10 +130,12 @@ public class PerformanceStudentPageController
 				xAxis.setLabel("Materia");
 				yAxis.setLabel("Voto");
 				ObservableList<VotesTableModel> votes= (ObservableList<VotesTableModel>) event.getSource().getValue();
-				
+				Float averange=(float) 0.0;
+				int size=0;
 				//ora mi riempio le barre del grafico 
 				if(!(votes==null))
 				{
+					
 					for(VotesTableModel v: votes)
 					{
 							if(v.getVote().equals("Non ancora scrutinato"))
@@ -139,6 +148,8 @@ public class PerformanceStudentPageController
 								 {
 								    Integer voto = Integer.parseInt(v.getVote());
 								    graphicData.getData().add(new XYChart.Data<String, Number>(v.getName(), voto));
+								    averange+=voto;
+								    size++;
 									  
 								 }
 								 catch (NumberFormatException e) 
@@ -148,6 +159,25 @@ public class PerformanceStudentPageController
 								 }
 							}
 		
+					}
+					if(size!=0)
+					{
+						averange/=size;
+						votesAverange.setText(averange.toString());
+						if(averange>=6)
+						{
+							averangeBorderPane.setStyle("-fx-background-color: #9fe6a0;");
+						}
+						else
+						{
+							averangeBorderPane.setStyle("-fx-background-color: #f55c47;");
+						}
+							
+					}
+					else
+					{
+						votesAverange.setText("Nessuna");
+						averangeBorderPane.setStyle("-fx-background-color: #aad8d3;");
 					}
 					
 					votesGraphic.getData().add(graphicData);
