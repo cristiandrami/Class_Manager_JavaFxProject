@@ -2,16 +2,20 @@ package application.controller.student;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import application.SceneHandler;
 import application.student.AssignmentModel;
 import application.student.ScheduledGetAssignment;
+import application.student.StudentUtil;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -66,26 +70,34 @@ public class AssignmentsStudentPageController
 			public void handle(WorkerStateEvent event) 
 			{
 				ArrayList<AssignmentModel> assignments = (ArrayList<AssignmentModel>) event.getSource().getValue();
+				Collections.sort(assignments);
 				
 				vBoxContainer.getChildren().clear();
 				for(AssignmentModel a: assignments)
 				{
-					System.out.println(a.getObject()+"ciao"); 
+					
+					
 					BorderPane newBorderPane= new BorderPane();
 					Label object= new Label();
-					object.setText(a.getObject());
+					object.setText(StudentUtil.OBJECT+ a.getObject());
 					Label message= new Label();
 					message.setText(a.getMessage());
 					Label date= new Label();
-					date.setText("Data caricamento: "+a.getDate());
-					
+					date.setText(StudentUtil.DATE+a.getDate());
 					newBorderPane.setTop(object);
 					newBorderPane.setCenter(message);
 					newBorderPane.setBottom(date);
+					newBorderPane.setAlignment(newBorderPane.getTop(), Pos.CENTER);
+					newBorderPane.setAlignment(newBorderPane.getBottom(), Pos.CENTER);
+					newBorderPane.setAlignment(newBorderPane.getCenter(), Pos.CENTER);
+					newBorderPane.getStyleClass().add("myBorderPane");
+					newBorderPane.getTop().getStyleClass().add("myTopBorderPane");
+					newBorderPane.getCenter().getStyleClass().add("myCenterBorderPane");
+					newBorderPane.getBottom().getStyleClass().add("myBottomBorderPane");
 					
 					vBoxContainer.getChildren().add(newBorderPane);
 					
-					System.out.println(a.getDate());
+					
 				}
 				
 				

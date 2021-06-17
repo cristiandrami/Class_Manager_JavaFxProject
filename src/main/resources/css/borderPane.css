@@ -1,0 +1,25 @@
+.myBorderPane{
+    -fx-background-color: #AAD8D3;
+    -fx-font-size: 15pt;
+    -fx-text-background-color: #393E46;
+    
+}
+.myTopBorderPane{
+    -fx-background-color: #AAD8D3;
+    -fx-font-size: 15pt;
+    -fx-text-background-color: #393E46;
+    
+}
+.myCenterBorderPane{
+    -fx-background-color: #AAD8D3;
+    -fx-font-size: 12pt;
+    -fx-text-background-color: #393E46;
+    
+}
+.myBottomBorderPane{
+    -fx-background-color: #AAD8D3;
+    -fx-font-size: 12pt;
+    -fx-text-background-color: #393E46;
+    
+}
+

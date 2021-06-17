@@ -192,6 +192,7 @@ public class SceneHandler
     	Parent root = (Parent) loader.load();    	
     	//addMouseDragging(root);
 		scene.setRoot(root);
+		scene.getStylesheets().add(getClass().getResource("/css/borderPane.css").toExternalForm());
 		stage.setScene(scene);
 		stage.setHeight(760);
 		stage.setWidth(1050);

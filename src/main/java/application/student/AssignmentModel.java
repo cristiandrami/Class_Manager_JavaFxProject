@@ -2,7 +2,7 @@ package application.student;
 
 import java.io.Serializable;
 
-public class AssignmentModel implements Serializable
+public class AssignmentModel implements Serializable, Comparable<AssignmentModel>
 {
 
 	/**
@@ -42,6 +42,47 @@ public class AssignmentModel implements Serializable
 
 	public void setDate(String date) {
 		this.date = date;
+	}
+
+	@Override
+	public int compareTo(AssignmentModel o) {
+		String year="";
+		String month="";
+		String day="";
+		String[] divideDate= o.getDate().split("/");
+		day=divideDate[0];
+		month=divideDate[1];
+		year=divideDate[2];
+		String thisYear="";
+		String thisMonth="";
+		String thisDay="";
+		String[] thisDivideDate= this.date.split("/");
+		thisDay=thisDivideDate[0];
+		thisMonth=thisDivideDate[1];
+		thisYear=thisDivideDate[2];
+		
+		
+		
+		if(thisYear.equals(year))
+		{
+			if(month.equals(thisMonth))
+			{
+				return day.compareTo(thisDay);
+			}
+			if(!month.equals(thisMonth))
+			{
+				
+				return month.compareTo(thisMonth);
+			}
+			
+			
+		}
+		else
+			return year.compareTo(thisYear);
+		
+		return 0;
+		
+	
 	}
 	
 
