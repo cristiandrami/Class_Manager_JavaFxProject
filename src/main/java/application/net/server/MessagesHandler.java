@@ -246,7 +246,7 @@ public class MessagesHandler extends Thread
 			{
 				//l'utente è stato disconnesso
 				UsersHandler.removeUser(username);
-				System.out.println("l'utente "+username+" si è scollegato");
+				System.out.println("[SERVER] USER "+username+" DISCONNECTED");
 				
 				
 				
