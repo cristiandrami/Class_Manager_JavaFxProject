@@ -84,9 +84,10 @@ public class PerformanceStudentPageController
 		} 
     	catch (IOException e) 
     	{
-			System.out.println("Problema con il caricamento della home page studente");
+			System.out.println(StudentUtil.BACKTOHOMEPROBLEM);
 		}
 
+    	
     }
     
     @FXML
@@ -119,8 +120,8 @@ public class PerformanceStudentPageController
 				BarChart<String, Number> votesGraphic= new BarChart<>(xAxis, yAxis);
 				XYChart.Series<String,Number> graphicData=new XYChart.Series<String,Number>();
 				votesGraphic.setTitle("Andamento dei voti");
-				xAxis.setLabel("Materia");
-				yAxis.setLabel("Voto");
+				xAxis.setLabel(StudentUtil.OBJECTPERFORMANCE);
+				yAxis.setLabel(StudentUtil.VOTEPERFORMANCE);
 				ObservableList<VotesTableModel> votes= (ObservableList<VotesTableModel>) event.getSource().getValue();
 				Float averange=(float) 0.0;
 				int size=0;
@@ -158,18 +159,19 @@ public class PerformanceStudentPageController
 						votesAverange.setText(averange.toString());
 						if(averange>=6)
 						{
-							averangeBorderPane.setStyle("-fx-background-color: #9fe6a0;");
+							averangeBorderPane.setStyle(StudentUtil.SUFFICIENTAVERAGEPANESTYLE);
 						}
 						else
 						{
-							averangeBorderPane.setStyle("-fx-background-color: #f55c47;");
+							averangeBorderPane.setStyle(StudentUtil.INSUFFICIENTAVERAGEPANESTYLE);
+					
 						}
 							
 					}
 					else
 					{
 						votesAverange.setText("Nessuna");
-						averangeBorderPane.setStyle("-fx-background-color: #aad8d3;");
+						averangeBorderPane.setStyle(StudentUtil.NULLAVERAGEPANESTYLE);
 					}
 					
 					votesGraphic.getData().add(graphicData);
@@ -198,73 +200,6 @@ public class PerformanceStudentPageController
     	refreshGraphic.start();
     	
     }
-    /*
-    private void startWaitingVotesRefresh()
-    {
-    	refreshWaiting.setPeriod(Duration.seconds(20));
-   	   
-    	refreshWaiting.setDelay(Duration.seconds(0.2));
-
-    	refreshWaiting.setOnSucceeded(new EventHandler<WorkerStateEvent>() 
-    	{
-
-			@Override
-			public void handle(WorkerStateEvent event) 
-			{
-				String waiting= (String) event.getSource().getValue();
-				waitingVotesLabel.setText(waiting);
-				
-			}
-    		
-		});
-
-	   
-    	refreshWaiting.start();
-    }
-    
-    private void startUnsufficientVotesRefresh()
-    {
-    	refreshUnsufficient.setPeriod(Duration.seconds(20));
-   	   
-    	refreshUnsufficient.setDelay(Duration.seconds(0.3));
-
-    	refreshUnsufficient.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
-
-			@Override
-			public void handle(WorkerStateEvent event) 
-			{
-				String unsufficient= (String) event.getSource().getValue();
-				unsufficientLabel.setText(unsufficient);
-				
-			}
-    		
-		});
-
-	   
-    	refreshUnsufficient.start();
-    }
-    private void startSufficientVotesRefresh()
-    {
-    	refreshSufficient.setPeriod(Duration.seconds(20));
-   	   
-    	refreshSufficient.setDelay(Duration.seconds(0.4));
-
-    	refreshSufficient.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
-
-			@Override
-			public void handle(WorkerStateEvent event) 
-			{
-				String sufficient= (String) event.getSource().getValue();
-				sufficientLabel.setText(sufficient);
-			}
-    		
-		});
-
-	   
-    	refreshSufficient.start();
-    }
-    */
-    
     
     
     private void startTableRefresh()

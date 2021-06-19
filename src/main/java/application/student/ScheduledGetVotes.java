@@ -13,8 +13,10 @@ public class ScheduledGetVotes extends ScheduledService<ObservableList<VotesTabl
             protected ObservableList<VotesTableModel> call() 
             {
             	ObservableList<VotesTableModel> votes=StudentClient.getInstance().getVotes();
-            	//System.out.println(students);
+            	
             	return votes;
+            	
+            	
             }
         };
     }

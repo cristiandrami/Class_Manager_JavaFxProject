@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import application.SceneHandler;
 import application.net.client.StudentClient;
+import application.student.StudentUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -22,6 +23,9 @@ public class StudentHomePageController {
 
     @FXML
     private Button assignmentButton;
+    
+    @FXML
+    private Button notesButton;
 
     @FXML
     void performanceClicked(ActionEvent event) 
@@ -32,9 +36,24 @@ public class StudentHomePageController {
 		} 
     	catch (IOException e) 
     	{
-			System.out.println("Problema con il caricamento della pagina sulle performance");
+			System.out.println(StudentUtil.PERFORMANCESETPAGEPROBLEM);
 		}
     }
+    
+    @FXML
+    void notesButtonClicked(ActionEvent event) 
+    {
+    	try 
+    	{
+			SceneHandler.getInstance().setNotesStudentPage();
+		} 
+    	catch (IOException e) 
+    	{
+			System.out.println(StudentUtil.NOTESSETPAGEPROBLEM);
+		}
+
+    }
+
 
     
 
@@ -48,7 +67,7 @@ public class StudentHomePageController {
 		} 
     	catch (IOException e) 
     	{
-			System.out.println("Problema con il caricamento della pagina dei compiti");
+			System.out.println(StudentUtil.ASSIGNMENTSETPAGEPROBLEM);
 		}
     }
 

@@ -38,8 +38,9 @@ public class Server implements Runnable
 		{
 			try 
 			{
-				
+				System.out.println("[SERVER] I'm waiting for new connections...");
 				Socket socket= server.accept();
+				System.out.println("[SERVER] Client with Inet Address: "+ socket.getInetAddress()+" connected...");
 				
 				MessagesHandler m= new MessagesHandler(socket);
 				executor.submit(m);

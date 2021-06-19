@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import application.SceneHandler;
 import application.net.client.ProfessorClient;
+import application.professor.ProfessorUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -36,13 +37,13 @@ public class ProfAssignmentController
     	String assignment=assignmentTextArea.getText();
     	if(assignment.equals(""))
     	{
-    		SceneHandler.getInstance().showWarning("Sembra ci sia un problema con i compiti assegnati... assicurati di aver riempito il campo");
+    		SceneHandler.getInstance().showWarning(ProfessorUtil.ASSIGNMENTPROBLEM);
     		return;
     	}
     	
     	if(ProfessorClient.getInstance().sendAssigment(assignment))
     	{
-    		SceneHandler.getInstance().showInformation("Compiti assegnati correttamente");
+    		SceneHandler.getInstance().showInformation(ProfessorUtil.ASSIGNMENTSENT);
     		assignmentTextArea.setText("");
     		
     	}
@@ -63,13 +64,13 @@ public class ProfAssignmentController
     @FXML
     void backClicked(ActionEvent event) 
     {
-    	assignmentTextArea.setPromptText("Inserisci compiti da assegnare...");
+    	assignmentTextArea.setPromptText(ProfessorUtil.PROMTTEXTINSERTASSIGNMENT);
     	try 
     	{
 			SceneHandler.getInstance().setProfHomePage();
 		} catch (IOException e) 
     	{
-			System.out.println("problema con il settaggio dell'home page professore");
+			System.out.println(ProfessorUtil.BACKTOHOMEPROBLEM);
 		}
 
     }

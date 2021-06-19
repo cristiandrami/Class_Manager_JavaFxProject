@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+<?import com.jfoenix.controls.pannable.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="760.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.student.NotesStudentPageController">
+   <top>
+      <BorderPane prefHeight="166.0" prefWidth="1050.0" style="-fx-background-color: #00adb5;" BorderPane.alignment="CENTER">
+         <center>
+            <ImageView fx:id="logoView" fitHeight="98.0" fitWidth="184.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+               <image>
+                  <Image url="@./" />
+               </image></ImageView>
+         </center>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <top>
+            <Button fx:id="backButton" mnemonicParsing="false" onAction="#backClicked" style="-fx-background-color: #00adb5;" BorderPane.alignment="TOP_LEFT">
+               <BorderPane.margin>
+                  <Insets left="10.0" top="10.0" />
+               </BorderPane.margin>
+               <graphic>
+                  <FontAwesomeIcon fill="#eeeeee" iconName="ARROW_LEFT" size="30" />
+               </graphic>
+            </Button>
+         </top>
+         <bottom>
+            <Label text="Note disciplinari" textFill="#eeeeee" BorderPane.alignment="CENTER">
+               <graphic>
+                  <FontAwesomeIcon fill="#eeeeee" iconName="WARNING" size="40" />
+               </graphic>
+               <font>
+                  <Font size="30.0" />
+               </font>
+               <BorderPane.margin>
+                  <Insets bottom="10.0" />
+               </BorderPane.margin>
+            </Label>
+         </bottom>
+      </BorderPane>
+   </top>
+   <center>
+      <ScrollPane fitToHeight="true" fitToWidth="true" BorderPane.alignment="CENTER">
+         <content>
+            <BorderPane>
+               <center>
+                  <VBox fx:id="vBoxContainer" alignment="CENTER" spacing="20.0" BorderPane.alignment="CENTER">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </VBox>
+               </center>
+            </BorderPane>
+         </content>
+         <BorderPane.margin>
+            <Insets bottom="20.0" top="20.0" />
+         </BorderPane.margin>
+      </ScrollPane>
+   </center>
+</BorderPane>

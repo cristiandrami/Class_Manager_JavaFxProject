@@ -17,6 +17,7 @@ import application.net.client.UserAccess;
 import application.net.common.User;
 import application.professor.StudentsTableModel;
 import application.student.AssignmentModel;
+import application.student.NotesModel;
 import application.student.VotesTableModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -314,161 +315,6 @@ public class DatabaseHandler
 		
 	}
 
-	public synchronized String getSufficientStudents(String profUsername) throws SQLException 
-	{
-		if(con==null || con.isClosed()|| profUsername.equals(""))
-			return null;
-		
-		String classe="";
-		String materia="";
-		String query= "SELECT user.classeAppartenenza, ProfessoreMateria.materia FROM user, ProfessoreMateria "
-				+ "WHERE user.username=? and ProfessoreMateria.prof=?;";
-		PreparedStatement p= con.prepareStatement(query);
-		p.setString(1, profUsername);
-		p.setString(2, profUsername);
-		
-		ResultSet rs1= p.executeQuery();
-		while( rs1.next())
-		{
-			classe=rs1.getString("classeAppartenenza");
-			materia=rs1.getString("materia");
-			
-		
-		}
-		
-		
-		
-		
-		p.close();
-		
-		Integer count=0;
-	
-		
-		String query2="SELECT studentiVoti.voto FROM user, studentiVoti "
-				+ "WHERE user.classeAppartenenza=? and user.username=studentiVoti.studente and studentiVoti.materia=?;";
-		PreparedStatement p2= con.prepareStatement(query2);
-		p2.setString(1, classe);
-		p2.setString(2, materia);
-		
-		ResultSet rs2= p2.executeQuery();
-		
-		while( rs2.next())
-		{
-	            int voto = Integer.parseInt(rs2.getString("voto"));
-	            if(voto>=6)
-	            	count++;
-		}
-		p2.close();
-		//System.out.println(count.toString());
-		
-		return count.toString();
-		
-		
-	}
-	
-	public synchronized String getUnsufficientStudents(String profUsername) throws SQLException 
-	{
-		if(con==null || con.isClosed()|| profUsername.equals(""))
-			return null;
-		
-		String classe="";
-		String materia="";
-		String query= "SELECT user.classeAppartenenza, ProfessoreMateria.materia FROM user, ProfessoreMateria "
-				+ "WHERE user.username=? and ProfessoreMateria.prof=?;";
-		PreparedStatement p= con.prepareStatement(query);
-		p.setString(1, profUsername);
-		p.setString(2, profUsername);
-		
-		ResultSet rs1= p.executeQuery();
-		while( rs1.next())
-		{
-			classe=rs1.getString("classeAppartenenza");
-			materia=rs1.getString("materia");
-		
-		}
-		
-		
-		
-		
-		p.close();
-		
-		Integer count=0;
-	
-		
-		String query2="SELECT studentiVoti.voto FROM user, studentiVoti "
-				+ "WHERE user.classeAppartenenza=? and user.username=studentiVoti.studente and studentiVoti.materia=?;";
-		PreparedStatement p2= con.prepareStatement(query2);
-		p2.setString(1, classe);
-		p2.setString(2, materia);
-		
-		ResultSet rs2= p2.executeQuery();
-		
-		while( rs2.next())
-		{
-	            int voto = Integer.parseInt(rs2.getString("voto"));
-	            //System.out.println(voto);
-	            if(voto<6 && voto>=2)
-	            	count++;
-  
-	        
-			
-		}
-		p2.close();
-		//System.out.println(count);
-		
-		return count.toString();
-		
-		
-	}
-
-	public synchronized String getTotalStudents(String profUsername) throws SQLException
-	{
-		if(con==null || con.isClosed()|| profUsername.equals(""))
-			return null;
-		
-		String classe="";
-		String query= "SELECT user.classeAppartenenza FROM user "
-				+ "WHERE user.username=?;";
-		PreparedStatement p= con.prepareStatement(query);
-		p.setString(1, profUsername);
-		
-		ResultSet rs1= p.executeQuery();
-		while( rs1.next())
-		{
-			classe=rs1.getString("classeAppartenenza");
-		
-		}
-		
-		
-		
-		p.close();
-		
-		String total="0";
-	
-		
-		String query2="SELECT count(*) as tot FROM user "
-				+ "WHERE user.classeAppartenenza=? and user.tipo=?;";
-		PreparedStatement p2= con.prepareStatement(query2);
-		p2.setString(1, classe);
-		p2.setString(2, RegistrationFormController.STUDENTTYPE);
-	
-		
-		ResultSet rs2= p2.executeQuery();
-		
-		while( rs2.next())
-		{
-	             total = rs2.getString("tot");
-			
-		}
-		p2.close();
-
-		
-		
-		
-		return total;
-		
-	}
-
 	public synchronized boolean sendAssignment(String profUsername, String assignment) throws SQLException 
 	{
 		if(con==null || con.isClosed()|| profUsername.equals(""))
@@ -643,6 +489,7 @@ public class DatabaseHandler
 				
 				
 				voti.add(new VotesTableModel(nome,voto));
+				
 
 		}
 		p2.close();
@@ -653,137 +500,6 @@ public class DatabaseHandler
 		
 	}
 	
-	public synchronized String getSufficientVotes(String studentUsername) throws SQLException 
-	{
-		if(con==null || con.isClosed()|| studentUsername.equals(""))
-			return null;
-		
-		
-	
-		
-		String query= "SELECT studentiVoti.voto FROM studentiVoti "
-				+ "WHERE studentiVoti.studente=?;";
-		PreparedStatement p2= con.prepareStatement(query);
-		p2.setString(1, studentUsername);
-	
-		
-		ResultSet rs2= p2.executeQuery();
-		Integer sufficient=0;
-	
-		while( rs2.next())
-		{
-			
-	           	String voto = rs2.getString("voto");
-	           	try
-	           	{
-	           		Integer v=Integer.parseInt(voto);
-	           		if(v>=6)
-	           			sufficient++;
-	           	}
-	           	catch (NumberFormatException e) 
-	           	{
-	           	    
-	           	}
-	            
-	            //System.out.println(nome+" "+voto);
-
-				
-
-		}
-		p2.close();
-		
-		
-		
-		return sufficient.toString();
-		
-	}
-
-	public synchronized String getUnsufficientVotes(String studentUsername) throws SQLException 
-	{
-		if(con==null || con.isClosed()|| studentUsername.equals(""))
-			return null;
-		
-		
-	
-		
-		String query= "SELECT studentiVoti.voto FROM studentiVoti "
-				+ "WHERE studentiVoti.studente=?;";
-		PreparedStatement p2= con.prepareStatement(query);
-		p2.setString(1, studentUsername);
-	
-		
-		ResultSet rs2= p2.executeQuery();
-		Integer unsufficient=0;
-	
-		while( rs2.next())
-		{
-			
-	           	String voto = rs2.getString("voto");
-	           	try
-	           	{
-	           		Integer v=Integer.parseInt(voto);
-	           		if(v<6 && v!=0)
-	           			unsufficient++;
-	           	}
-	           	catch (NumberFormatException e) 
-	           	{
-	           	    
-	           	}
-	            
-	            //System.out.println(nome+" "+voto);
-				
-
-		}
-		p2.close();
-		
-		
-		
-		return unsufficient.toString();
-		
-	}
-
-	public synchronized String getWaitingVotes(String studentUsername) throws SQLException 
-	{
-		if(con==null || con.isClosed()|| studentUsername.equals(""))
-			return null;
-		
-		
-	
-		
-		String query= "SELECT studentiVoti.voto FROM studentiVoti "
-				+ "WHERE studentiVoti.studente=?;";
-		PreparedStatement p2= con.prepareStatement(query);
-		p2.setString(1, studentUsername);
-	
-		
-		ResultSet rs2= p2.executeQuery();
-		Integer waiting=0;
-	
-		while( rs2.next())
-		{
-			
-	           	String voto = rs2.getString("voto");
-	           	try
-	           	{
-	           		Integer v=Integer.parseInt(voto);
-	           		if(v==0)
-	           			waiting++;
-	           	}
-	           	catch (NumberFormatException e) 
-	           	{
-	           	    
-	           	}
-	            
-	            //System.out.println(nome+" "+voto);
-				
-
-		}
-		p2.close();
-		
-		
-		
-		return waiting.toString();
-	}
 
 	public synchronized ArrayList<AssignmentModel> getAssignmentsForStudent(String studentUsername) throws SQLException 
 	{
@@ -810,6 +526,7 @@ public class DatabaseHandler
 		PreparedStatement p2= con.prepareStatement(query2);
 		p2.setString(1, classe);
 		
+		
 	
 		
 		ResultSet rs2= p2.executeQuery();
@@ -823,10 +540,41 @@ public class DatabaseHandler
 	           	String materia = rs2.getString("materia");
 	            String compito= rs2.getString("compito");
 	            String data=rs2.getString("data");
-	            System.out.println(materia);
 	            assignments.add(new AssignmentModel(materia, compito, data));
 		}
 		p2.close();
+		
+		
+		
+		return assignments;
+		
+	}
+
+	public synchronized ArrayList<NotesModel> getNotesForStudent(String studentUsername) throws SQLException 
+	{
+		if(con==null || con.isClosed()|| studentUsername.equals(""))
+			return null;
+		
+		
+		String query= "SELECT noteDisciplinari.materia, noteDisciplinari.nota, noteDisciplinari.data  FROM noteDisciplinari "
+				+ "WHERE noteDisciplinari.studente=?;";
+		PreparedStatement p= con.prepareStatement(query);
+		p.setString(1, studentUsername);
+		ResultSet rs1= p.executeQuery();
+		
+		
+		ArrayList<NotesModel> assignments=new ArrayList<NotesModel>();
+		
+	
+		while( rs1.next())
+		{
+			
+	           	String object = rs1.getString("materia");
+	            String note= rs1.getString("nota");
+	            String date=rs1.getString("data");
+	            assignments.add(new NotesModel(object, date, note));
+		}
+		p.close();
 		
 		
 		

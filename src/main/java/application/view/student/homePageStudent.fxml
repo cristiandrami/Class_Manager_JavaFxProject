@@ -41,7 +41,7 @@
                         <Font size="20.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="324.0" prefWidth="535.0" text=" Note disciplinari" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                  <Button fx:id="notesButton" mnemonicParsing="false" onAction="#notesButtonClicked" prefHeight="324.0" prefWidth="535.0" text=" Note disciplinari" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <graphic>
                         <FontAwesomeIcon fill="#00adb5" iconName="WARNING" size="50" />
                      </graphic>

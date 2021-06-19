@@ -149,63 +149,6 @@ public class ProfessorClient
 
 	}
 	
-	public String getSufficientStudents()
-	{
-		System.out.println("invio la richiesta");
-		sendMessage(Protocol.GETSUFFICIENTSTUDENS);
-		
-		try 
-		{
-			
-			String result= (String) in.readObject();
-			return result;
-	
-		} 
-		catch (Exception e) 
-		{
-			out=null;
-			return Protocol.ERROR;
-		}
-		
-	}
-	
-	public String getUnsufficientStudents() 
-	{
-		sendMessage(Protocol.GETUNSUFFICIENTSTUDENS);
-		
-			
-		try 
-		{
-			
-			String result= (String) in.readObject();
-			return result;
-	
-		} 
-		catch (Exception e) 
-		{
-			out=null;
-			return Protocol.ERROR;
-		}
-	}
-	
-	public String getTotalStudents() 
-	{
-		sendMessage(Protocol.GETTOTALSTUDENTS);
-		
-		try 
-		{
-			
-			String result= (String) in.readObject();
-			return result;
-	
-		} 
-		catch (Exception e) 
-		{
-			out=null;
-			return Protocol.ERROR;
-		}
-		
-	}
 	
 	public boolean sendAssigment(String assignment) 
 	{

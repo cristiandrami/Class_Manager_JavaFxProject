@@ -8,6 +8,7 @@ import com.sun.javafx.scene.BoundsAccessor;
 
 import application.SceneHandler;
 import application.net.client.ProfessorClient;
+import application.professor.ProfessorUtil;
 import application.professor.ScheduledGetStudent;
 import application.professor.StudentsTableModel;
 import javafx.collections.FXCollections;
@@ -98,7 +99,7 @@ public class ProfessorVotesGestionPage {
     	StudentsTableModel student=studentsTable.getSelectionModel().getSelectedItem();
     	if(student==null)
     	{
-    		SceneHandler.getInstance().showWarning("C'è stato un problema con la scelta, assicurati di aver scelto uno studente della tabella");
+    		SceneHandler.getInstance().showWarning(ProfessorUtil.STUDENTCHOOSEPROBLEM);
     		return;
     	}
     	else
@@ -130,7 +131,7 @@ public class ProfessorVotesGestionPage {
     		Integer newVote= Integer.parseInt(updateVoteField.getText());
     		if(newVote<2 || newVote>10)
     		{
-    			SceneHandler.getInstance().showWarning("Sembra esserci un problema con il voto inserito, assicurati che sia compreso tra 2 e 10");
+    			SceneHandler.getInstance().showWarning(ProfessorUtil.VOTEPROBLEM);
     			return;
     			
     		}
@@ -146,7 +147,7 @@ public class ProfessorVotesGestionPage {
     			tableList=ProfessorClient.getInstance().getStudentsList();
     			studentsTable.setItems(tableList);
     			updateVoteField.setText("");
-    			updateVoteField.setPromptText("Nuovo voto...");
+    			updateVoteField.setPromptText(ProfessorUtil.NEWVOTEPROMPTTEXT);
     			//mainPane.setOpacity(1);
             	updatePane.setOpacity(0);
             	mainPane.effectProperty().set(null);
@@ -159,7 +160,7 @@ public class ProfessorVotesGestionPage {
     	}
     	catch (NumberFormatException e) 
     	{
-    	    SceneHandler.getInstance().showWarning("Sembra esserci un problema con il voto inserito, assicurati che sia nel formato corretto");
+    	    SceneHandler.getInstance().showWarning(ProfessorUtil.VOTEFORMATPROBLEM);
     	    return;
     	}
 
@@ -175,7 +176,7 @@ public class ProfessorVotesGestionPage {
     	catch (IOException e) 
     	{
 			
-    		System.out.println("Problema con il caricamento della home page del professore");
+    		System.out.println(ProfessorUtil.BACKTOHOMEPROBLEM);
 		}
     }
     
@@ -225,12 +226,14 @@ public class ProfessorVotesGestionPage {
     void backUpdateClicked(ActionEvent event) 
     {
     	updateVoteField.setText("");
-    	updateVoteField.setPromptText("Nuovo voto...");
+    	updateVoteField.setPromptText(ProfessorUtil.NEWVOTEPROMPTTEXT);
     	//mainPane.setOpacity(1);
     	mainPane.effectProperty().set(null);
     	updatePane.setOpacity(0);
+    	updatePane.setVisible(false);
     }
 
+	
 
 
 }

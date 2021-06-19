@@ -12,10 +12,10 @@ public class ScheduledGetAssignment extends ScheduledService<ArrayList<Assignmen
             @Override
             protected ArrayList<AssignmentModel> call() 
             {
-            	ArrayList<AssignmentModel> assignments=StudentClient.getInstance().getAssignments();
-            	System.out.println(assignments.get(0).getObject()+"ciao");
-            	
+            	ArrayList<AssignmentModel> assignments=StudentClient.getInstance().getAssignments();      	
             	return assignments;
+            	
+            	
             }
         };
     }

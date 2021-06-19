@@ -2,22 +2,19 @@ package application.student;
 
 import java.io.Serializable;
 
-public class AssignmentModel implements Serializable, Comparable<AssignmentModel>
+public class NotesModel implements Serializable, Comparable<NotesModel>
 {
-
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -1502844110655147440L;
-	
-	String object, message, date;
+	private static final long serialVersionUID = -6702619845365432506L;
+	String object, date, note;
 
-	public AssignmentModel(String object, String message, String date) 
-	{
+	public NotesModel(String object, String date, String note) {
 		super();
 		this.object = object;
-		this.message = message;
 		this.date = date;
+		this.note = note;
 	}
 
 	public String getObject() {
@@ -28,14 +25,6 @@ public class AssignmentModel implements Serializable, Comparable<AssignmentModel
 		this.object = object;
 	}
 
-	public String getMessage() {
-		return message;
-	}
-
-	public void setMessage(String message) {
-		this.message = message;
-	}
-
 	public String getDate() {
 		return date;
 	}
@@ -44,8 +33,16 @@ public class AssignmentModel implements Serializable, Comparable<AssignmentModel
 		this.date = date;
 	}
 
+	public String getNote() {
+		return note;
+	}
+
+	public void setNote(String note) {
+		this.note = note;
+	}
+
 	@Override
-	public int compareTo(AssignmentModel o) {
+	public int compareTo(NotesModel o) {
 		String year="";
 		String month="";
 		String day="";
@@ -83,7 +80,6 @@ public class AssignmentModel implements Serializable, Comparable<AssignmentModel
 		
 		return 0;
 		
-	
 	}
 	
 

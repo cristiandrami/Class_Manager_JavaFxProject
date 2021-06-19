@@ -16,6 +16,8 @@ public class VotesTableModel implements Serializable
 		this.vote = vote;
 	}
 
+	
+	
 	public String getName() {
 		return name;
 	}

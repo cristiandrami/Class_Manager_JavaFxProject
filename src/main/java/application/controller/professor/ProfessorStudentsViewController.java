@@ -99,7 +99,7 @@ public class ProfessorStudentsViewController
 		}
     	catch (IOException e) 
     	{
-			System.out.println("Problema caricamento home page professore");
+			System.out.println(ProfessorUtil.BACKTOHOMEPROBLEM);
 		}
     	
     }
@@ -110,7 +110,7 @@ public class ProfessorStudentsViewController
     	StudentsTableModel student=tableView.getSelectionModel().getSelectedItem();
     	if(student==null)
     	{
-    		SceneHandler.getInstance().showWarning("C'è stato un problema con la scelta, assicurati di aver scelto uno studente della tabella");
+    		SceneHandler.getInstance().showWarning(ProfessorUtil.STUDENTCHOOSEPROBLEM);
     		return;
     	}
     	else
@@ -136,7 +136,7 @@ public class ProfessorStudentsViewController
     	{
     		SceneHandler.getInstance().showWarning(ProfessorUtil.NOTEPROBLEM);
     	}
-    	if(ProfessorClient.getInstance().insertStudentNote(studentUsername, insertNoteField.getText()))
+    	else if(ProfessorClient.getInstance().insertStudentNote(studentUsername, insertNoteField.getText()))
 		{
 			
 			SceneHandler.getInstance().showInformation("La nota disciplinare per "+studentName+" "+ studentSurname +" è stata inserita correttamente");
@@ -145,7 +145,7 @@ public class ProfessorStudentsViewController
 			studentUsername="";
 			studentBornDate="";
 			insertNoteField.setText("");
-			insertNoteField.setPromptText("Nota disciplinare...");
+			insertNoteField.setPromptText(ProfessorUtil.PROMTTEXTNOTES);
 			//mainPane.setOpacity(1);
         	notePane.setOpacity(0);
         	mainPane.effectProperty().set(null);
@@ -160,7 +160,7 @@ public class ProfessorStudentsViewController
     void backNoteClicked(ActionEvent event) 
     {
     	insertNoteField.setText("");
-    	insertNoteField.setPromptText("Nota disciplinare...");
+    	insertNoteField.setPromptText(ProfessorUtil.PROMTTEXTNOTES);
     	mainPane.effectProperty().set(null);
     	notePane.setOpacity(0);
     }
@@ -177,7 +177,6 @@ public class ProfessorStudentsViewController
     	voteColumn.setCellValueFactory(new PropertyValueFactory<>("voto"));
     	notePane.setVisible(false);
     	notePane.setEffect(new DropShadow());
-    	
     
     }
     

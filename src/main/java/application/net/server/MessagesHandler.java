@@ -12,6 +12,7 @@ import application.net.common.Protocol;
 import application.net.common.User;
 import application.professor.StudentsTableModel;
 import application.student.AssignmentModel;
+import application.student.NotesModel;
 import application.student.VotesTableModel;
 import javafx.collections.ObservableList;
 
@@ -169,6 +170,7 @@ public class MessagesHandler extends Thread
 						//*************************************************** PROFESSOR ********************************//
 						//System.out.println("server in ascolto");
 						
+						
 						if(request.equals(Protocol.GETSTUDENTSFORPROF))
 						{
 							ArrayList<StudentsTableModel> list=DatabaseHandler.getInstance().getStudentsList(username);
@@ -176,19 +178,6 @@ public class MessagesHandler extends Thread
 							sendObject(list);
 						}
 						
-						else if(request.equals(Protocol.GETSUFFICIENTSTUDENS))
-						{
-							//System.out.println("sto inviando il risultato della richiesta");
-							sendMessage(DatabaseHandler.getInstance().getSufficientStudents(username));
-						}
-						else if(request.equals(Protocol.GETUNSUFFICIENTSTUDENS))
-						{
-							sendMessage(DatabaseHandler.getInstance().getUnsufficientStudents(username));
-						}
-						else if(request.equals(Protocol.GETTOTALSTUDENTS))
-						{
-							sendMessage(DatabaseHandler.getInstance().getTotalStudents(username));
-						}
 						else if(request.equals(Protocol.SENDASSIGNMENT))
 						{
 							String assignment= (String)in.readObject();
@@ -230,27 +219,19 @@ public class MessagesHandler extends Thread
 							//System.out.println("list size "+ list.size());
 							sendObject(list);
 						}
-						else if(request.equals(Protocol.GETUNSUFFICIENTSTUDENTVOTES))
-						{
-							//System.out.println("sto inviando il risultato della richiesta");
-							sendMessage(DatabaseHandler.getInstance().getUnsufficientVotes(username));
-						}
-						else if(request.equals(Protocol.GETSUFFICIENTSTUDENTVOTES))
-						{
-							//System.out.println("sto inviando il risultato della richiesta");
-							sendMessage(DatabaseHandler.getInstance().getSufficientVotes(username));
-						}
-						else if(request.equals(Protocol.GETSTUDENTSWAITINGVOTES))
-						{
-							//System.out.println("sto inviando il risultato della richiesta");
-							sendMessage(DatabaseHandler.getInstance().getWaitingVotes(username));
-							
-						}
 						else if(request.equals(Protocol.GETASSIGNMENTS))
 						{
 							//System.out.println("sto inviando il risultato della richiesta");
 					
 							ArrayList<AssignmentModel> list= DatabaseHandler.getInstance().getAssignmentsForStudent(username);
+							sendObject(list);
+							
+						}
+						else if(request.equals(Protocol.GETNOTES))
+						{
+							//System.out.println("sto inviando il risultato della richiesta");
+					
+							ArrayList<NotesModel> list= DatabaseHandler.getInstance().getNotesForStudent(username);
 							sendObject(list);
 							
 						}

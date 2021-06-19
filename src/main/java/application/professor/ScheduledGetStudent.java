@@ -15,8 +15,6 @@ public class ScheduledGetStudent extends ScheduledService<ObservableList<Student
             protected ObservableList<StudentsTableModel> call() 
             {
             	ObservableList<StudentsTableModel> students=ProfessorClient.getInstance().getStudentsList();
-            	//System.out.println(students.get(0).getNome());
-            	//System.out.println(students);
             	return students;
             }
         };

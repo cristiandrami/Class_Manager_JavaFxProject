@@ -13,6 +13,7 @@ import application.SceneHandler;
 	import application.net.common.User;
 import application.professor.StudentsTableModel;
 import application.student.AssignmentModel;
+import application.student.NotesModel;
 import application.student.VotesTableModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -80,6 +81,7 @@ import javafx.collections.ObservableList;
 				out=null;
 				System.out.println("Errore qui");
 				return Protocol.ERROR;
+				
 				
 				
 			}
@@ -150,6 +152,7 @@ import javafx.collections.ObservableList;
 			{
 				out=null;
 				return null;
+				
 			}
 		}
 		/*
@@ -221,6 +224,21 @@ import javafx.collections.ObservableList;
 					return null;
 				}
 		}
+		public ArrayList<NotesModel> getNotes() 
+		{
+			sendMessage(Protocol.GETNOTES);
+			try 
+			{
+				ArrayList<NotesModel> notes=(ArrayList<NotesModel>) in.readObject();
+				return notes;
+			} 
+			catch (Exception e) 
+			{
+				out=null;
+				return null;
+			}
+		}
+
 
 
 
@@ -240,6 +258,7 @@ import javafx.collections.ObservableList;
 			socket=null;
 		}
 
+		
 	
 		
 

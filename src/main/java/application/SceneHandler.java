@@ -35,10 +35,10 @@ public class SceneHandler
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/common/Login.fxml"));
     	Parent root = (Parent) loader.load();
     	//addMouseDragging(root);
-		scene = new Scene(root, 700, 500);
+		scene = new Scene(root);
 		stage.setScene(scene);
-		stage.setMinHeight(700);
-		stage.setMinWidth(900);
+		stage.setMinHeight(450);
+		stage.setMinWidth(700);
 		stage.setTitle("Class Manager");
 		stage.setResizable(false);
 		stage.show();
@@ -72,7 +72,7 @@ public class SceneHandler
 		scene.setRoot(root);
 		stage.setScene(scene);
 		stage.setTitle("Class Manager");
-		stage.setHeight(500);
+		stage.setHeight(450);
 		stage.setWidth(700);
 		stage.setResizable(false);
 		stage.show();
@@ -192,7 +192,7 @@ public class SceneHandler
     	Parent root = (Parent) loader.load();    	
     	//addMouseDragging(root);
 		scene.setRoot(root);
-		scene.getStylesheets().add(getClass().getResource("/css/borderPane.css").toExternalForm());
+		scene.getStylesheets().add(getClass().getResource("/css/assignmentStudent.css").toExternalForm());
 		stage.setScene(scene);
 		stage.setHeight(760);
 		stage.setWidth(1050);
@@ -200,6 +200,24 @@ public class SceneHandler
 		//stage.initStyle(StageStyle.UNDECORATED);
 		stage.setResizable(true);
 		stage.show();
+		
+	}
+	public void setNotesStudentPage() throws IOException 
+	{
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/view/student/studentsNotes.fxml"));
+
+    	Parent root = (Parent) loader.load();    	
+    	//addMouseDragging(root);
+		scene.setRoot(root);
+		scene.getStylesheets().add(getClass().getResource("/css/notesStudent.css").toExternalForm());
+		stage.setScene(scene);
+		stage.setHeight(760);
+		stage.setWidth(1050);
+		stage.setTitle("Class Manager");
+		//stage.initStyle(StageStyle.UNDECORATED);
+		stage.setResizable(true);
+		stage.show();
+		
 		
 	}
 
@@ -245,6 +263,8 @@ public class SceneHandler
 		
 		
     }
+
+	
 
 	
 
