@@ -452,6 +452,27 @@ public class DatabaseHandler
 		
 		
 	}
+	public synchronized String getProfessorClass(String profUsername) throws SQLException 
+	{
+		String classe="";
+		String query= "SELECT user.classeAppartenenza FROM user "
+				+ "WHERE user.username=?;";
+		PreparedStatement p= con.prepareStatement(query);
+		p.setString(1, profUsername);
+
+		ResultSet rs1= p.executeQuery();
+		if( rs1.next())
+		{
+			classe=rs1.getString("classeAppartenenza");
+		}
+		
+		
+		
+		p.close();
+		
+		return classe;
+	}
+
 
 	
 	//******************************************************************** STUDENT ***************************************************//
@@ -581,6 +602,7 @@ public class DatabaseHandler
 		return assignments;
 		
 	}
+
 
 	
 

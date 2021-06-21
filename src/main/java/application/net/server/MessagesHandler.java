@@ -76,6 +76,20 @@ public class MessagesHandler extends Thread
 				//se l'input è per fare il login allota provo a fare il check e se non va bene mando un messaggio di errore e ritorno
 					input = (String) in.readObject();
 					
+					while(input.equals(Protocol.GETTYPEFROMCODE))
+					{
+						String code= (String) in.readObject();
+						sendMessage(DatabaseHandler.getInstance().getTypeFromCode(code));
+						input=(String) in.readObject();
+						
+					}
+					while(input.equals(Protocol.GETCLASSFROMCODE))
+					{
+						String code= (String) in.readObject();
+						sendMessage(DatabaseHandler.getInstance().getclassFromCode(code));
+						input=(String) in.readObject();
+						
+					}
 					
 					
 					if(input.equals(Protocol.LOGIN))
@@ -133,6 +147,8 @@ public class MessagesHandler extends Thread
 						
 						username=user.getUsername();
 					}
+					
+
 					
 					// se sono arrivato qui c'è stato un errore
 					
@@ -211,6 +227,10 @@ public class MessagesHandler extends Thread
 								sendMessage(Protocol.ERROR);
 							
 						}
+						else if(request.equals(Protocol.GETCLASS))
+						{
+							sendMessage(DatabaseHandler.getInstance().getProfessorClass(username));
+						}
 						
 						//*************************************************** STUDENT ********************************//
 						else if(request.equals(Protocol.GETVOTES))
@@ -241,6 +261,7 @@ public class MessagesHandler extends Thread
 			}
 		catch(Exception e)
 		{
+			e.getStackTrace();
 			// SE QUI ho avuto qualche problema di connessione tolgo l'utente da quelli online
 			if(!username.equals(""))
 			{

@@ -1,0 +1,10 @@
+.text-field {
+    -fx-background-color: #eeeeee;
+    -fx-border-color: #00adb5;
+    -fx-border-width:  0px 0px 2px 0px;
+     -fx-font-size: 10pt ;
+}
+.myData {
+     -fx-border-color: #eeeeee;
+    -fx-border-width:  1px 1px 1px 1px;
+}

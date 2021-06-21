@@ -3,6 +3,7 @@ package application.controller.professor;
 import java.io.IOException;
 
 import application.SceneHandler;
+import application.net.client.CommonClient;
 import application.net.client.ProfessorClient;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -86,6 +87,8 @@ public class ProfHomeController {
     	try 
     	{
 			SceneHandler.getInstance().setLogin();
+			ProfessorClient.getInstance().reset();
+			CommonClient.getInstance().reset();
 		} 
     	catch (Exception e) 
     	{

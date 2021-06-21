@@ -47,7 +47,10 @@
                   <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" prefWidth="200.0" spacing="10.0">
                      <children>
                         <FontAwesomeIcon fill="#00adb5" iconName="USER" size="20" />
-                        <TextField fx:id="userField" promptText="Username" style="-fx-background-color: transparent; -fx-border-color: #00adb5; -fx-border-width: 0px 0px 2px 0px;" />
+                        <TextField fx:id="userField" promptText="Username" style="-fx-background-color: transparent; -fx-border-color: #00adb5; -fx-border-width: 0px 0px 2px 0px;">
+                           <font>
+                              <Font size="16.0" />
+                           </font></TextField>
                      </children>
                      <VBox.margin>
                         <Insets bottom="20.0" top="30.0" />
@@ -56,7 +59,10 @@
                   <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="20.0" prefWidth="200.0" spacing="10.0">
                      <children>
                         <FontAwesomeIcon fill="#00adb5" iconName="KEY" size="20" />
-                        <PasswordField fx:id="passwordField" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: #00adb5; -fx-border-width: 0px 0px 2px 0px;" />
+                        <PasswordField fx:id="passwordField" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: #00adb5; -fx-border-width: 0px 0px 2px 0px;">
+                           <font>
+                              <Font size="16.0" />
+                           </font></PasswordField>
                      </children>
                      <VBox.margin>
                         <Insets bottom="40.0" />

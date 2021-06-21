@@ -62,6 +62,7 @@ public class SceneHandler
 		stage.setHeight(805);
 		stage.setWidth(695);
 		stage.setResizable(false);
+		scene.getStylesheets().add(getClass().getResource("/css/registrationForm.css").toExternalForm());
 		stage.show();
     }
     public void setLogin() throws Exception 

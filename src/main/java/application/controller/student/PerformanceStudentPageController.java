@@ -127,11 +127,10 @@ public class PerformanceStudentPageController
 				int size=0;
 				//ora mi riempio le barre del grafico 
 				if(!(votes==null))
-				{
-					
+				{	
 					for(VotesTableModel v: votes)
 					{
-							if(v.getVote().equals("Non ancora scrutinato"))
+							if(v.getVote().equals(StudentUtil.VOTEABSENT))
 							{
 								graphicData.getData().add(new XYChart.Data<String, Number>(v.getName(), 0));
 							}
@@ -170,7 +169,7 @@ public class PerformanceStudentPageController
 					}
 					else
 					{
-						votesAverange.setText("Nessuna");
+						votesAverange.setText("0.0");
 						averangeBorderPane.setStyle(StudentUtil.NULLAVERAGEPANESTYLE);
 					}
 					
@@ -218,30 +217,34 @@ public class PerformanceStudentPageController
 				Integer waiting=0;
 				votes= (ObservableList<VotesTableModel>) event.getSource().getValue();
 				tableView.setItems(votes);
-				for(VotesTableModel v: votes)
+				if(!(votes==null))
 				{
-					if(v.getVote().equals(StudentUtil.VOTEABSENT))
+					for(VotesTableModel v: votes)
 					{
-						waiting++;
-					}
-					else 
-					{
-						try 
-						 {
-						    Integer vote = Integer.parseInt(v.getVote());
-						    if(vote>=6)
-						    	sufficient++;
-						    else
-						    	unsufficient++;
-							  
-						 }
-						 catch (NumberFormatException e) 
-						 {
-							    
-							  
-						 }
+						if(v.getVote().equals(StudentUtil.VOTEABSENT))
+						{
+							waiting++;
+						}
+						else 
+						{
+							try 
+							 {
+							    Integer vote = Integer.parseInt(v.getVote());
+							    if(vote>=6)
+							    	sufficient++;
+							    else
+							    	unsufficient++;
+								  
+							 }
+							 catch (NumberFormatException e) 
+							 {
+								    
+								  
+							 }
+						}
 					}
 				}
+				
 				unsufficientLabel.setText(unsufficient.toString());
 				waitingVotesLabel.setText(waiting.toString());
 				sufficientLabel.setText(sufficient.toString());

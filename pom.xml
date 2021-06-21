@@ -17,6 +17,22 @@
     <artifactId>fontawesomefx</artifactId>
     <version>8.1</version>
 </dependency>
+<!-- https://mvnrepository.com/artifact/com.hynnet/pdfjet -->
+<dependency>
+    <groupId>com.hynnet</groupId>
+    <artifactId>pdfjet</artifactId>
+    <version>5.75</version>
+</dependency>
+
+
+<!-- https://mvnrepository.com/artifact/com.itextpdf/itextpdf -->
+<dependency>
+    <groupId>com.itextpdf</groupId>
+    <artifactId>itextpdf</artifactId>
+    <version>5.5.13.2</version>
+</dependency>
+
+
 	
 		<!-- https://mvnrepository.com/artifact/org.openjfx/javafx-base -->
 		<dependency>

@@ -3,6 +3,7 @@ package application.controller.student;
 import java.io.IOException;
 
 import application.SceneHandler;
+import application.net.client.CommonClient;
 import application.net.client.StudentClient;
 import application.student.StudentUtil;
 import javafx.event.ActionEvent;
@@ -80,6 +81,8 @@ public class StudentHomePageController {
     	try 
     	{
 			SceneHandler.getInstance().setLogin();
+			StudentClient.getInstance().reset();
+			CommonClient.getInstance().reset();
 		} 
     	catch (Exception e) 
     	{

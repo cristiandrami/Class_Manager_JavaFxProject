@@ -76,6 +76,48 @@ public class CommonClient
 		
 	}
 	
+	public String getTypeFromCode(String newValue) 
+	{
+		sendMessage(Protocol.GETTYPEFROMCODE);
+		sendMessage(newValue);
+		try 
+		{
+			String result= (String) in.readObject();
+			return result;
+	
+		} 
+		catch (Exception e) 
+		{
+			out=null;
+			System.out.println("Errore qui");
+			return Protocol.ERROR;
+			
+		}
+	}
+	
+	public String getClassFromCode(String code) 
+	{
+		sendMessage(Protocol.GETCLASSFROMCODE);
+		sendMessage(code);
+		try 
+		{
+			String result= (String) in.readObject();
+			return result;
+	
+		} 
+		catch (Exception e) 
+		{
+			out=null;
+			System.out.println("Errore qui");
+			return Protocol.ERROR;
+			
+		}
+	}
+
+	
+
+
+	
 	//ma se sbaglio e nella chat mando un oggetto che non è una stringa?
 	private boolean sendMessage(Object message, boolean empty)
 	{
@@ -99,6 +141,8 @@ public class CommonClient
 		return true;
 	}
 	
+	
+	
 
 
 	
@@ -118,6 +162,10 @@ public class CommonClient
 		in=null;
 		socket=null;
 	}
+
+	
+
+	
 
 
 }

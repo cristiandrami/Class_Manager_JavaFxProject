@@ -18,11 +18,16 @@ public class ProfessorUtil
 	public static final String NOTEPROBLEM = "Sembra esserci un problema con la nota disciplinare, assicurati di avere compilato il campo di inserimento...";
 	public static final String STUDENTCHOOSEPROBLEM = "C'è stato un problema con la scelta, assicurati di aver scelto uno studente della tabella";
 	public static final String PROMTTEXTNOTES = "Nota disciplinare...";
+	public static final String CHOOSEPATHPDF = "Scegli dove salvare il file pdf";
+	public static final String PDFEXPORTOK = "PDF correttamente esportato!" ;
 
 	//****************************** GESTION VOTES PAGE *******************************************************//
 	public static final String VOTEPROBLEM = "Sembra esserci un problema con il voto inserito, assicurati che sia compreso tra 2 e 10";
 	public static final String VOTEFORMATPROBLEM = "Sembra esserci un problema con il voto inserito, assicurati che sia un numero intero";
 	public static final String NEWVOTEPROMPTTEXT = "Nuovo voto...";
+	
+
+
 	
 	
 }

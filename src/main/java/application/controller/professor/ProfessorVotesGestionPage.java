@@ -211,6 +211,7 @@ public class ProfessorVotesGestionPage {
 			public void handle(WorkerStateEvent event) 
 			{
 				tableList= (ObservableList<StudentsTableModel>) event.getSource().getValue();
+				if(tableList!=null)
 				studentsTable.setItems(tableList);
 				
 			}

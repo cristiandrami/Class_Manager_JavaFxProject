@@ -1,7 +1,22 @@
 package application.controller.professor;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Font.FontFamily;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfDocument;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import application.SceneHandler;
 import application.net.client.ProfessorClient;
 import application.professor.ProfessorUtil;
@@ -24,6 +39,7 @@ import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.FileChooser;
 import javafx.util.Duration;
 
 public class ProfessorStudentsViewController 
@@ -77,6 +93,8 @@ public class ProfessorStudentsViewController
 
     @FXML
     private TableColumn<StudentsTableModel, String> nameColumn;
+    @FXML
+    private Button exportPdfBtn;
     
     
 
@@ -128,6 +146,7 @@ public class ProfessorStudentsViewController
     	}
 
     }
+  
     
     @FXML
     void insertNoteclicked(ActionEvent event) 
@@ -164,9 +183,17 @@ public class ProfessorStudentsViewController
     	mainPane.effectProperty().set(null);
     	notePane.setOpacity(0);
     }
-
-    
     @FXML
+    void exportPdfClicked(ActionEvent event) 
+    {
+    	
+    	savePDF();
+    	
+    }
+
+   
+ 
+	@FXML
     void initialize()
     {
     	refreshStudentsList();
@@ -177,9 +204,18 @@ public class ProfessorStudentsViewController
     	voteColumn.setCellValueFactory(new PropertyValueFactory<>("voto"));
     	notePane.setVisible(false);
     	notePane.setEffect(new DropShadow());
+    	setPdfImage();
     
     }
     
+	private void setPdfImage() 
+	{
+	     ImageView view = new ImageView(new Image(getClass().getResourceAsStream("/images/pdf.png")));
+	     view.setFitHeight(50);
+	     view.setFitWidth(50);
+	     exportPdfBtn.setGraphic(view);
+		
+	}
 	private void refreshStudentsList() 
 	{
 		refreshStudents.setPeriod(Duration.seconds(30));
@@ -197,25 +233,30 @@ public class ProfessorStudentsViewController
 				Integer sufficient=0;
 				Integer unsufficient=0;
 				Integer total=tableList.size();
-				for(StudentsTableModel s: tableList)
+				if(tableList!=null)
 				{
-					
-					try 
-					 {
-					    Integer vote = Integer.parseInt(s.getVoto());
-					    if(vote>=6)
-					    	sufficient++;
-					    else
-					    	unsufficient++;
-						  
-					 }
-					 catch (NumberFormatException e) 
-					 {
-						    
-						  
-					 }
+					for(StudentsTableModel s: tableList)
+					{
+						
+						try 
+						 {
+						    Integer vote = Integer.parseInt(s.getVoto());
+						    if(vote>=6)
+						    	sufficient++;
+						    else
+						    	unsufficient++;
+							  
+						 }
+						 catch (NumberFormatException e) 
+						 {
+							    
+							  
+						 }
+						
+					}
 					
 				}
+				
 				
 				sufficientLabel.setText(sufficient.toString());
 				insufficientLabel.setText(unsufficient.toString());
@@ -231,6 +272,105 @@ public class ProfessorStudentsViewController
 	refreshStudents.start();
 		
 	}
+	
+	   private void savePDF() 
+	   {
+		  // creo il nome del pdf;
+		   FileChooser chooser= new FileChooser();
+		   FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("PDF Files", "*.pdf");
+		   chooser.getExtensionFilters().add(extFilter);
+		   File fileToSave = chooser.showSaveDialog(null);
+		   //System.out.println(fileToSave.getAbsolutePath());
+		   try 
+		   {
+			   		//qui mi creo lo stream sul file in modo da modificarlo
+					FileOutputStream streamFile= new FileOutputStream(fileToSave);
+					//mi creo un document (oggetto della libreria itext) che mi servirà per modificare il file pdf che vado a creare
+					Document document= new Document();
+					//con pdfwriter ho la possibilità di settare il documento come pdf modificabile
+					PdfWriter.getInstance(document, streamFile);
+					//qui do la possibilità di accedere ai dati del documento
+					document.open();
+					//mi creo una immagine che inserirò al centro pagin aprima della tabella(esce scritto in questo modo poichè ho importato
+					// in questa classe anche Image di
+					com.itextpdf.text.Image img= com.itextpdf.text.Image.getInstance("src/main/resources/images/logoScuola.jpg");
+					img.scaleToFit(200, 300);
+					img.setAlignment(com.itextpdf.text.Image.MIDDLE);
+					document.add(img);
+					
+					
+					
+					//qui mi creo i font che mi servono per differenziare la riga header della tabella, le righe normali e il paragrafo iniziale
+					Font classFont =  new Font(FontFamily.COURIER, 20, Font.BOLD);
+					Font boldFont =  new Font(FontFamily.COURIER, 12, Font.BOLD);
+					Font rowsFont=new Font(FontFamily.COURIER, 12, Font.NORMAL);
+					
+					//creo il paragrafo che mi dice quale classe gestendo
+					Paragraph paragraph= new Paragraph("Studenti della classe "+ ProfessorClient.getInstance().getClasse()+"\n\n", classFont);
+					paragraph.setAlignment(Element.ALIGN_CENTER);
+					document.add(paragraph);
+					
+					// creo un array di float con delle grandezze che mi servono per la lunghezza delle celle
+					float[] tableSizes={120f, 120f, 200f, 150f};
+					// creo le 4 celle che mi servono e le aggiungo alla tabella
+					PdfPTable table= new PdfPTable(tableSizes);
+					PdfPCell nameCol= new PdfPCell(new Phrase("Nome", boldFont));
+					PdfPCell surnameCol= new PdfPCell(new Phrase("Cognome", boldFont));
+					PdfPCell bornDateCol= new PdfPCell(new Phrase("Data di nascita", boldFont));
+					PdfPCell voteCol= new PdfPCell(new Phrase("Voto", boldFont));
+					table.addCell(nameCol);
+					table.addCell(surnameCol);
+					table.addCell(bornDateCol);
+					table.addCell(voteCol);
+					
+					table.setHeaderRows(1);
+					// mi prendo la lista degli studenti della table view
+					List<StudentsTableModel> students= tableView.getItems();
+					
+					// con un for mi scorro questa lista e popolo la tabella del pdf
+					for(StudentsTableModel student : students)
+					{
+						
+						 nameCol= new PdfPCell(new Phrase(student.getNome(), rowsFont));
+						 surnameCol= new PdfPCell(new Phrase(student.getCognome(), rowsFont));
+						 bornDateCol= new PdfPCell(new Phrase(student.getDataNascita(), rowsFont));
+						 voteCol= new PdfPCell(new Phrase(student.getVoto(), rowsFont));
+						 table.addCell(nameCol);
+						 table.addCell(surnameCol);
+						 table.addCell(bornDateCol);
+						 table.addCell(voteCol);
+						
+					}
+					
+					//aggiungo la tabella al documento
+					document.add(table);
+					//aggiungo il logo del gestore
+					img= com.itextpdf.text.Image.getInstance("src/main/resources/images/logoInPDF.jpg");
+					img.scaleToFit(200, 300);
+					document.add(img);
+					
+					//chiudo il documento e il file stream
+					document.close();
+					streamFile.close();
+					
+					
+					
+					
+					
+		   } 
+		   catch (FileNotFoundException e) 
+		   {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		   } 
+		   catch (Exception e) 
+		   {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		   }
+		   	
+			
+	   }
 	
 
 }

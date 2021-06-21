@@ -214,6 +214,23 @@ public class ProfessorClient
 			return false;
 		}
 	}
+	public String getClasse() {
+		sendMessage(Protocol.GETCLASS);
+		try 
+		{
+			
+			String result= (String) in.readObject();
+			return result;
+			
+	
+		} 
+		catch (Exception e) 
+		{
+			out=null;
+			return "";
+		}
+	}
+
 
 	
 	
@@ -233,6 +250,7 @@ public class ProfessorClient
 		in=null;
 		socket=null;
 	}
+
 
 
 

@@ -6,6 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import application.SceneHandler;
+import application.net.client.CommonClient;
 import application.net.client.ProfessorClient;
 import application.net.client.StudentClient;
 import application.net.common.Protocol;
@@ -17,6 +18,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -36,6 +38,9 @@ public class RegistrationFormController
 	
 	@FXML
     private Button registerButton;
+	
+    @FXML
+    private Label materiaLabel;
     
 
     @FXML
@@ -73,44 +78,40 @@ public class RegistrationFormController
     @FXML
     void registerClicked(ActionEvent event) 
     {
-    	try 
-    	{
-			String type= DatabaseHandler.getInstance().getTypeFromCode(codeField.getText());
-			String classe= DatabaseHandler.getInstance().getclassFromCode(codeField.getText());
-			
-			//String classe="1A";
-			//String type="professore";
-			if(type.equals("") || classe.equals(""))
-			{
-				SceneHandler.getInstance().showWarning("Il codice di registrazione inserito non è valido, per favore riprova");
-				return;
-			}
-			
-			if(!checkRepeatPass(passwordField.getText(), repeatPasswordField.getText()))
-			{
-				SceneHandler.getInstance().showWarning("Le password inserite non coincidono");
-				return;
-			}
-			
-			if(!validatePassword(passwordField.getText()))
-			{
-				SceneHandler.getInstance().showWarning("La PASSWORD scelta non rispetta le condizioni sotto elencate");
-				return;
-			}
-			if(!validateUsername(username.getText()))
-			{
-				SceneHandler.getInstance().showWarning("L'USERNAME scelto non rispetta le condizioni sotto elencate");
-				return;
-			}
-				
-				
-			registration(type, classe);
-			
-		} 
-    	catch (SQLException e) 
-    	{
-			SceneHandler.getInstance().showError("Errore con il db per la registrazione");
+    	
+		String type=CommonClient.getInstance().getTypeFromCode(codeField.getText());
+		String classe= CommonClient.getInstance().getClassFromCode(codeField.getText());
+		
+		
+		//String classe="1A";
+		//String type="professore";
+		if(type.equals("") || classe.equals(""))
+		{
+			SceneHandler.getInstance().showWarning("Il codice di registrazione inserito non è valido, per favore riprova");
+			return;
 		}
+		
+		if(!checkRepeatPass(passwordField.getText(), repeatPasswordField.getText()))
+		{
+			SceneHandler.getInstance().showWarning("Le password inserite non coincidono");
+			return;
+		}
+		
+		if(!validatePassword(passwordField.getText()))
+		{
+			SceneHandler.getInstance().showWarning("La PASSWORD scelta non rispetta le condizioni sotto elencate");
+			return;
+		}
+		if(!validateUsername(username.getText()))
+		{
+			SceneHandler.getInstance().showWarning("L'USERNAME scelto non rispetta le condizioni sotto elencate");
+			return;
+		}
+			
+			
+		registration(type, classe);
+			
+		
     }
     
     @FXML
@@ -120,7 +121,11 @@ public class RegistrationFormController
     	System.exit(0);
     
     }
+    
 
+
+    
+   
     
     private void registration(String type, String classe)
     {
@@ -157,6 +162,7 @@ public class RegistrationFormController
                 	{
                 		SceneHandler.getInstance().showError(result);
                 		ProfessorClient.getInstance().reset();
+                		CommonClient.getInstance().reset();
                 	}
     				
     			}
@@ -182,7 +188,8 @@ public class RegistrationFormController
                 	else
                 	{
                 		SceneHandler.getInstance().showError(result);
-                		ProfessorClient.getInstance().reset();
+                		StudentClient.getInstance().reset();
+                		CommonClient.getInstance().reset();
                 	}
     				
     			}
@@ -239,6 +246,27 @@ public class RegistrationFormController
 				
 			}
 		});
+    	codeField.textProperty().addListener(new ChangeListener<String>() {
+
+			@Override
+			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue)
+			{
+				
+				if(CommonClient.getInstance().getTypeFromCode(newValue).equals(PROFTYPE))
+				{
+					materiaField.setVisible(true);
+	    			materiaLabel.setVisible(true);
+				}
+				else
+				{
+					materiaField.setVisible(false);
+					materiaLabel.setVisible(false);
+					
+				}
+				
+				
+			}
+		});
     }
 
     
@@ -250,6 +278,9 @@ public class RegistrationFormController
     	usernamePat= Pattern.compile("^[a-zA-Z]+[a-zA-Z0-9]*$");
     	passPat=Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,20}$");
     	addListeners();
+    	datePicker.getStyleClass().add("myData");
+    	materiaField.setVisible(false);
+    	materiaLabel.setVisible(false);
     	
     }
     

@@ -29,6 +29,7 @@ public class NotesStudentPageController {
     @FXML
     private VBox vBoxContainer;
 
+    
     @FXML
     private Button backButton;
 
@@ -71,7 +72,7 @@ public class NotesStudentPageController {
 			public void handle(WorkerStateEvent event) 
 			{
 				ArrayList<NotesModel> notes = (ArrayList<NotesModel>) event.getSource().getValue();
-				if(notes.size()>0)
+				if(notes!= null && notes.size()>0)
 				{
 					Collections.sort(notes);
 					
