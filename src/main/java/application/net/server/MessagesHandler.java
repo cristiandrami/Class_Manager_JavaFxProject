@@ -75,21 +75,27 @@ public class MessagesHandler extends Thread
 				
 				//se l'input è per fare il login allota provo a fare il check e se non va bene mando un messaggio di errore e ritorno
 					input = (String) in.readObject();
+					System.out.println(input);
 					
-					while(input.equals(Protocol.GETTYPEFROMCODE))
+					while(input.equals(Protocol.GETTYPEFROMCODE) || input.equals(Protocol.GETCLASSFROMCODE))
 					{
-						String code= (String) in.readObject();
-						sendMessage(DatabaseHandler.getInstance().getTypeFromCode(code));
-						input=(String) in.readObject();
+						if(input.equals(Protocol.GETTYPEFROMCODE))
+						{
+							String code= (String) in.readObject();
+							sendMessage(DatabaseHandler.getInstance().getTypeFromCode(code));
+							input=(String) in.readObject();
+						}
+						else
+						{
+							String code= (String) in.readObject();
+							sendMessage(DatabaseHandler.getInstance().getclassFromCode(code));
+							input=(String) in.readObject();
+							
+						}
 						
 					}
-					while(input.equals(Protocol.GETCLASSFROMCODE))
-					{
-						String code= (String) in.readObject();
-						sendMessage(DatabaseHandler.getInstance().getclassFromCode(code));
-						input=(String) in.readObject();
-						
-					}
+					
+					
 					
 					
 					if(input.equals(Protocol.LOGIN))

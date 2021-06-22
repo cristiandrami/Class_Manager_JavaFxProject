@@ -106,6 +106,7 @@ public class NotesStudentPageController {
 				}
 				else
 				{
+					vBoxContainer.getChildren().clear();
 					BorderPane newBorderPane= new BorderPane();
 					Label note= new Label();
 					note.setText(StudentUtil.NOTESABSENT);

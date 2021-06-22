@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import application.CommonUtil;
 import application.SceneHandler;
 import application.net.client.CommonClient;
 import application.net.client.ProfessorClient;
@@ -35,6 +36,7 @@ public class RegistrationFormController
 	public static final String STUDENTTYPE="studente";
 	Pattern usernamePat;
 	Pattern passPat;
+	Pattern namePat;
 	
 	@FXML
     private Button registerButton;
@@ -42,10 +44,8 @@ public class RegistrationFormController
     @FXML
     private Label materiaLabel;
     
-
     @FXML
-    private Button closeButton;
-
+    private Button backButton;
 
     @FXML
     private TextField codeField;
@@ -87,41 +87,62 @@ public class RegistrationFormController
 		//String type="professore";
 		if(type.equals("") || classe.equals(""))
 		{
-			SceneHandler.getInstance().showWarning("Il codice di registrazione inserito non è valido, per favore riprova");
+			SceneHandler.getInstance().showWarning(CommonUtil.CODEERROR);
 			return;
 		}
 		
 		if(!checkRepeatPass(passwordField.getText(), repeatPasswordField.getText()))
 		{
-			SceneHandler.getInstance().showWarning("Le password inserite non coincidono");
+			SceneHandler.getInstance().showWarning(CommonUtil.PASSWORDNOTMATCH);
 			return;
 		}
 		
-		if(!validatePassword(passwordField.getText()))
+		else if(!validatePassword(passwordField.getText()))
 		{
-			SceneHandler.getInstance().showWarning("La PASSWORD scelta non rispetta le condizioni sotto elencate");
+			SceneHandler.getInstance().showWarning(CommonUtil.PASSWORDNOTVALID);
 			return;
 		}
-		if(!validateUsername(username.getText()))
+		else if(!validateUsername(username.getText()))
 		{
-			SceneHandler.getInstance().showWarning("L'USERNAME scelto non rispetta le condizioni sotto elencate");
+			SceneHandler.getInstance().showWarning(CommonUtil.USERNAMENOTVALID);
+			return;
+		}
+		else if(!validateName(nameField.getText()))
+		{
+			SceneHandler.getInstance().showWarning(CommonUtil.NAMENOTVALID);
+			return;
+		}
+		else if(!validateSurname(surnameField.getText()))
+		{
+			SceneHandler.getInstance().showWarning(CommonUtil.SURNAMENOTVALID);
 			return;
 		}
 			
-			
+		else	
 		registration(type, classe);
 			
 		
     }
-    
-    @FXML
-    void onCloseClicked(ActionEvent event) 
+	@FXML
+    void backButtonClicked(ActionEvent event) 
     {
-    	ProfessorClient.getInstance().reset();
-    	System.exit(0);
-    
+    	try 
+    	{
+			SceneHandler.getInstance().setLogin();
+			ProfessorClient.getInstance().reset();
+			StudentClient.getInstance().reset();
+			CommonClient.getInstance().reset();
+		} 
+    	catch (Exception e) 
+    	{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
     }
     
+    
+
 
 
     
@@ -208,9 +229,9 @@ public class RegistrationFormController
 			{
 				
 				if(checkRepeatPass(newValue, passwordField.getText()))
-					repeatPasswordField.styleProperty().set("-fx-background-color: #39ff39");
+					repeatPasswordField.styleProperty().set(CommonUtil.CHECKOKCOLOR);
 				else
-					repeatPasswordField.styleProperty().set("-fx-background-color: #ff4040");
+					repeatPasswordField.styleProperty().set(CommonUtil.CHECKNOTOKCOLOR);
 					
 				
 			}
@@ -224,9 +245,9 @@ public class RegistrationFormController
 			{
 				
 				if(validateUsername(newValue))
-					username.styleProperty().set("-fx-background-color: #39ff39");
+					username.styleProperty().set(CommonUtil.CHECKOKCOLOR);
 				else
-					username.styleProperty().set("-fx-background-color: #ff4040");
+					username.styleProperty().set(CommonUtil.CHECKNOTOKCOLOR);
 					
 				
 			}
@@ -239,9 +260,9 @@ public class RegistrationFormController
 			{
 				
 				if(checkRepeatPass(newValue, repeatPasswordField.getText()))
-					repeatPasswordField.styleProperty().set("-fx-background-color: #39ff39");
+					repeatPasswordField.styleProperty().set(CommonUtil.CHECKOKCOLOR);
 				else
-					repeatPasswordField.styleProperty().set("-fx-background-color: #ff4040");
+					repeatPasswordField.styleProperty().set(CommonUtil.CHECKNOTOKCOLOR);
 					
 				
 			}
@@ -275,8 +296,9 @@ public class RegistrationFormController
     {
     	
     	logoView.imageProperty().set(new Image(getClass().getResourceAsStream("/loginResources/logoLogin.jpg"))); 
-    	usernamePat= Pattern.compile("^[a-zA-Z]+[a-zA-Z0-9]*$");
-    	passPat=Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,20}$");
+    	usernamePat= Pattern.compile(CommonUtil.USERNAMEPATTERN);
+    	passPat=Pattern.compile(CommonUtil.PASSWORDPATTERN);
+    	namePat=Pattern.compile(CommonUtil.NAMEPATTERN);
     	addListeners();
     	datePicker.getStyleClass().add("myData");
     	materiaField.setVisible(false);
@@ -300,6 +322,21 @@ public class RegistrationFormController
     	
     	return match.matches();
     }
+    
+    private boolean validateName(String name) 
+    {
+    	Matcher match= namePat.matcher(name);
+    	return match.matches();
+  	}
+
+	private boolean validateSurname(String surname) 
+	{
+		Matcher match= namePat.matcher(surname);
+    	return match.matches();
+	}
+
+   
+
 
 }
 

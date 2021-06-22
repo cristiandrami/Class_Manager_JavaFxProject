@@ -4,6 +4,7 @@ package application.controller;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import application.CommonUtil;
 import application.SceneHandler;
 import application.net.client.ProfessorClient;
 import application.net.client.StudentClient;
@@ -20,14 +21,12 @@ import javafx.scene.image.ImageView;
 
 public class LoginController 
 {
-	private String PROFTYPE="professore";
-	private String STUDENTTYPE="studente";
+	private String PROFTYPE=CommonUtil.PROFTYPE;
+	private String STUDENTTYPE=CommonUtil.STUDENTTYPE;
 	
     @FXML
     private ImageView logoView;
 
-	@FXML
-    private Hyperlink forgotPasswordHypelink;
 
     @FXML
     private Button loginButton;
@@ -50,12 +49,7 @@ public class LoginController
     	authentication();
     }
 
-    @FXML
-    void forgotPasswordClicked(ActionEvent event) 
-    {
 
-    }
-    
     @FXML
     void registrationClicked(ActionEvent event) throws Exception 
     {
@@ -136,7 +130,7 @@ public class LoginController
 		    	}
 			}
 			else
-				SceneHandler.getInstance().showWarning("Non c'è nessun utente registrato con l'username inserito, perfavore assicurati di aver inserito l'username corretto" );
+				SceneHandler.getInstance().showWarning(CommonUtil.USERNOTEXISTS );
 			
 		}
 		catch (SQLException e1) 

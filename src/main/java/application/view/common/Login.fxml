@@ -36,7 +36,7 @@
    <center>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <center>
-            <VBox alignment="CENTER" spacing="10.0" BorderPane.alignment="CENTER">
+            <VBox alignment="CENTER" spacing="15.0" BorderPane.alignment="CENTER">
                <children>
                   <FontAwesomeIcon fill="#00adb5" iconName="USERS" layoutX="163.0" layoutY="133.0" size="50" text="" />
                   <Label layoutX="128.0" layoutY="154.0" style="-fx-background-color: #00adb5; -fx-text-fill: #eeeeee;" text="USER LOGIN">
@@ -76,7 +76,6 @@
                         <Font size="15.0" />
                      </font>
                   </Button>
-                  <Hyperlink fx:id="forgotPasswordHypelink" layoutX="109.0" layoutY="445.0" onAction="#forgotPasswordClicked" text="Password dimenticata?" underline="true" />
                </children>
                <BorderPane.margin>
                   <Insets top="80.0" />

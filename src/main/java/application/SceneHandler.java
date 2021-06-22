@@ -59,7 +59,7 @@ public class SceneHandler
 		scene.setRoot(root);
 		stage.setScene(scene);
 		stage.setTitle("Class Manager");
-		stage.setHeight(805);
+		stage.setHeight(900);
 		stage.setWidth(695);
 		stage.setResizable(false);
 		scene.getStylesheets().add(getClass().getResource("/css/registrationForm.css").toExternalForm());

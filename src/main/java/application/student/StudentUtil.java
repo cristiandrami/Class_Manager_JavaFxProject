@@ -11,7 +11,7 @@ public class StudentUtil
 	public static final String VOTEABSENT="Non ancora scrutinato";
 	public static final String OBJECT = "Materia: ";
 	public static final String DATE = "Data caricamento: ";
-	public static final String NOTESABSENT = "Complimenti, non è presente nessuna nota disciplinare, continua così...";
+	public static final String NOTESABSENT = "Complimenti, nessuna nota disciplinare presente";
 	
 //****************************** COMMON *******************************************************************//
 	public static final String BACKTOHOMEPROBLEM = "problema con il settaggio dell'home page studente";

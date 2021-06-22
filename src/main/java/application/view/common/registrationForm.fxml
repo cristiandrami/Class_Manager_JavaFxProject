@@ -11,20 +11,6 @@
 <?import javafx.scene.layout.*?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="805.0" prefWidth="695.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.RegistrationFormController">
-   <top>
-      <Pane prefHeight="83.0" prefWidth="600.0" style="-fx-background-color: #393e46;" BorderPane.alignment="CENTER">
-         <children>
-            <Label layoutX="166.0" layoutY="27.0" style="-fx-text-fill: #eeeeee;" text=" REGISTRATION FORM">
-               <font>
-                  <Font size="25.0" />
-               </font>
-               <graphic>
-                  <FontAwesomeIcon fill="#eeeeee" iconName="PENCIL" size="40" />
-               </graphic>
-            </Label>
-         </children>
-      </Pane>
-   </top>
    <center>
       <VBox alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="400.0" spacing="25.0" BorderPane.alignment="CENTER">
          <children>
@@ -62,6 +48,9 @@
                      </children>
                   </HBox>
                </children>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
             </VBox>
             <VBox minHeight="-Infinity" prefHeight="50.0" prefWidth="100.0">
                <children>
@@ -113,7 +102,7 @@
                </children>
             </VBox>
             <Button fx:id="registerButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#registerClicked" prefHeight="40.0" prefWidth="90.0" style="-fx-background-color: #00adb5; -fx-text-fill: #eeeeee;" text="Registrati" />
-            <TextArea editable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="204.0" prefWidth="423.0" style="-: ;" text="(*) l'username deve contenere solo lettere e numeri&#10;(**) il codice di iscrizione viene fornito direttamente &#10;dalla scuola di appartenenza&#10;(***) la materia va inserita solo se si è un professore&#10;(****) la password deve contenere:&#10;1) almeno una lettera maiuscola e una minuscola&#10;2) alemeno una cifra [0-9]&#10;3) un carattere speciale [@$!%*?&amp;]&#10;4) deve contenere almeno 8 caratteri ma massimo 20.&#10;&#10;" wrapText="true">
+            <TextArea editable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="200.0" prefWidth="423.0" style="-: ;" text="(*) l'username deve contenere solo lettere e numeri&#10;(**) il codice di iscrizione viene fornito direttamente &#10;dalla scuola di appartenenza&#10;(***) la materia va inserita solo se si è un professore&#10;(****) la password deve contenere:&#10;1) almeno una lettera maiuscola e una minuscola&#10;2) alemeno una cifra [0-9]&#10;3) un carattere speciale [@$!%*?&amp;]&#10;4) deve contenere almeno 8 caratteri ma massimo 20.&#10;&#10;" wrapText="true">
                <font>
                   <Font name="System Bold" size="12.5" />
                </font></TextArea>
@@ -137,4 +126,32 @@
          </center>
       </BorderPane>
    </left>
+   <top>
+      <BorderPane prefHeight="79.0" prefWidth="695.0" style="-fx-background-color: #393E46;" BorderPane.alignment="CENTER">
+         <top>
+            <HBox alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="695.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="backButton" mnemonicParsing="false" onAction="#backButtonClicked" style="-fx-background-color: #393E46;">
+                     <graphic>
+                        <FontAwesomeIcon fill="#eeeeee" iconName="ARROW_LEFT" size="30" />
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
+         </top>
+         <center>
+            <Label text=" REGISTRATION FORM" textFill="#eeeeee" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="35.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIcon fill="#eeeeee" iconName="PENCIL" size="40" />
+               </graphic>
+               <BorderPane.margin>
+                  <Insets bottom="10.0" />
+               </BorderPane.margin>
+            </Label>
+         </center>
+      </BorderPane>
+   </top>
 </BorderPane>
