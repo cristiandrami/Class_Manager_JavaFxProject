@@ -9,6 +9,7 @@ import application.student.StudentUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class StudentHomePageController {
@@ -88,6 +89,11 @@ public class StudentHomePageController {
     	{
 			
 		}
+    }
+    @FXML
+    void initialize()
+    {
+    	logoView.imageProperty().set(new Image(getClass().getResourceAsStream("/images/genericLogo.png")));
     }
 
 

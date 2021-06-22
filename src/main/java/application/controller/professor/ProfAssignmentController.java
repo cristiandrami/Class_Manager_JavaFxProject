@@ -8,6 +8,7 @@ import application.professor.ProfessorUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -27,6 +28,8 @@ public class ProfAssignmentController
     private Button sendAssignment;
     @FXML
     private Button backButton;
+    @FXML
+    private Label classLabel;
 
 
     
@@ -78,7 +81,9 @@ public class ProfAssignmentController
     @FXML
     void initialize()
     {
-    	logoView.imageProperty().set(new Image(getClass().getResourceAsStream("/loginResources/logoLogin.jpg"))); 
+    	logoView.imageProperty().set(new Image(getClass().getResourceAsStream("/images/genericLogo.png"))); 
+    	classLabel.setText(ProfessorClient.getInstance().getClasse());
+    	System.out.println(classLabel.getText());
     	
     }
 

@@ -42,7 +42,7 @@
          <top>
             <BorderPane prefHeight="176.0" prefWidth="1050.0" style="-fx-background-color: #00adb5;" BorderPane.alignment="TOP_CENTER">
                <center>
-                  <ImageView fx:id="logoView" fitHeight="118.0" fitWidth="177.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                  <ImageView fx:id="logoView" fitHeight="140.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                      <image>
                         <Image url="@./" />
                      </image>
@@ -62,14 +62,29 @@
                   </Label>
                </bottom>
                <top>
-                  <Button fx:id="backButton" mnemonicParsing="false" onAction="#backClicked" style="-fx-background-color: #00adb5;" BorderPane.alignment="TOP_LEFT">
-                     <BorderPane.margin>
-                        <Insets left="10.0" top="10.0" />
-                     </BorderPane.margin>
-                     <graphic>
-                        <FontAwesomeIcon fill="#eeeeee" iconName="ARROW_LEFT" size="30" />
-                     </graphic>
-                  </Button>
+                  <HBox prefHeight="50.0" prefWidth="1050.0" spacing="40.0" BorderPane.alignment="TOP_RIGHT">
+                     <children>
+                        <Button fx:id="backButton" mnemonicParsing="false" onAction="#backClicked" style="-fx-background-color: #00adb5;">
+                           <graphic>
+                              <FontAwesomeIcon fill="#eeeeee" iconName="ARROW_LEFT" size="30" />
+                           </graphic>
+                        </Button>
+                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="15.0">
+                           <children>
+                              <Label maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" text="Classe" textFill="#eeeeee">
+                                 <font>
+                                    <Font name="System Bold" size="40.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="classLabel" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="80.0" textFill="#eeeeee">
+                                 <font>
+                                    <Font name="System Bold" size="40.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
                </top>
             </BorderPane>
          </top>

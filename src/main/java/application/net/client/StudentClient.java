@@ -9,11 +9,12 @@ import java.util.ArrayList;
 
 import application.SceneHandler;
 
-	import application.net.common.Protocol;
-	import application.net.common.User;
+import application.net.common.Protocol;
+import application.net.common.User;
 import application.professor.StudentsTableModel;
 import application.student.AssignmentModel;
 import application.student.NotesModel;
+import application.student.StudentModel;
 import application.student.VotesTableModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -238,6 +239,22 @@ import javafx.collections.ObservableList;
 				return null;
 			}
 		}
+		
+		public StudentModel getStudent() {
+			sendMessage(Protocol.GETSTUDENTINFO);
+			try 
+			{
+				StudentModel student=(StudentModel) in.readObject();
+				return student;
+			} 
+			catch (Exception e) 
+			{
+				out=null;
+				return null;
+			}
+		}
+
+		
 
 
 

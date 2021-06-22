@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import application.SceneHandler;
+import application.net.client.ProfessorClient;
 import application.student.AssignmentModel;
 import application.student.ScheduledGetAssignment;
 import application.student.StudentUtil;
@@ -37,6 +38,7 @@ public class AssignmentsStudentPageController
 
     @FXML
     private ImageView logoView;
+  
 
 
 
@@ -56,7 +58,8 @@ public class AssignmentsStudentPageController
     {
     	
     	startAssignmentsRefresh();
-    	logoView.imageProperty().set(new Image(getClass().getResourceAsStream("/loginResources/logoLogin.jpg"))); 
+    	logoView.imageProperty().set(new Image(getClass().getResourceAsStream("/images/genericLogo.png"))); 
+    	
     }
     
     private void startAssignmentsRefresh()

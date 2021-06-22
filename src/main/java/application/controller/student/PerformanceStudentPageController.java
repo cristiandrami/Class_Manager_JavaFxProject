@@ -1,10 +1,30 @@
 package application.controller.student;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.List;
+
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.Font.FontFamily;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+
+import application.CommonUtil;
 import application.SceneHandler;
+import application.net.client.ProfessorClient;
+import application.net.client.StudentClient;
+import application.professor.StudentsTableModel;
 //import application.student.ScheduledGetSufficientVotes;
 //import application.student.ScheduledGetUnsufficientVotes;
 import application.student.ScheduledGetVotes;
+import application.student.StudentModel;
 //import application.student.ScheduledGetWaitingVotes;
 import application.student.StudentUtil;
 import application.student.VotesTableModel;
@@ -27,15 +47,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import javafx.util.Duration;
 
 public class PerformanceStudentPageController 
 {
 	private ScheduledGetVotes refreshVotes= new ScheduledGetVotes();
 	private ScheduledGetVotes refreshGraphic= new ScheduledGetVotes();
-	//private ScheduledGetUnsufficientVotes refreshUnsufficient= new ScheduledGetUnsufficientVotes();
-	//private ScheduledGetSufficientVotes refreshSufficient= new ScheduledGetSufficientVotes();
-	//private ScheduledGetWaitingVotes refreshWaiting= new ScheduledGetWaitingVotes();
 	private boolean firstRefreshGraphic=true;
 	
 	
@@ -72,6 +90,9 @@ public class PerformanceStudentPageController
     @FXML
     private Button backButton;
 
+    @FXML
+    private Button exportToPdf;
+
 
 
    
@@ -89,20 +110,129 @@ public class PerformanceStudentPageController
 
     	
     }
-    
     @FXML
+    void exportPdfClicked(ActionEvent event) 
+    {
+    	savePDF();
+    }
+    
+    private void savePDF() 
+    {
+    	// creo il nome del pdf;
+		   FileChooser chooser= new FileChooser();
+		   FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("PDF Files", "*.pdf");
+		   chooser.getExtensionFilters().add(extFilter);
+		   File fileToSave = chooser.showSaveDialog(null);
+		   //System.out.println(fileToSave.getAbsolutePath());
+		   try 
+		   {
+			   		//qui mi creo lo stream sul file in modo da modificarlo
+					FileOutputStream streamFile= new FileOutputStream(fileToSave);
+					//mi creo un document (oggetto della libreria itext) che mi servirà per modificare il file pdf che vado a creare
+					Document document= new Document();
+					//con pdfwriter ho la possibilità di settare il documento come pdf modificabile
+					PdfWriter.getInstance(document, streamFile);
+					//qui do la possibilità di accedere ai dati del documento
+					document.open();
+					//mi creo una immagine che inserirò al centro pagin aprima della tabella(esce scritto in questo modo poichè ho importato
+					// in questa classe anche Image di
+					com.itextpdf.text.Image img= com.itextpdf.text.Image.getInstance("src/main/resources/images/logoScuola.jpg");
+					img.scaleToFit(200, 300);
+					img.setAlignment(com.itextpdf.text.Image.MIDDLE);
+					document.add(img);
+					
+					
+					
+					//qui mi creo i font che mi servono per differenziare la riga header della tabella, le righe normali e il paragrafo iniziale
+					Font classFont =  new Font(FontFamily.COURIER, 20, Font.BOLD);
+					Font boldFont =  new Font(FontFamily.COURIER, 12, Font.BOLD);
+					Font rowsFont=new Font(FontFamily.COURIER, 12, Font.NORMAL);
+				
+					StudentModel student= StudentClient.getInstance().getStudent();
+					//creo il paragrafo che mi dice quale classe gestendo
+					Paragraph paragraph= new Paragraph("Studente  "+ student.getName()+ " "+ student.getSurname()+ "\nNato il " + student.getBornDate()+"\n\n", classFont);
+					paragraph.setAlignment(Element.ALIGN_CENTER);
+					document.add(paragraph);
+					paragraph= new Paragraph("Classe: "+ student.getsClass()+"\n\n", classFont);
+					paragraph.setAlignment(Element.ALIGN_CENTER);
+					document.add(paragraph);
+					
+					// creo un array di float con delle grandezze che mi servono per la lunghezza delle celle
+					float[] tableSizes={200f, 200f};
+					// creo le 4 celle che mi servono e le aggiungo alla tabella
+					PdfPTable table= new PdfPTable(tableSizes);
+					PdfPCell nameCol= new PdfPCell(new Phrase("Materia", boldFont));
+					PdfPCell voteCol= new PdfPCell(new Phrase("Voto", boldFont));
+					table.addCell(nameCol);
+					table.addCell(voteCol);
+					
+					
+					table.setHeaderRows(1);
+					// mi prendo la lista degli studenti della table view
+					List<VotesTableModel> votes= tableView.getItems();
+					
+					// con un for mi scorro questa lista e popolo la tabella del pdf
+					for(VotesTableModel vote : votes)
+					{
+						
+						 nameCol= new PdfPCell(new Phrase(vote.getName(), rowsFont));
+						
+						 voteCol= new PdfPCell(new Phrase(vote.getVote(), rowsFont));
+						 table.addCell(nameCol);
+		
+						 table.addCell(voteCol);
+						
+					}
+					
+					//aggiungo la tabella al documento
+					document.add(table);
+					//aggiungo il logo del gestore
+					img= com.itextpdf.text.Image.getInstance("src/main/resources/images/logoInPDF.jpg");
+					img.scaleToFit(200, 300);
+					document.add(img);
+					
+					//chiudo il documento e il file stream
+					document.close();
+					streamFile.close();
+					
+					SceneHandler.getInstance().showInformation(CommonUtil.PDFCREATED);
+		   }
+		   catch (FileNotFoundException e) 
+		   {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		   } 
+		   catch (Exception e) 
+		   {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		   }
+					
+					
+		
+	}
+	@FXML
     void initialize()
     {
 
     	startTableRefresh();	
     	startGrapichRefresh();
-    	logoView.imageProperty().set(new Image(getClass().getResourceAsStream("/loginResources/logoLogin.jpg"))); 
+    	logoView.imageProperty().set(new Image(getClass().getResourceAsStream("/images/genericLogo.png"))); 
     	nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
     	voteColumn.setCellValueFactory(new PropertyValueFactory<>("vote"));
+    	setPdfButtonImage();
     	
     }
     
-    private void startGrapichRefresh()
+    private void setPdfButtonImage() 
+    {
+    	 ImageView view = new ImageView(new Image(getClass().getResourceAsStream("/images/pdf.png")));
+	     view.setFitHeight(40);
+	     view.setFitWidth(40);
+	     exportToPdf.setGraphic(view);
+		
+	}
+	private void startGrapichRefresh()
     {
     	refreshGraphic.setPeriod(Duration.seconds(15));
     	   
@@ -119,6 +249,7 @@ public class PerformanceStudentPageController
 				NumberAxis yAxis= new NumberAxis();
 				BarChart<String, Number> votesGraphic= new BarChart<>(xAxis, yAxis);
 				XYChart.Series<String,Number> graphicData=new XYChart.Series<String,Number>();
+				graphicData.setName("VOTI");
 				votesGraphic.setTitle("Andamento dei voti");
 				xAxis.setLabel(StudentUtil.OBJECTPERFORMANCE);
 				yAxis.setLabel(StudentUtil.VOTEPERFORMANCE);
@@ -176,14 +307,14 @@ public class PerformanceStudentPageController
 					votesGraphic.getData().add(graphicData);
 					if(firstRefreshGraphic)
 					{
-						vBoxContainer.getChildren().add(1, votesGraphic);
+						vBoxContainer.getChildren().add(2, votesGraphic);
 						firstRefreshGraphic=false;
 						
 					}
 					else
 					{
-						vBoxContainer.getChildren().remove(1);
-						vBoxContainer.getChildren().add(1, votesGraphic);
+						vBoxContainer.getChildren().remove(2);
+						vBoxContainer.getChildren().add(2, votesGraphic);
 					}
 					
 				}

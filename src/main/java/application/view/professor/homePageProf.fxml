@@ -63,7 +63,7 @@
          <top>
             <BorderPane prefHeight="224.0" prefWidth="1050.0" style="-fx-background-color: #00adb5;" BorderPane.alignment="CENTER">
                <center>
-                  <ImageView fx:id="logoView" fitHeight="157.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                  <ImageView fx:id="logoView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                      <image>
                         <Image url="@./" />
                      </image>

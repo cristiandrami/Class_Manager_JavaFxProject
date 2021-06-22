@@ -17,6 +17,8 @@ import com.itextpdf.text.pdf.PdfDocument;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+
+import application.CommonUtil;
 import application.SceneHandler;
 import application.net.client.ProfessorClient;
 import application.professor.ProfessorUtil;
@@ -51,6 +53,10 @@ public class ProfessorStudentsViewController
 	private String studentSurname="";
 	private String studentUsername="";
 	private String studentBornDate="";
+	
+
+    @FXML
+    private Label classLabel;
 
     @FXML
     private Label studentLabelNotePane;
@@ -190,25 +196,7 @@ public class ProfessorStudentsViewController
     	savePDF();
     	
     }
-
-   
- 
-	@FXML
-    void initialize()
-    {
-    	refreshStudentsList();
-    	logoView.imageProperty().set(new Image(getClass().getResourceAsStream("/loginResources/logoLogin.jpg"))); 
-    	nameColumn.setCellValueFactory(new PropertyValueFactory<>("nome"));
-    	surnameColumn.setCellValueFactory(new PropertyValueFactory<>("cognome"));
-    	bornDateColumn.setCellValueFactory(new PropertyValueFactory<>("dataNascita"));
-    	voteColumn.setCellValueFactory(new PropertyValueFactory<>("voto"));
-    	notePane.setVisible(false);
-    	notePane.setEffect(new DropShadow());
-    	setPdfImage();
-    
-    }
-    
-	private void setPdfImage() 
+    private void setPdfImage() 
 	{
 	     ImageView view = new ImageView(new Image(getClass().getResourceAsStream("/images/pdf.png")));
 	     view.setFitHeight(50);
@@ -309,6 +297,9 @@ public class ProfessorStudentsViewController
 					Paragraph paragraph= new Paragraph("Studenti della classe "+ ProfessorClient.getInstance().getClasse()+"\n\n", classFont);
 					paragraph.setAlignment(Element.ALIGN_CENTER);
 					document.add(paragraph);
+					paragraph= new Paragraph("Materia: "+ ProfessorClient.getInstance().getMateria()+"\n\n", classFont);
+					paragraph.setAlignment(Element.ALIGN_CENTER);
+					document.add(paragraph);
 					
 					// creo un array di float con delle grandezze che mi servono per la lunghezza delle celle
 					float[] tableSizes={120f, 120f, 200f, 150f};
@@ -352,6 +343,7 @@ public class ProfessorStudentsViewController
 					//chiudo il documento e il file stream
 					document.close();
 					streamFile.close();
+					SceneHandler.getInstance().showInformation(CommonUtil.PDFCREATED);
 					
 					
 					
@@ -371,6 +363,26 @@ public class ProfessorStudentsViewController
 		   	
 			
 	   }
+	
+
+   
+ 
+	@FXML
+    void initialize()
+    {
+    	refreshStudentsList();
+    	logoView.imageProperty().set(new Image(getClass().getResourceAsStream("/images/genericLogo.png"))); 
+    	nameColumn.setCellValueFactory(new PropertyValueFactory<>("nome"));
+    	surnameColumn.setCellValueFactory(new PropertyValueFactory<>("cognome"));
+    	bornDateColumn.setCellValueFactory(new PropertyValueFactory<>("dataNascita"));
+    	voteColumn.setCellValueFactory(new PropertyValueFactory<>("voto"));
+    	notePane.setVisible(false);
+    	notePane.setEffect(new DropShadow());
+    	classLabel.setText(ProfessorClient.getInstance().getClasse());
+    	setPdfImage();
+    
+    }
+    
 	
 
 }

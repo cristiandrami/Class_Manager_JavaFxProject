@@ -12,11 +12,13 @@ public class Protocol {
 	public static final String UPDATESTUDENTVOTE = "update student vote";
 	public static final String INSERTNOTE = "insert note";
 	public static final String GETCLASS = "get class";
+	public static final String GETPROFESSOROBJECT = "get object";
 	
 	//*************************************STUDENT**********************************//
 	public static final String GETVOTES = "get votes";
 	public static final String GETASSIGNMENTS = "get assignments";
 	public static final String GETNOTES = "get notes";
+	public static final String GETSTUDENTINFO = "get student info";
 	
 	
 	public final static String OK= "ok";
@@ -26,6 +28,8 @@ public class Protocol {
 	public final static String USER_LOGGED_ERROR= "L'utente è già loggato";
 	public final static String USER_EXISTS_ERROR= "L'username è già stato scelto, riprova con uno nuovo";
 	public final static String SUBJECT_ERROR= "La materia inserita non è presente nel database della scuola, riprova";
+	
+
 	
 	
 

@@ -25,5 +25,9 @@ public class CommonUtil
 		public static final String STUDENTTYPE = "studente";
 		
 		
+		//************************************************ COMMON ****************************************//
+		public static final String PDFCREATED = "PDF correttamente creato e salvato!";
+		
+		
 		
 }

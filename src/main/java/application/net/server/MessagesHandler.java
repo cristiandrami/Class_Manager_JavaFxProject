@@ -13,6 +13,7 @@ import application.net.common.User;
 import application.professor.StudentsTableModel;
 import application.student.AssignmentModel;
 import application.student.NotesModel;
+import application.student.StudentModel;
 import application.student.VotesTableModel;
 import javafx.collections.ObservableList;
 
@@ -237,6 +238,10 @@ public class MessagesHandler extends Thread
 						{
 							sendMessage(DatabaseHandler.getInstance().getProfessorClass(username));
 						}
+						else if(request.equals(Protocol.GETPROFESSOROBJECT))
+						{
+							sendMessage(DatabaseHandler.getInstance().getProfessorObject(username));
+						}
 						
 						//*************************************************** STUDENT ********************************//
 						else if(request.equals(Protocol.GETVOTES))
@@ -260,6 +265,12 @@ public class MessagesHandler extends Thread
 							ArrayList<NotesModel> list= DatabaseHandler.getInstance().getNotesForStudent(username);
 							sendObject(list);
 							
+						}
+						
+						else if(request.equals(Protocol.GETSTUDENTINFO))
+						{
+							StudentModel student= DatabaseHandler.getInstance().getStudentInfo(username);
+							sendObject(student);
 						}
 						
 						

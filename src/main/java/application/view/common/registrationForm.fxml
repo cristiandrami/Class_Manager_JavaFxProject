@@ -22,7 +22,7 @@
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font></Label>
-                        <TextField fx:id="username" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="170.0" />
+                        <TextField fx:id="username" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="170.0" />
                      </children>
                   </VBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0" spacing="50.0">
@@ -33,7 +33,7 @@
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font></Label>
-                              <TextField fx:id="nameField" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="170.0" />
+                              <TextField fx:id="nameField" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="170.0" />
                            </children>
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="100.0">
@@ -42,7 +42,7 @@
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font></Label>
-                              <TextField fx:id="surnameField" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="170.0" />
+                              <TextField fx:id="surnameField" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="170.0" />
                            </children>
                         </VBox>
                      </children>
@@ -58,7 +58,7 @@
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font></Label>
-                  <DatePicker fx:id="datePicker" prefHeight="25.0" prefWidth="170.0" />
+                  <DatePicker fx:id="datePicker" prefHeight="30.0" prefWidth="170.0" />
                </children>
             </VBox>
             <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0" prefWidth="200.0" spacing="50.0">
@@ -69,7 +69,7 @@
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font></Label>
-                        <TextField fx:id="codeField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="170.0" />
+                        <TextField fx:id="codeField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="170.0" />
                      </children>
                   </VBox>
                   <VBox prefHeight="200.0" prefWidth="100.0">
@@ -78,7 +78,7 @@
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font></Label>
-                        <TextField fx:id="materiaField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="170.0" />
+                        <TextField fx:id="materiaField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="170.0" />
                      </children>
                   </VBox>
                </children>
@@ -89,7 +89,7 @@
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font></Label>
-                  <PasswordField fx:id="passwordField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="170.0" />
+                  <PasswordField fx:id="passwordField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="170.0" />
                </children>
             </VBox>
             <VBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0" prefWidth="100.0">
@@ -98,7 +98,7 @@
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font></Label>
-                  <PasswordField fx:id="repeatPasswordField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="170.0" />
+                  <PasswordField fx:id="repeatPasswordField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="170.0" />
                </children>
             </VBox>
             <Button fx:id="registerButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#registerClicked" prefHeight="40.0" prefWidth="90.0" style="-fx-background-color: #00adb5; -fx-text-fill: #eeeeee;" text="Registrati" />
@@ -118,7 +118,7 @@
    <left>
       <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #00adb5;" BorderPane.alignment="CENTER">
          <center>
-            <ImageView fx:id="logoView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+            <ImageView fx:id="logoView" fitHeight="200.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                <image>
                   <Image url="." />
                </image>

@@ -230,6 +230,23 @@ public class ProfessorClient
 			return "";
 		}
 	}
+	public String getMateria() 
+	{
+		sendMessage(Protocol.GETPROFESSOROBJECT);
+		try 
+		{
+			
+			String result= (String) in.readObject();
+			return result;
+			
+	
+		} 
+		catch (Exception e) 
+		{
+			out=null;
+			return "";
+		}
+	}
 
 
 	
@@ -250,6 +267,8 @@ public class ProfessorClient
 		in=null;
 		socket=null;
 	}
+
+
 
 
 

@@ -65,6 +65,9 @@ public class ProfessorVotesGestionPage {
     private ImageView logoView;
 	
 	private ObservableList<StudentsTableModel> tableList= FXCollections.observableArrayList();
+
+    @FXML
+    private Label classLabel;
 	
     //************************************************UPDATE SECTION******************//
 
@@ -195,7 +198,10 @@ public class ProfessorVotesGestionPage {
 
     	updatePane.setVisible(false);
     	updatePane.setEffect(new DropShadow());
-    	logoView.imageProperty().set(new Image(getClass().getResourceAsStream("/loginResources/logoLogin.jpg"))); 
+    	logoView.imageProperty().set(new Image(getClass().getResourceAsStream("/images/genericLogo.png"))); 
+    	classLabel.setText(ProfessorClient.getInstance().getClasse());
+
+
     }
     
     private void refreshStudentsTable() 

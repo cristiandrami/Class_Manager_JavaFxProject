@@ -18,6 +18,7 @@ import application.net.common.User;
 import application.professor.StudentsTableModel;
 import application.student.AssignmentModel;
 import application.student.NotesModel;
+import application.student.StudentModel;
 import application.student.VotesTableModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -454,6 +455,8 @@ public class DatabaseHandler
 	}
 	public synchronized String getProfessorClass(String profUsername) throws SQLException 
 	{
+		if(con==null || con.isClosed()|| profUsername.equals(""))
+			return "";
 		String classe="";
 		String query= "SELECT user.classeAppartenenza FROM user "
 				+ "WHERE user.username=?;";
@@ -472,6 +475,38 @@ public class DatabaseHandler
 		
 		return classe;
 	}
+	
+
+	public synchronized String getProfessorObject(String profUsername) throws SQLException 
+	{
+		if(con==null || con.isClosed()|| profUsername.equals(""))
+			return "";
+		
+		
+		
+		
+		String materia="";
+		String query= "SELECT ProfessoreMateria.materia FROM ProfessoreMateria "
+				+ "WHERE ProfessoreMateria.prof=?;";
+		PreparedStatement p= con.prepareStatement(query);
+		p.setString(1, profUsername);
+		
+		
+		ResultSet rs1= p.executeQuery();
+		if( rs1.next())
+		{
+			materia=rs1.getString("materia");
+		
+		}
+		
+		
+		
+		
+		p.close();
+		return materia;
+		
+	}
+
 
 
 	
@@ -600,6 +635,43 @@ public class DatabaseHandler
 		
 		
 		return assignments;
+		
+	}
+
+	public synchronized StudentModel getStudentInfo(String studentUsername) throws SQLException 
+	{
+		if(con==null || con.isClosed()|| studentUsername.equals(""))
+			return null;
+		
+		System.out.println(studentUsername);
+		String query2= "SELECT user.nome, user.cognome, user.dataNascita, user.classeAppartenenza FROM user "
+				+ "WHERE user.username=?;";
+		PreparedStatement p2= con.prepareStatement(query2);
+		p2.setString(1, studentUsername);
+		
+		
+		ResultSet rs2= p2.executeQuery();
+		StudentModel student= new StudentModel();
+	
+		if( rs2.next())
+		{
+	            String name= rs2.getString("nome");
+				String surname= rs2.getString("cognome");
+				String bornDate= rs2.getString("dataNascita");
+				String sClass= rs2.getString("classeAppartenenza");
+				
+				student.setName(name);
+				student.setSurname(surname);
+				student.setBornDate(bornDate);
+				student.setsClass(sClass);
+
+
+		}
+		p2.close();
+		
+		
+		
+		return student;
 		
 	}
 

@@ -110,7 +110,7 @@
             </VBox>
          </center>
          <top>
-            <BorderPane prefHeight="166.0" prefWidth="1050.0" style="-fx-background-color: #00adb5;" BorderPane.alignment="CENTER">
+            <BorderPane prefHeight="226.0" prefWidth="1050.0" style="-fx-background-color: #00adb5;" BorderPane.alignment="CENTER">
                <bottom>
                   <Label text=" Studenti " textFill="#eeeeee" BorderPane.alignment="CENTER">
                      <font>
@@ -125,25 +125,40 @@
                   </Label>
                </bottom>
                <center>
-                  <ImageView fx:id="logoView" fitHeight="98.0" fitWidth="184.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                  <ImageView fx:id="logoView" fitHeight="120.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                      <image>
                         <Image url="@./" />
                      </image>
                   </ImageView>
                </center>
-               <top>
-                  <Button fx:id="backButton" mnemonicParsing="false" onAction="#backClicked" style="-fx-background-color: #00adb5;" BorderPane.alignment="TOP_LEFT">
-                     <graphic>
-                        <FontAwesomeIcon fill="#eeeeee" iconName="ARROW_LEFT" size="30" />
-                     </graphic>
-                     <BorderPane.margin>
-                        <Insets left="10.0" top="10.0" />
-                     </BorderPane.margin>
-                  </Button>
-               </top>
                <BorderPane.margin>
                   <Insets />
                </BorderPane.margin>
+               <top>
+                  <HBox prefHeight="50.0" prefWidth="1050.0" spacing="20.0" BorderPane.alignment="TOP_LEFT">
+                     <children>
+                        <Button fx:id="backButton" mnemonicParsing="false" onAction="#backClicked" style="-fx-background-color: #00adb5;">
+                           <graphic>
+                              <FontAwesomeIcon fill="#eeeeee" iconName="ARROW_LEFT" size="30" />
+                           </graphic>
+                        </Button>
+                        <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
+                           <children>
+                              <Label maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" text="Classe" textFill="#eeeeee">
+                                 <font>
+                                    <Font name="System Bold" size="40.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="classLabel" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" textFill="#eeeeee">
+                                 <font>
+                                    <Font name="System Bold" size="40.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+               </top>
             </BorderPane>
          </top>
       </BorderPane>

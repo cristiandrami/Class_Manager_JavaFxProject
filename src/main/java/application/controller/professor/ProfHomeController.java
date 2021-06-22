@@ -101,7 +101,7 @@ public class ProfHomeController {
     @FXML 
     void initialize()
     {
-    	logoView.imageProperty().set(new Image(getClass().getResourceAsStream("/loginResources/logoLogin.jpg"))); 
+    	logoView.imageProperty().set(new Image(getClass().getResourceAsStream("/images/genericLogo.png"))); 
     	
     }
     

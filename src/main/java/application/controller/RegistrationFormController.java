@@ -295,7 +295,7 @@ public class RegistrationFormController
     void initialize()
     {
     	
-    	logoView.imageProperty().set(new Image(getClass().getResourceAsStream("/loginResources/logoLogin.jpg"))); 
+    	logoView.imageProperty().set(new Image(getClass().getResourceAsStream("/registrationResources/registrationLogo.jpg"))); 
     	usernamePat= Pattern.compile(CommonUtil.USERNAMEPATTERN);
     	passPat=Pattern.compile(CommonUtil.PASSWORDPATTERN);
     	namePat=Pattern.compile(CommonUtil.NAMEPATTERN);
