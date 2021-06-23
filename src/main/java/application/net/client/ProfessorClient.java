@@ -11,6 +11,7 @@ import application.SceneHandler;
 import application.net.common.Protocol;
 import application.net.common.User;
 import application.net.server.UsersHandler;
+import application.professor.ProfessorModel;
 import application.professor.StudentsTableModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -247,6 +248,27 @@ public class ProfessorClient
 			return "";
 		}
 	}
+	
+	public ProfessorModel getProfessor() 
+	{
+		sendMessage(Protocol.GET_PROFESSOR);
+		try 
+		{
+			
+			ProfessorModel result= (ProfessorModel) in.readObject();
+			return result;
+			
+	
+		} 
+		catch (Exception e) 
+		{
+			out=null;
+			return new ProfessorModel();
+		}
+		
+	}
+
+
 
 
 	
@@ -268,7 +290,7 @@ public class ProfessorClient
 		socket=null;
 	}
 
-
+	
 
 
 

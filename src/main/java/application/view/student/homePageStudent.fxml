@@ -63,7 +63,7 @@
          <top>
             <BorderPane prefHeight="224.0" prefWidth="1050.0" style="-fx-background-color: #00adb5;" BorderPane.alignment="CENTER">
                <center>
-                  <ImageView fx:id="logoView" fitHeight="157.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                  <ImageView fx:id="logoView" fitHeight="135.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                      <image>
                         <Image url="@./" />
                      </image>
@@ -82,6 +82,28 @@
                      </graphic>
                   </Label>
                </bottom>
+               <top>
+                  <HBox alignment="CENTER_LEFT" prefHeight="49.0" prefWidth="1050.0" spacing="10.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label textFill="#eeeeee">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                           <graphic>
+                              <FontAwesomeIcon fill="#eeeeee" iconName="USER" />
+                           </graphic>
+                        </Label>
+                        <Label fx:id="studentInfo" textFill="#eeeeee">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <BorderPane.margin>
+                        <Insets left="20.0" top="10.0" />
+                     </BorderPane.margin>
+                  </HBox>
+               </top>
             </BorderPane>
          </top>
       </BorderPane>

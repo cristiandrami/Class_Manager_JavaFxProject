@@ -5,10 +5,12 @@ import java.io.IOException;
 import application.SceneHandler;
 import application.net.client.CommonClient;
 import application.net.client.StudentClient;
+import application.student.StudentModel;
 import application.student.StudentUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -16,6 +18,8 @@ public class StudentHomePageController {
 
     @FXML
     private ImageView logoView;
+    @FXML
+    private Label studentInfo;
 
     @FXML
     private Button performanceButton;
@@ -28,6 +32,8 @@ public class StudentHomePageController {
     
     @FXML
     private Button notesButton;
+  
+
 
     @FXML
     void performanceClicked(ActionEvent event) 
@@ -94,6 +100,8 @@ public class StudentHomePageController {
     void initialize()
     {
     	logoView.imageProperty().set(new Image(getClass().getResourceAsStream("/images/genericLogo.png")));
+    	StudentModel student= StudentClient.getInstance().getStudent();
+    	studentInfo.setText(student.getName()+" "+student.getSurname());
     }
 
 

@@ -13,6 +13,7 @@ public class Protocol {
 	public static final String INSERTNOTE = "insert note";
 	public static final String GETCLASS = "get class";
 	public static final String GETPROFESSOROBJECT = "get object";
+	public static final String GET_PROFESSOR = "get professor info";
 	
 	//*************************************STUDENT**********************************//
 	public static final String GETVOTES = "get votes";
@@ -28,6 +29,7 @@ public class Protocol {
 	public final static String USER_LOGGED_ERROR= "L'utente è già loggato";
 	public final static String USER_EXISTS_ERROR= "L'username è già stato scelto, riprova con uno nuovo";
 	public final static String SUBJECT_ERROR= "La materia inserita non è presente nel database della scuola, riprova";
+	
 	
 
 	

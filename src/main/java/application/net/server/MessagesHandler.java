@@ -10,6 +10,7 @@ import application.controller.RegistrationFormController;
 import application.net.client.UserAccess;
 import application.net.common.Protocol;
 import application.net.common.User;
+import application.professor.ProfessorModel;
 import application.professor.StudentsTableModel;
 import application.student.AssignmentModel;
 import application.student.NotesModel;
@@ -241,6 +242,11 @@ public class MessagesHandler extends Thread
 						else if(request.equals(Protocol.GETPROFESSOROBJECT))
 						{
 							sendMessage(DatabaseHandler.getInstance().getProfessorObject(username));
+						}
+						else if(request.equals(Protocol.GET_PROFESSOR))
+						{
+							ProfessorModel professor= DatabaseHandler.getInstance().getProfessorInfo(username);
+							sendObject(professor);
 						}
 						
 						//*************************************************** STUDENT ********************************//

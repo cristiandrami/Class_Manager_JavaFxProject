@@ -15,6 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCrypt;
 import application.controller.RegistrationFormController;
 import application.net.client.UserAccess;
 import application.net.common.User;
+import application.professor.ProfessorModel;
 import application.professor.StudentsTableModel;
 import application.student.AssignmentModel;
 import application.student.NotesModel;
@@ -506,6 +507,37 @@ public class DatabaseHandler
 		return materia;
 		
 	}
+	
+	public synchronized ProfessorModel getProfessorInfo(String profUsername) throws SQLException 
+	{
+		if(con==null || con.isClosed()|| profUsername.equals(""))
+			return null;
+		
+		System.out.println(profUsername);
+		String query2= "SELECT user.nome, user.cognome FROM user "
+				+ "WHERE user.username=?;";
+		PreparedStatement p2= con.prepareStatement(query2);
+		p2.setString(1, profUsername);
+		
+		
+		ResultSet rs2= p2.executeQuery();
+		ProfessorModel professor= new ProfessorModel();
+	
+		if( rs2.next())
+		{
+	            String name= rs2.getString("nome");
+				String surname= rs2.getString("cognome");
+				professor.setName(name);
+				professor.setSurname(surname);
+
+
+		}
+		p2.close();
+		
+		
+		
+		return professor;
+	}
 
 
 
@@ -674,6 +706,8 @@ public class DatabaseHandler
 		return student;
 		
 	}
+
+	
 
 
 	
