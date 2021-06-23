@@ -12,6 +12,7 @@
 -fx-background-color: #eeeeee;
 -fx-font-family: 'Helvetica-Bold';
 -fx-font-size:  15pt;
+-fx-text-fill: #393E46; 
 }
 .button:hover 
 {

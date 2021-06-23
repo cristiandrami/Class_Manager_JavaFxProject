@@ -22,7 +22,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="studentButton" mnemonicParsing="false" onAction="#studentsClicked" prefHeight="332.0" prefWidth="543.0" text="Studenti" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                  <Button fx:id="studentButton" mnemonicParsing="false" onAction="#studentsClicked" prefHeight="332.0" prefWidth="543.0" text=" Studenti" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <graphic>
                         <FontAwesomeIcon fill="#00adb5" iconName="GROUP" size="50" />
                      </graphic>
@@ -33,7 +33,7 @@
                         <Font size="20.0" />
                      </font>
                   </Button>
-                  <Button fx:id="assignmentButton" mnemonicParsing="false" onAction="#assgimentClicked" prefHeight="325.0" prefWidth="535.0" text="Compiti" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                  <Button fx:id="assignmentButton" mnemonicParsing="false" onAction="#assgimentClicked" prefHeight="325.0" prefWidth="535.0" text=" Compiti" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <graphic>
                         <FontAwesomeIcon fill="#00adb5" iconName="CALENDAR" size="50" />
                      </graphic>
@@ -41,7 +41,7 @@
                         <Font size="20.0" />
                      </font>
                   </Button>
-                  <Button fx:id="votesButton" mnemonicParsing="false" onAction="#votesClicked" prefHeight="324.0" prefWidth="535.0" text="Voti" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                  <Button fx:id="votesButton" mnemonicParsing="false" onAction="#votesClicked" prefHeight="324.0" prefWidth="535.0" text=" Voti" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <graphic>
                         <FontAwesomeIcon fill="#00adb5" iconName="INDENT" size="50" />
                      </graphic>
@@ -49,7 +49,7 @@
                         <Font size="20.0" />
                      </font>
                   </Button>
-                  <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#logoutClicked" prefHeight="327.0" prefWidth="534.0" text="Logout" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                  <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#logoutClicked" prefHeight="327.0" prefWidth="534.0" text=" Logout" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <graphic>
                         <FontAwesomeIcon fill="#00adb5" iconName="SIGN_OUT" size="50" />
                      </graphic>
