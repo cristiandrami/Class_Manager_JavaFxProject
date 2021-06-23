@@ -42,7 +42,7 @@
                               <FontAwesomeIcon fill="#eeeeee" iconName="ARROW_LEFT" size="30" text=" " />
                            </graphic>
                         </Button>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0" HBox.hgrow="ALWAYS">
                            <children>
                               <Label maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" text="Classe" textFill="#eeeeee">
                                  <font>

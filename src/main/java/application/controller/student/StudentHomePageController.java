@@ -38,7 +38,7 @@ public class StudentHomePageController {
 		} 
     	catch (IOException e) 
     	{
-			System.out.println(StudentUtil.PERFORMANCESETPAGEPROBLEM);
+			System.out.println(StudentUtil.PERFORMANCE_SET_PAGE_PROBLEM);
 		}
     }
     
@@ -51,7 +51,7 @@ public class StudentHomePageController {
 		} 
     	catch (IOException e) 
     	{
-			System.out.println(StudentUtil.NOTESSETPAGEPROBLEM);
+			System.out.println(StudentUtil.NOTES_SET_PAGE_PROBLEM);
 		}
 
     }
@@ -69,7 +69,7 @@ public class StudentHomePageController {
 		} 
     	catch (IOException e) 
     	{
-			System.out.println(StudentUtil.ASSIGNMENTSETPAGEPROBLEM);
+			System.out.println(StudentUtil.ASSIGNMENT_SET_PAGE_PROBLEM);
 		}
     }
 

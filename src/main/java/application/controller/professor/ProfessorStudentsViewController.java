@@ -220,9 +220,9 @@ public class ProfessorStudentsViewController
 				tableView.setItems(tableList);
 				Integer sufficient=0;
 				Integer unsufficient=0;
-				Integer total=tableList.size();
+				Integer total=0;
 				if(tableList!=null)
-				{
+				{	total=tableList.size();
 					for(StudentsTableModel s: tableList)
 					{
 						
@@ -344,11 +344,6 @@ public class ProfessorStudentsViewController
 					document.close();
 					streamFile.close();
 					SceneHandler.getInstance().showInformation(CommonUtil.PDFCREATED);
-					
-					
-					
-					
-					
 		   } 
 		   catch (FileNotFoundException e) 
 		   {

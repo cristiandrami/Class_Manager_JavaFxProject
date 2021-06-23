@@ -1,12 +1,27 @@
+@font-face {
+    font-family: Helvetica-Bold;
+    src: url('Helvetica-Bold.ttf');
+}
+.root *{
+    -fx-font-family: 'Helvetica-Bold';
+    
+}
+
 .button
 {
 -fx-background-color: #eeeeee;
+-fx-font-family: 'Helvetica-Bold';
+-fx-font-size:  15pt;
 }
 .button:hover 
 {
 -fx-background-color: #aad8d3; 
+-fx-font-family: 'Helvetica-Bold';
+-fx-font-size:  20pt;
+
 }
 .button:pressed
 {
 -fx-background-color: #00adb5;
+-fx-font-family: 'Helvetica-Bold';
 }

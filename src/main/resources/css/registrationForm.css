@@ -1,8 +1,16 @@
+@font-face {
+    font-family: Helvetica-Bold;
+    src: url('Helvetica-Bold.ttf');
+}
+.root *{
+    -fx-font-family: 'Helvetica-Bold';
+}
+
 .text-field {
     -fx-background-color: #eeeeee;
     -fx-border-color: #00adb5;
     -fx-border-width:  0px 0px 2px 0px;
-     -fx-font-size: 10pt ;
+    -fx-font-size: 10pt ;
 }
 .myData {
      -fx-border-color: #eeeeee;

@@ -1,0 +1,16 @@
+@font-face {
+    font-family: Helvetica-Bold;
+    src: url('Helvetica-Bold.ttf');
+}
+.root *{
+    -fx-font-family: 'Helvetica-Bold';
+}
+.text-field 
+{
+    -fx-font-size: 16px ;
+}
+.button:hover 
+{
+-fx-font-size:  18px;
+
+}

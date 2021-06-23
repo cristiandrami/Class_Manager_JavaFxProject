@@ -3,9 +3,9 @@ package application.student;
 public class StudentUtil 
 {
 	//******************************* HOME **************************//
-	public static final String PERFORMANCESETPAGEPROBLEM = "Problema con il caricamento della pagina sulle performance";
-	public static final String ASSIGNMENTSETPAGEPROBLEM ="Problema con il caricamento della pagina dei compiti";
-	public static final String NOTESSETPAGEPROBLEM = "Problema con il caricamento della pagina delle note";
+	public static final String PERFORMANCE_SET_PAGE_PROBLEM = "Problema con il caricamento della pagina sulle performance";
+	public static final String ASSIGNMENT_SET_PAGE_PROBLEM ="Problema con il caricamento della pagina dei compiti";
+	public static final String NOTES_SET_PAGE_PROBLEM = "Problema con il caricamento della pagina delle note";
 	
 	
 	public static final String VOTEABSENT="Non ancora scrutinato";

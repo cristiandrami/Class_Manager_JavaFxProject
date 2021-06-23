@@ -40,6 +40,8 @@ public class SceneHandler
 		stage.setMinHeight(450);
 		stage.setMinWidth(700);
 		stage.setTitle("Class Manager");
+		scene.getStylesheets().clear();
+		scene.getStylesheets().add(getClass().getResource("/css/commonFont.css").toExternalForm());
 		stage.setResizable(false);
 		stage.show();
 	}
@@ -62,6 +64,7 @@ public class SceneHandler
 		stage.setHeight(900);
 		stage.setWidth(695);
 		stage.setResizable(false);
+		scene.getStylesheets().clear();
 		scene.getStylesheets().add(getClass().getResource("/css/registrationForm.css").toExternalForm());
 		stage.show();
     }
@@ -73,6 +76,8 @@ public class SceneHandler
 		scene.setRoot(root);
 		stage.setScene(scene);
 		stage.setTitle("Class Manager");
+		scene.getStylesheets().clear();
+		scene.getStylesheets().add(getClass().getResource("/css/commonFont.css").toExternalForm());
 		stage.setHeight(450);
 		stage.setWidth(700);
 		stage.setResizable(false);
@@ -87,6 +92,7 @@ public class SceneHandler
     	//addMouseDragging(root);
 		scene.setRoot(root);
 		stage.setScene(scene);
+		scene.getStylesheets().clear();
 		scene.getStylesheets().add(getClass().getResource("/css/homePage.css").toExternalForm());
 		stage.setHeight(760);
 		stage.setWidth(1050);
@@ -104,7 +110,7 @@ public class SceneHandler
     	Parent root = (Parent) loader.load();    	
     	//addMouseDragging(root);
 		scene.setRoot(root);
-		
+		scene.getStylesheets().clear();
 		scene.getStylesheets().add(getClass().getResource("/css/tableView.css").toExternalForm());
 		stage.setHeight(760);
 		stage.setWidth(1050);
@@ -125,7 +131,8 @@ public class SceneHandler
 		stage.setHeight(760);
 		stage.setWidth(1050);
 		stage.setTitle("Class Manager");
-		
+		scene.getStylesheets().clear();
+		scene.getStylesheets().add(getClass().getResource("/css/commonFont.css").toExternalForm());
 		stage.setResizable(true);
 		stage.show();
 		
@@ -141,6 +148,7 @@ public class SceneHandler
 		scene.setRoot(root);
 		stage.setHeight(760);
 		stage.setWidth(1050);
+		scene.getStylesheets().clear();
 		scene.getStylesheets().add(getClass().getResource("/css/tableView.css").toExternalForm());
 		stage.setTitle("Class Manager");
 		
@@ -158,6 +166,7 @@ public class SceneHandler
     	//addMouseDragging(root);
 		scene.setRoot(root);
 		stage.setScene(scene);
+		scene.getStylesheets().clear();
 		scene.getStylesheets().add(getClass().getResource("/css/homePage.css").toExternalForm());
 		stage.setHeight(760);
 		stage.setWidth(1050);
@@ -176,6 +185,7 @@ public class SceneHandler
     	//addMouseDragging(root);
 		scene.setRoot(root);
 		stage.setScene(scene);
+		scene.getStylesheets().clear();
 		scene.getStylesheets().add(getClass().getResource("/css/tableView.css").toExternalForm());
 		stage.setHeight(760);
 		stage.setWidth(1050);
@@ -193,6 +203,7 @@ public class SceneHandler
     	Parent root = (Parent) loader.load();    	
     	//addMouseDragging(root);
 		scene.setRoot(root);
+		scene.getStylesheets().clear();
 		scene.getStylesheets().add(getClass().getResource("/css/assignmentStudent.css").toExternalForm());
 		stage.setScene(scene);
 		stage.setHeight(760);
@@ -210,11 +221,13 @@ public class SceneHandler
     	Parent root = (Parent) loader.load();    	
     	//addMouseDragging(root);
 		scene.setRoot(root);
-		scene.getStylesheets().add(getClass().getResource("/css/notesStudent.css").toExternalForm());
+		
 		stage.setScene(scene);
 		stage.setHeight(760);
 		stage.setWidth(1050);
 		stage.setTitle("Class Manager");
+		scene.getStylesheets().clear();
+		scene.getStylesheets().add(getClass().getResource("/css/notesStudent.css").toExternalForm());
 		//stage.initStyle(StageStyle.UNDECORATED);
 		stage.setResizable(true);
 		stage.show();
