@@ -60,7 +60,8 @@ public class LoginController
     void initialize()
     {
     	logoView.imageProperty().set(new Image(getClass().getResourceAsStream("/loginResources/logoLogin.jpg"))); 
-    	//logoView.setImage(new Image(getClass().getResourceAsStream("/loginResources/logoLogin.jpg")));
+    	registrationButton.getStyleClass().add("whiteButton");
+    	loginButton.getStyleClass().add("blueButton");
    
     }
     

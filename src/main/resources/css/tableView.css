@@ -64,3 +64,19 @@
     -fx-background-insets : 2.0, 0.0, 0.0;
     -fx-background-radius : 2.0em;
 }
+.pdfButton
+{
+-fx-background-color: #eeeeee;
+
+}
+.pdfButton:hover 
+{
+-fx-background-color: #aad8d3; 
+
+
+}
+.pdfButton:pressed
+{
+-fx-background-color: #00adb5;
+
+}

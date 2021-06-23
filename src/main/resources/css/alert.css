@@ -19,26 +19,29 @@
   .dialog-pane > .content.label {
     
      -fx-text-fill:#00ADB5;
-     -fx-font-size:15.0px;
+     -fx-font-size:15px;
   }
   
   .dialog-pane:header .header-panel .label{
     -fx-text-fill:#00ADB5;
-    -fx-font-size:15.0px;
+    -fx-font-size:15px;
   }
   
-  
-  /**Costumization of Buttons**/
+
   .dialog-pane .button{
      -fx-background-color:#00ADB5;
      -fx-text-fill:#eeeeee;
      -fx-cursor:hand;
+     -fx-font-size: 12px;
    }
   
     .dialog-pane .button:hover{     
-    -fx-background-color: #aad8d3; 
+    -fx-background-color: #aad8d3;
+    -fx-font-size: 14px; 
    }
    .dialog-pane .button:pressed{     
     -fx-background-color: #00ADB5; 
    }
+
+
 

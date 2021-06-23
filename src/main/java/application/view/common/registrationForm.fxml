@@ -101,7 +101,7 @@
                   <PasswordField fx:id="repeatPasswordField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="170.0" />
                </children>
             </VBox>
-            <Button fx:id="registerButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#registerClicked" prefHeight="40.0" prefWidth="90.0" style="-fx-background-color: #00adb5; -fx-text-fill: #eeeeee;" text="Registrati" />
+            <Button fx:id="registerButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#registerClicked" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #00adb5; -fx-text-fill: #eeeeee;" text="Registrati" />
             <TextArea editable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="200.0" prefWidth="423.0" style="-: ;" text="(*) l'username deve contenere solo lettere e numeri&#10;(**) il codice di iscrizione viene fornito direttamente &#10;dalla scuola di appartenenza&#10;(***) la materia va inserita solo se si è un professore&#10;(****) la password deve contenere:&#10;1) almeno una lettera maiuscola e una minuscola&#10;2) alemeno una cifra [0-9]&#10;3) un carattere speciale [@$!%*?&amp;]&#10;4) deve contenere almeno 8 caratteri ma massimo 20.&#10;&#10;" wrapText="true">
                <font>
                   <Font name="System Bold" size="12.5" />

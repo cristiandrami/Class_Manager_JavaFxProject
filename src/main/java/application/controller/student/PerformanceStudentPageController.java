@@ -199,13 +199,11 @@ public class PerformanceStudentPageController
 		   }
 		   catch (FileNotFoundException e) 
 		   {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
 		   } 
 		   catch (Exception e) 
 		   {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		
 		   }
 					
 					
@@ -230,6 +228,7 @@ public class PerformanceStudentPageController
 	     view.setFitHeight(40);
 	     view.setFitWidth(40);
 	     exportToPdf.setGraphic(view);
+	     exportToPdf.getStyleClass().add("pdfButton");
 		
 	}
 	private void startGrapichRefresh()

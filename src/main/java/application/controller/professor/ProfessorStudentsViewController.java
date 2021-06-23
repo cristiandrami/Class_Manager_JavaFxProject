@@ -202,6 +202,7 @@ public class ProfessorStudentsViewController
 	     view.setFitHeight(50);
 	     view.setFitWidth(50);
 	     exportPdfBtn.setGraphic(view);
+	     exportPdfBtn.getStyleClass().add("pdfButton");
 		
 	}
 	private void refreshStudentsList() 
@@ -347,13 +348,11 @@ public class ProfessorStudentsViewController
 		   } 
 		   catch (FileNotFoundException e) 
 		   {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
 		   } 
 		   catch (Exception e) 
 		   {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
 		   }
 		   	
 			
