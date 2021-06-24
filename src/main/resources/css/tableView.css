@@ -64,6 +64,28 @@
     -fx-background-insets : 2.0, 0.0, 0.0;
     -fx-background-radius : 2.0em;
 }
+
+.button
+{
+-fx-background-color: #00adb5;
+-fx-font-family: 'Helvetica-Bold';
+-fx-font-size: 13px;
+}
+.button:hover 
+{
+-fx-background-color: #4CA1A3; 
+-fx-font-family: 'Helvetica-Bold';
+-fx-cursor: hand;
+-fx-font-size: 15px;
+
+}
+.button:pressed
+{
+-fx-background-color: #00adb5;
+-fx-font-family: 'Helvetica-Bold';
+-fx-font-size: 13px;
+}
+
 .pdfButton
 {
 -fx-background-color: #eeeeee;

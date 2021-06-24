@@ -2,8 +2,7 @@ package application;
 
 import java.awt.event.MouseAdapter;
 import java.io.IOException;
-
-
+import java.util.Optional;
 
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.DialogPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -277,6 +277,19 @@ public class SceneHandler
 		
 		
     }
+
+	public Optional<ButtonType> showYesNoDialog(String request) 
+	{
+		Alert alert = new Alert(AlertType.CONFIRMATION, request, ButtonType.YES, ButtonType.NO);
+		alert.initOwner(stage);
+		alert.setTitle("Aspetta");
+		alert.setHeaderText("");
+		DialogPane dialog=alert.getDialogPane();
+		dialog.getStylesheets().add(getClass().getResource("/css/alert.css").toExternalForm());
+
+		return alert.showAndWait();
+		
+	}
 
 	
 

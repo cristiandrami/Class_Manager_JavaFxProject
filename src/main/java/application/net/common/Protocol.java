@@ -5,6 +5,7 @@ public class Protocol {
 	public final static String REGISTRATION= "registration";
 	public static final String GETTYPEFROMCODE = "get type from code";
 	public static final String GETCLASSFROMCODE = "get class from code";
+	public static final String LOGOUT = "loggout";
 	
 	//************************************ PROFESSOR *******************************//
 	public final static String GETSTUDENTSFORPROF = "get students for professor";
@@ -29,6 +30,7 @@ public class Protocol {
 	public final static String USER_LOGGED_ERROR= "L'utente è già loggato";
 	public final static String USER_EXISTS_ERROR= "L'username è già stato scelto, riprova con uno nuovo";
 	public final static String SUBJECT_ERROR= "La materia inserita non è presente nel database della scuola, riprova";
+	
 	
 	
 

@@ -40,13 +40,13 @@ public class ProfAssignmentController
     	String assignment=assignmentTextArea.getText();
     	if(assignment.equals(""))
     	{
-    		SceneHandler.getInstance().showWarning(ProfessorUtil.ASSIGNMENTPROBLEM);
+    		SceneHandler.getInstance().showWarning(ProfessorUtil.ASSIGNMENT_PROBLEM);
     		return;
     	}
     	
     	if(ProfessorClient.getInstance().sendAssigment(assignment))
     	{
-    		SceneHandler.getInstance().showInformation(ProfessorUtil.ASSIGNMENTSENT);
+    		SceneHandler.getInstance().showInformation(ProfessorUtil.ASSIGNMENT_SENT);
     		assignmentTextArea.setText("");
     		
     	}
@@ -67,13 +67,13 @@ public class ProfAssignmentController
     @FXML
     void backClicked(ActionEvent event) 
     {
-    	assignmentTextArea.setPromptText(ProfessorUtil.PROMTTEXTINSERTASSIGNMENT);
+    	assignmentTextArea.setPromptText(ProfessorUtil.PROMT_TEXT_INSERT_ASSIGNMENT);
     	try 
     	{
 			SceneHandler.getInstance().setProfHomePage();
 		} catch (IOException e) 
     	{
-			System.out.println(ProfessorUtil.BACKTOHOMEPROBLEM);
+			System.out.println(ProfessorUtil.BACK_TO_HOME_PROBLEM);
 		}
 
     }

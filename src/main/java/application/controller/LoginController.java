@@ -21,8 +21,8 @@ import javafx.scene.image.ImageView;
 
 public class LoginController 
 {
-	private String PROFTYPE=CommonUtil.PROFTYPE;
-	private String STUDENTTYPE=CommonUtil.STUDENTTYPE;
+	private String PROFTYPE=CommonUtil.PROF_TYPE;
+	private String STUDENTTYPE=CommonUtil.STUDENT_TYPE;
 	
     @FXML
     private ImageView logoView;
@@ -131,7 +131,7 @@ public class LoginController
 		    	}
 			}
 			else
-				SceneHandler.getInstance().showWarning(CommonUtil.USERNOTEXISTS );
+				SceneHandler.getInstance().showWarning(CommonUtil.USER_NOT_EXISTS );
 			
 		}
 		catch (SQLException e1) 

@@ -46,7 +46,7 @@ public class NotesStudentPageController {
 			SceneHandler.getInstance().setStudentHomePage();
 		} catch (IOException e) 
     	{
-			System.out.println(StudentUtil.BACKTOHOMEPROBLEM);
+			System.out.println(StudentUtil.BACK_TO_HOME_PROBLEM);
     	}
 			
     }
@@ -55,7 +55,7 @@ public class NotesStudentPageController {
     void initialize()
     {
     	startNotesRefresh();
-    	logoView.imageProperty().set(new Image(getClass().getResourceAsStream("/images/genericLogo.png"))); 
+    	logoView.imageProperty().set(new Image(getClass().getResourceAsStream(StudentUtil.IMAGE_PATH))); 
     }
 
 	private void startNotesRefresh() 
@@ -94,11 +94,11 @@ public class NotesStudentPageController {
 						newBorderPane.setAlignment(newBorderPane.getTop(), Pos.CENTER);
 						newBorderPane.setAlignment(newBorderPane.getBottom(), Pos.CENTER);
 						newBorderPane.setAlignment(newBorderPane.getCenter(), Pos.CENTER);
-						newBorderPane.getStyleClass().add(StudentUtil.REDBORDERPANE);
+						newBorderPane.getStyleClass().add(StudentUtil.RED_BORDER_PANE);
 						
-						newBorderPane.getTop().getStyleClass().add(StudentUtil.TOPBORDERPANESTYLE);
-						newBorderPane.getCenter().getStyleClass().add(StudentUtil.CENTERBORDERPANESTYLE);
-						newBorderPane.getBottom().getStyleClass().add(StudentUtil.BOTTOMBORDERPANESTYLE);
+						newBorderPane.getTop().getStyleClass().add(StudentUtil.TOP_BORDER_PANE_STYLE);
+						newBorderPane.getCenter().getStyleClass().add(StudentUtil.CENTER_BORDER_PANE_STYLE);
+						newBorderPane.getBottom().getStyleClass().add(StudentUtil.BOTTOM_BORDER_PANE_STYLE);
 						
 						vBoxContainer.getChildren().add(newBorderPane);
 					}
@@ -109,10 +109,10 @@ public class NotesStudentPageController {
 					vBoxContainer.getChildren().clear();
 					BorderPane newBorderPane= new BorderPane();
 					Label note= new Label();
-					note.setText(StudentUtil.NOTESABSENT);
+					note.setText(StudentUtil.NOTES_ABSENT);
 					newBorderPane.setCenter(note);
 					newBorderPane.setAlignment(newBorderPane.getCenter(), Pos.CENTER);
-					newBorderPane.getStyleClass().add(StudentUtil.GREENBORDERPANE);
+					newBorderPane.getStyleClass().add(StudentUtil.GREEN_BORDER_PANE);
 					vBoxContainer.getChildren().add(newBorderPane);
 					
 				}

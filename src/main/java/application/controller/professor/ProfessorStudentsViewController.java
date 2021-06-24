@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
@@ -31,6 +32,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -123,7 +125,7 @@ public class ProfessorStudentsViewController
 		}
     	catch (IOException e) 
     	{
-			System.out.println(ProfessorUtil.BACKTOHOMEPROBLEM);
+			System.out.println(ProfessorUtil.BACK_TO_HOME_PROBLEM);
 		}
     	
     }
@@ -134,7 +136,7 @@ public class ProfessorStudentsViewController
     	StudentsTableModel student=tableView.getSelectionModel().getSelectedItem();
     	if(student==null)
     	{
-    		SceneHandler.getInstance().showWarning(ProfessorUtil.STUDENTCHOOSEPROBLEM);
+    		SceneHandler.getInstance().showWarning(ProfessorUtil.STUDENT_CHOOSE_PROBLEM);
     		return;
     	}
     	else
@@ -148,6 +150,7 @@ public class ProfessorStudentsViewController
         	//mainPane.setOpacity(0.2);
     		mainPane.setEffect(new GaussianBlur());
         	notePane.setOpacity(1);
+        	mainPane.setDisable(true);
         	
     	}
 
@@ -157,26 +160,34 @@ public class ProfessorStudentsViewController
     @FXML
     void insertNoteclicked(ActionEvent event) 
     {
-    	if(insertNoteField.getText().equals(""))
+    	Optional<ButtonType> result= SceneHandler.getInstance().showYesNoDialog(ProfessorUtil.NOTE_YES_NO+ studentName+ " "+studentSurname);
+    	
+    	if(result.get()== ButtonType.YES)
     	{
-    		SceneHandler.getInstance().showWarning(ProfessorUtil.NOTEPROBLEM);
+	    	if(insertNoteField.getText().equals(""))
+	    	{
+	    		SceneHandler.getInstance().showWarning(ProfessorUtil.NOTE_PROBLEM);
+	    	}
+	    	else if(ProfessorClient.getInstance().insertStudentNote(studentUsername, insertNoteField.getText()))
+			{
+				
+				SceneHandler.getInstance().showInformation("La nota disciplinare per "+studentName+" "+ studentSurname +" è stata inserita correttamente");
+				studentName="";
+				studentSurname="";
+				studentUsername="";
+				studentBornDate="";
+				insertNoteField.setText("");
+				insertNoteField.setPromptText(ProfessorUtil.PROMT_TEXT_NOTES);
+				//mainPane.setOpacity(1);
+	        	notePane.setOpacity(0);
+	        	mainPane.effectProperty().set(null);
+	        	notePane.setVisible(false);
+	        	mainPane.setDisable(false);
+				
+			}
     	}
-    	else if(ProfessorClient.getInstance().insertStudentNote(studentUsername, insertNoteField.getText()))
-		{
-			
-			SceneHandler.getInstance().showInformation("La nota disciplinare per "+studentName+" "+ studentSurname +" è stata inserita correttamente");
-			studentName="";
-			studentSurname="";
-			studentUsername="";
-			studentBornDate="";
-			insertNoteField.setText("");
-			insertNoteField.setPromptText(ProfessorUtil.PROMTTEXTNOTES);
-			//mainPane.setOpacity(1);
-        	notePane.setOpacity(0);
-        	mainPane.effectProperty().set(null);
-        	notePane.setVisible(false);
-			
-		}
+    	else
+    		return;
 
     }
     
@@ -185,9 +196,11 @@ public class ProfessorStudentsViewController
     void backNoteClicked(ActionEvent event) 
     {
     	insertNoteField.setText("");
-    	insertNoteField.setPromptText(ProfessorUtil.PROMTTEXTNOTES);
+    	insertNoteField.setPromptText(ProfessorUtil.PROMT_TEXT_NOTES);
     	mainPane.effectProperty().set(null);
     	notePane.setOpacity(0);
+    	notePane.setVisible(false);
+    	mainPane.setDisable(false);
     }
     @FXML
     void exportPdfClicked(ActionEvent event) 
@@ -344,7 +357,7 @@ public class ProfessorStudentsViewController
 					//chiudo il documento e il file stream
 					document.close();
 					streamFile.close();
-					SceneHandler.getInstance().showInformation(CommonUtil.PDFCREATED);
+					SceneHandler.getInstance().showInformation(CommonUtil.PDF_CREATED);
 		   } 
 		   catch (FileNotFoundException e) 
 		   {
@@ -374,6 +387,7 @@ public class ProfessorStudentsViewController
     	notePane.setEffect(new DropShadow());
     	classLabel.setText(ProfessorClient.getInstance().getClasse());
     	setPdfImage();
+    	
     
     }
     

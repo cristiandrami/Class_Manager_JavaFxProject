@@ -12,9 +12,9 @@
 
 <BorderPane prefHeight="760.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.student.AssignmentsStudentPageController">
    <top>
-      <BorderPane prefHeight="166.0" prefWidth="1050.0" style="-fx-background-color: #00adb5;" BorderPane.alignment="CENTER">
+      <BorderPane minHeight="-Infinity" prefHeight="200.0" prefWidth="1050.0" style="-fx-background-color: #00adb5;" BorderPane.alignment="CENTER">
          <center>
-            <ImageView fx:id="logoView" fitHeight="98.0" fitWidth="184.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+            <ImageView fx:id="logoView" fitHeight="120.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                <image>
                   <Image url="@./" />
                </image></ImageView>

@@ -80,7 +80,8 @@ import javafx.collections.ObservableList;
 			catch (Exception e) 
 			{
 				out=null;
-				System.out.println("Errore qui");
+				e.getStackTrace();
+				System.out.println("Errore qui login studente");
 				return Protocol.ERROR;
 				
 				
@@ -273,6 +274,12 @@ import javafx.collections.ObservableList;
 			out=null;
 			in=null;
 			socket=null;
+		}
+
+		public void logout() 
+		{
+			sendMessage(Protocol.LOGOUT);
+			
 		}
 
 		

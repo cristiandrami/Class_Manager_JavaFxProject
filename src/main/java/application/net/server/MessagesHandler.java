@@ -77,7 +77,7 @@ public class MessagesHandler extends Thread
 				
 				//se l'input è per fare il login allota provo a fare il check e se non va bene mando un messaggio di errore e ritorno
 					input = (String) in.readObject();
-					System.out.println(input);
+					
 					
 					while(input.equals(Protocol.GETTYPEFROMCODE) || input.equals(Protocol.GETCLASSFROMCODE))
 					{
@@ -279,6 +279,14 @@ public class MessagesHandler extends Thread
 							sendObject(student);
 						}
 						
+						if(request.equals(Protocol.LOGOUT))
+						{
+							UsersHandler.removeUser(username);
+							System.out.println("[SERVER] USER "+username+" DISCONNECTED");
+							closeStreams();
+							return;
+						}
+						
 						
 					}
 			}
@@ -290,7 +298,7 @@ public class MessagesHandler extends Thread
 			{
 				//l'utente è stato disconnesso
 				UsersHandler.removeUser(username);
-				System.out.println("[SERVER] USER "+username+" DISCONNECTED");
+				//System.out.println("[SERVER] USER "+username+" DISCONNECTED");
 				
 				
 				

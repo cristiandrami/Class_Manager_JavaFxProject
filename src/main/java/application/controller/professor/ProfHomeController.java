@@ -2,14 +2,18 @@ package application.controller.professor;
 
 
 import java.io.IOException;
+import java.util.Optional;
 
+import application.CommonUtil;
 import application.SceneHandler;
 import application.net.client.CommonClient;
 import application.net.client.ProfessorClient;
+import application.net.client.StudentClient;
 import application.professor.ProfessorModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -52,7 +56,7 @@ public class ProfHomeController {
     	catch (IOException e)
     	{
 			
-			e.printStackTrace();
+			
 		}
 
     }
@@ -68,7 +72,7 @@ public class ProfHomeController {
 		} catch (IOException e) 
     	{
 			
-			e.printStackTrace();
+			
 		}
 
     }
@@ -84,7 +88,7 @@ public class ProfHomeController {
 		} catch (IOException e) 
     	{
 			
-			e.printStackTrace();
+			
 		}
     	
     }
@@ -94,19 +98,30 @@ public class ProfHomeController {
     @FXML
     void logoutClicked(ActionEvent event) 
     {
-    	ProfessorClient.getInstance().reset();
-    	try 
+    	Optional<ButtonType> result= SceneHandler.getInstance().showYesNoDialog(CommonUtil.LOGOUT_YES_NO);
+    	
+    	if(result.get()== ButtonType.YES)
     	{
-			SceneHandler.getInstance().setLogin();
-			ProfessorClient.getInstance().reset();
-			CommonClient.getInstance().reset();
-		} 
-    	catch (Exception e) 
-    	{
-			
-		}
+    		try 
+	    	{
+				SceneHandler.getInstance().setLogin();
+				ProfessorClient.getInstance().loggout();
+				ProfessorClient.getInstance().reset();
+				StudentClient.getInstance().reset();
+				CommonClient.getInstance().reset();
+			} 
+	    	catch (Exception e) 
+	    	{
+				
+			}
+    	}
+    	
+    	else return;
+    
+	    	
 
     }
+
 
     
     @FXML 

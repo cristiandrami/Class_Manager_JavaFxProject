@@ -61,9 +61,9 @@
             </GridPane>
          </center>
          <top>
-            <BorderPane prefHeight="224.0" prefWidth="1050.0" style="-fx-background-color: #00adb5;" BorderPane.alignment="CENTER">
+            <BorderPane minHeight="-Infinity" prefHeight="200.0" prefWidth="1050.0" style="-fx-background-color: #00adb5;" BorderPane.alignment="CENTER">
                <center>
-                  <ImageView fx:id="logoView" fitHeight="135.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                  <ImageView fx:id="logoView" fitHeight="120.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                      <image>
                         <Image url="@./" />
                      </image>
@@ -100,7 +100,7 @@
                         </Label>
                      </children>
                      <BorderPane.margin>
-                        <Insets left="20.0" top="10.0" />
+                        <Insets left="20.0" top="5.0" />
                      </BorderPane.margin>
                   </HBox>
                </top>

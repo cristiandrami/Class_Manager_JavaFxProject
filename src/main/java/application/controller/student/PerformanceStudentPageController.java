@@ -105,7 +105,7 @@ public class PerformanceStudentPageController
 		} 
     	catch (IOException e) 
     	{
-			System.out.println(StudentUtil.BACKTOHOMEPROBLEM);
+			System.out.println(StudentUtil.BACK_TO_HOME_PROBLEM);
 		}
 
     	
@@ -195,7 +195,7 @@ public class PerformanceStudentPageController
 					document.close();
 					streamFile.close();
 					
-					SceneHandler.getInstance().showInformation(CommonUtil.PDFCREATED);
+					SceneHandler.getInstance().showInformation(CommonUtil.PDF_CREATED);
 		   }
 		   catch (FileNotFoundException e) 
 		   {
@@ -215,7 +215,7 @@ public class PerformanceStudentPageController
 
     	startTableRefresh();	
     	startGrapichRefresh();
-    	logoView.imageProperty().set(new Image(getClass().getResourceAsStream("/images/genericLogo.png"))); 
+    	logoView.imageProperty().set(new Image(getClass().getResourceAsStream(StudentUtil.IMAGE_PATH))); 
     	nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
     	voteColumn.setCellValueFactory(new PropertyValueFactory<>("vote"));
     	setPdfButtonImage();
@@ -224,7 +224,7 @@ public class PerformanceStudentPageController
     
     private void setPdfButtonImage() 
     {
-    	 ImageView view = new ImageView(new Image(getClass().getResourceAsStream("/images/pdf.png")));
+    	 ImageView view = new ImageView(new Image(getClass().getResourceAsStream(StudentUtil.PDF_IMAGE_PATH)));
 	     view.setFitHeight(40);
 	     view.setFitWidth(40);
 	     exportToPdf.setGraphic(view);
@@ -250,8 +250,8 @@ public class PerformanceStudentPageController
 				XYChart.Series<String,Number> graphicData=new XYChart.Series<String,Number>();
 				graphicData.setName("VOTI");
 				votesGraphic.setTitle("Andamento dei voti");
-				xAxis.setLabel(StudentUtil.OBJECTPERFORMANCE);
-				yAxis.setLabel(StudentUtil.VOTEPERFORMANCE);
+				xAxis.setLabel(StudentUtil.OBJECT_PERFORMANCE);
+				yAxis.setLabel(StudentUtil.VOTE_PERFORMANCE);
 				ObservableList<VotesTableModel> votes= (ObservableList<VotesTableModel>) event.getSource().getValue();
 				Float averange=(float) 0.0;
 				int size=0;
@@ -260,7 +260,7 @@ public class PerformanceStudentPageController
 				{	
 					for(VotesTableModel v: votes)
 					{
-							if(v.getVote().equals(StudentUtil.VOTEABSENT))
+							if(v.getVote().equals(StudentUtil.VOTE_ABSENT))
 							{
 								graphicData.getData().add(new XYChart.Data<String, Number>(v.getName(), 0));
 							}
@@ -288,11 +288,11 @@ public class PerformanceStudentPageController
 						votesAverange.setText(averange.toString());
 						if(averange>=6)
 						{
-							averangeBorderPane.setStyle(StudentUtil.SUFFICIENTAVERAGEPANESTYLE);
+							averangeBorderPane.setStyle(StudentUtil.SUFFICIENT_AVERAGE_PANE_STYLE);
 						}
 						else
 						{
-							averangeBorderPane.setStyle(StudentUtil.INSUFFICIENTAVERAGEPANESTYLE);
+							averangeBorderPane.setStyle(StudentUtil.INSUFFICIENT_AVERAGE_PANESTYLE);
 					
 						}
 							
@@ -300,7 +300,7 @@ public class PerformanceStudentPageController
 					else
 					{
 						votesAverange.setText("0.0");
-						averangeBorderPane.setStyle(StudentUtil.NULLAVERAGEPANESTYLE);
+						averangeBorderPane.setStyle(StudentUtil.NULL_AVERAGE_PANE_STYLE);
 					}
 					
 					votesGraphic.getData().add(graphicData);
@@ -351,7 +351,7 @@ public class PerformanceStudentPageController
 				{
 					for(VotesTableModel v: votes)
 					{
-						if(v.getVote().equals(StudentUtil.VOTEABSENT))
+						if(v.getVote().equals(StudentUtil.VOTE_ABSENT))
 						{
 							waiting++;
 						}

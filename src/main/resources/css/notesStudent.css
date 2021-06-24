@@ -7,31 +7,31 @@
 }
 
 .myBorderPaneGreen{
-    -fx-background-color: #39ff39;
+    
     -fx-font-size: 15pt;
     -fx-text-background-color: #393E46;
     
 }
 .myBorderPaneRed{
-    -fx-background-color: #ff4040;
+    -fx-background-color: #f15050;
     -fx-font-size: 15pt;
     -fx-text-background-color: #393E46;
     
 }
 .myTopBorderPane{
-    -fx-background-color: #ff4040;
+    -fx-background-color: #f15050;
     -fx-font-size: 15pt;
     -fx-text-background-color: #393E46;
     
 }
 .myCenterBorderPane{
-    -fx-background-color: #ff4040;
+    -fx-background-color: #f15050;
     -fx-font-size: 12pt;
     -fx-text-background-color: #393E46;
     
 }
 .myBottomBorderPane{
-    -fx-background-color: #ff4040;
+    -fx-background-color: #f15050;
     -fx-font-size: 12pt;
     -fx-text-background-color: #393E46;
     

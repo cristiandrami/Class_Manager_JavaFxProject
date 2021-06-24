@@ -39,7 +39,7 @@
             <VBox alignment="CENTER" spacing="15.0" BorderPane.alignment="CENTER">
                <children>
                   <FontAwesomeIcon fill="#00adb5" iconName="USERS" layoutX="163.0" layoutY="133.0" size="50" text="" />
-                  <Label layoutX="128.0" layoutY="154.0" style="-fx-background-color: #00adb5; -fx-text-fill: #eeeeee;" text="USER LOGIN">
+                  <Label alignment="CENTER" layoutX="128.0" layoutY="154.0" prefWidth="130.0" style="-fx-background-color: #00adb5; -fx-text-fill: #eeeeee;" text="USER LOGIN">
                      <font>
                         <Font size="20.0" />
                      </font>

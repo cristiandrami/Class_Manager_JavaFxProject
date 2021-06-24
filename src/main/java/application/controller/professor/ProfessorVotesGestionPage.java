@@ -1,6 +1,7 @@
 package application.controller.professor;
 
 import java.io.IOException;
+import java.util.Optional;
 
 import com.sun.javafx.geom.BaseBounds;
 import com.sun.javafx.geom.transform.BaseTransform;
@@ -19,6 +20,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -102,7 +104,7 @@ public class ProfessorVotesGestionPage {
     	StudentsTableModel student=studentsTable.getSelectionModel().getSelectedItem();
     	if(student==null)
     	{
-    		SceneHandler.getInstance().showWarning(ProfessorUtil.STUDENTCHOOSEPROBLEM);
+    		SceneHandler.getInstance().showWarning(ProfessorUtil.STUDENT_CHOOSE_PROBLEM);
     		return;
     	}
     	else
@@ -117,7 +119,7 @@ public class ProfessorVotesGestionPage {
         	//mainPane.setOpacity(0.2);
     		mainPane.setEffect(new GaussianBlur());
         	updatePane.setOpacity(1);
-        	
+        	mainPane.setDisable(true);
     	}
     		
     	
@@ -129,43 +131,52 @@ public class ProfessorVotesGestionPage {
     @FXML
     void updateVoteClicked(ActionEvent event) 
     {
-    	try
+    	Optional<ButtonType> result= SceneHandler.getInstance().showYesNoDialog(ProfessorUtil.VOTE_YES_NO+ studentName+ " "+studentSurname);
+    	
+    	if(result.get()== ButtonType.YES)
     	{
-    		Integer newVote= Integer.parseInt(updateVoteField.getText());
-    		if(newVote<2 || newVote>10)
-    		{
-    			SceneHandler.getInstance().showWarning(ProfessorUtil.VOTEPROBLEM);
-    			return;
-    			
-    		}
-    		
-    		if(ProfessorClient.getInstance().updateStudentVote(studentUsername, newVote))
-    		{
-    			
-    			SceneHandler.getInstance().showInformation("Il voto di "+studentName+" "+ studentSurname +" è stato aggiornato correttamente");
-    			studentName="";
-    			studentSurname="";
-    			studentUsername="";
-    			studentBornDate="";
-    			tableList=ProfessorClient.getInstance().getStudentsList();
-    			studentsTable.setItems(tableList);
-    			updateVoteField.setText("");
-    			updateVoteField.setPromptText(ProfessorUtil.NEWVOTEPROMPTTEXT);
-    			//mainPane.setOpacity(1);
-            	updatePane.setOpacity(0);
-            	mainPane.effectProperty().set(null);
-            	updatePane.setVisible(false);
-    			
-    		}
-    			
-    			
-    			
+
+	    	try
+	    	{
+	    		Integer newVote= Integer.parseInt(updateVoteField.getText());
+	    		if(newVote<2 || newVote>10)
+	    		{
+	    			SceneHandler.getInstance().showWarning(ProfessorUtil.VOTE_PROBLEM);
+	    			return;
+	    			
+	    		}
+	    		
+	    		if(ProfessorClient.getInstance().updateStudentVote(studentUsername, newVote))
+	    		{
+	    			
+	    			SceneHandler.getInstance().showInformation("Il voto di "+studentName+" "+ studentSurname +" è stato aggiornato correttamente");
+	    			studentName="";
+	    			studentSurname="";
+	    			studentUsername="";
+	    			studentBornDate="";
+	    			tableList=ProfessorClient.getInstance().getStudentsList();
+	    			studentsTable.setItems(tableList);
+	    			updateVoteField.setText("");
+	    			updateVoteField.setPromptText(ProfessorUtil.NEW_VOTE_PROMPT_TEXT);
+	    			//mainPane.setOpacity(1);
+	            	updatePane.setOpacity(0);
+	            	mainPane.effectProperty().set(null);
+	            	updatePane.setVisible(false);
+	            	mainPane.setDisable(false);
+	    			
+	    		}
+	    			
+	    			
+	    			
+	    	}
+	    	catch (NumberFormatException e) 
+	    	{
+	    	    SceneHandler.getInstance().showWarning(ProfessorUtil.VOTE_FORMAT_PROBLEM);
+	    	    return;
+	    	}
     	}
-    	catch (NumberFormatException e) 
-    	{
-    	    SceneHandler.getInstance().showWarning(ProfessorUtil.VOTEFORMATPROBLEM);
-    	    return;
-    	}
+    	else
+    		return;
 
     }
     
@@ -179,7 +190,7 @@ public class ProfessorVotesGestionPage {
     	catch (IOException e) 
     	{
 			
-    		System.out.println(ProfessorUtil.BACKTOHOMEPROBLEM);
+    		System.out.println(ProfessorUtil.BACK_TO_HOME_PROBLEM);
 		}
     }
     
@@ -233,11 +244,12 @@ public class ProfessorVotesGestionPage {
     void backUpdateClicked(ActionEvent event) 
     {
     	updateVoteField.setText("");
-    	updateVoteField.setPromptText(ProfessorUtil.NEWVOTEPROMPTTEXT);
+    	updateVoteField.setPromptText(ProfessorUtil.NEW_VOTE_PROMPT_TEXT);
     	//mainPane.setOpacity(1);
     	mainPane.effectProperty().set(null);
     	updatePane.setOpacity(0);
     	updatePane.setVisible(false);
+    	mainPane.setDisable(false);
     }
 
 	

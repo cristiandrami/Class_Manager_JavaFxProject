@@ -32,12 +32,12 @@
      -fx-background-color:#00ADB5;
      -fx-text-fill:#eeeeee;
      -fx-cursor:hand;
-     -fx-font-size: 12px;
+     -fx-font-size: 11px;
    }
   
     .dialog-pane .button:hover{     
-    -fx-background-color: #aad8d3;
-    -fx-font-size: 14px; 
+    -fx-background-color: #4CA1A3;
+    -fx-font-size: 12px; 
    }
    .dialog-pane .button:pressed{     
     -fx-background-color: #00ADB5; 

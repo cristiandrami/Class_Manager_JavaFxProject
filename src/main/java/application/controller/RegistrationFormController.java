@@ -87,34 +87,34 @@ public class RegistrationFormController
 		//String type="professore";
 		if(type.equals("") || classe.equals(""))
 		{
-			SceneHandler.getInstance().showWarning(CommonUtil.CODEERROR);
+			SceneHandler.getInstance().showWarning(CommonUtil.CODE_ERROR);
 			return;
 		}
 		
 		if(!checkRepeatPass(passwordField.getText(), repeatPasswordField.getText()))
 		{
-			SceneHandler.getInstance().showWarning(CommonUtil.PASSWORDNOTMATCH);
+			SceneHandler.getInstance().showWarning(CommonUtil.PASSWORD_NOT_MATCH);
 			return;
 		}
 		
 		else if(!validatePassword(passwordField.getText()))
 		{
-			SceneHandler.getInstance().showWarning(CommonUtil.PASSWORDNOTVALID);
+			SceneHandler.getInstance().showWarning(CommonUtil.PASSWORD_NOT_VALID);
 			return;
 		}
 		else if(!validateUsername(username.getText()))
 		{
-			SceneHandler.getInstance().showWarning(CommonUtil.USERNAMENOTVALID);
+			SceneHandler.getInstance().showWarning(CommonUtil.USERNAME_NOT_VALID);
 			return;
 		}
 		else if(!validateName(nameField.getText()))
 		{
-			SceneHandler.getInstance().showWarning(CommonUtil.NAMENOTVALID);
+			SceneHandler.getInstance().showWarning(CommonUtil.NAME_NOT_VALID);
 			return;
 		}
 		else if(!validateSurname(surnameField.getText()))
 		{
-			SceneHandler.getInstance().showWarning(CommonUtil.SURNAMENOTVALID);
+			SceneHandler.getInstance().showWarning(CommonUtil.SURNAME_NOT_VALID);
 			return;
 		}
 			
@@ -229,9 +229,9 @@ public class RegistrationFormController
 			{
 				
 				if(checkRepeatPass(newValue, passwordField.getText()))
-					repeatPasswordField.styleProperty().set(CommonUtil.CHECKOKCOLOR);
+					repeatPasswordField.styleProperty().set(CommonUtil.CHECK_OK_COLOR);
 				else
-					repeatPasswordField.styleProperty().set(CommonUtil.CHECKNOTOKCOLOR);
+					repeatPasswordField.styleProperty().set(CommonUtil.CHECK_NOT_OK_COLOR);
 					
 				
 			}
@@ -245,9 +245,9 @@ public class RegistrationFormController
 			{
 				
 				if(validateUsername(newValue))
-					username.styleProperty().set(CommonUtil.CHECKOKCOLOR);
+					username.styleProperty().set(CommonUtil.CHECK_OK_COLOR);
 				else
-					username.styleProperty().set(CommonUtil.CHECKNOTOKCOLOR);
+					username.styleProperty().set(CommonUtil.CHECK_NOT_OK_COLOR);
 					
 				
 			}
@@ -260,9 +260,9 @@ public class RegistrationFormController
 			{
 				
 				if(checkRepeatPass(newValue, repeatPasswordField.getText()))
-					repeatPasswordField.styleProperty().set(CommonUtil.CHECKOKCOLOR);
+					repeatPasswordField.styleProperty().set(CommonUtil.CHECK_OK_COLOR);
 				else
-					repeatPasswordField.styleProperty().set(CommonUtil.CHECKNOTOKCOLOR);
+					repeatPasswordField.styleProperty().set(CommonUtil.CHECK_NOT_OK_COLOR);
 					
 				
 			}
@@ -296,9 +296,9 @@ public class RegistrationFormController
     {
     	
     	logoView.imageProperty().set(new Image(getClass().getResourceAsStream("/registrationResources/registrationLogo.jpg"))); 
-    	usernamePat= Pattern.compile(CommonUtil.USERNAMEPATTERN);
-    	passPat=Pattern.compile(CommonUtil.PASSWORDPATTERN);
-    	namePat=Pattern.compile(CommonUtil.NAMEPATTERN);
+    	usernamePat= Pattern.compile(CommonUtil.USERNAME_PATTERN);
+    	passPat=Pattern.compile(CommonUtil.PASSWORD_PATTERN);
+    	namePat=Pattern.compile(CommonUtil.NAME_PATTERN);
     	addListeners();
     	datePicker.getStyleClass().add("myData");
     	materiaField.setVisible(false);

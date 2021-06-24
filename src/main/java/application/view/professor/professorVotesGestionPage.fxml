@@ -28,7 +28,7 @@
                         <Insets />
                      </VBox.margin>
                   </TableView>
-                  <Button fx:id="updateSelectedButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#updateSelectedClicked" prefHeight="60.0" prefWidth="180.0" style="-fx-background-color: #00adb5;" text="Aggiorna voto studente" textAlignment="CENTER" textFill="#eeeeee" textOverrun="CLIP" wrapText="true">
+                  <Button fx:id="updateSelectedButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#updateSelectedClicked" prefHeight="60.0" prefWidth="180.0" text="Aggiorna voto studente" textAlignment="CENTER" textFill="#eeeeee" textOverrun="CLIP" wrapText="true">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -40,9 +40,9 @@
             </VBox>
          </center>
          <top>
-            <BorderPane prefHeight="176.0" prefWidth="1050.0" style="-fx-background-color: #00adb5;" BorderPane.alignment="TOP_CENTER">
+            <BorderPane minHeight="-Infinity" prefHeight="200.0" prefWidth="1050.0" style="-fx-background-color: #00adb5;" BorderPane.alignment="TOP_CENTER">
                <center>
-                  <ImageView fx:id="logoView" fitHeight="140.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                  <ImageView fx:id="logoView" fitHeight="100.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                      <image>
                         <Image url="@./" />
                      </image>
@@ -131,7 +131,7 @@
                      </font>
                   </Label>
                   <TextField fx:id="updateVoteField" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" promptText="Nuovo voto..." />
-                  <Button fx:id="updateVote" mnemonicParsing="false" onAction="#updateVoteClicked" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #00adb5;" text="Aggiorna voto" textFill="#eeeeee" />
+                  <Button fx:id="updateVote" mnemonicParsing="false" onAction="#updateVoteClicked" prefHeight="45.0" prefWidth="150.0" style="-: #00adb5;" text="Aggiorna voto" textFill="#eeeeee" />
                </children>
             </VBox>
          </center>

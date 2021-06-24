@@ -50,7 +50,7 @@ public class AssignmentsStudentPageController
 			SceneHandler.getInstance().setStudentHomePage();
 		} catch (IOException e) 
     	{
-			System.out.println(StudentUtil.BACKTOHOMEPROBLEM);
+			System.out.println(StudentUtil.BACK_TO_HOME_PROBLEM);
     	}
     }
     @FXML
@@ -58,7 +58,7 @@ public class AssignmentsStudentPageController
     {
     	
     	startAssignmentsRefresh();
-    	logoView.imageProperty().set(new Image(getClass().getResourceAsStream("/images/genericLogo.png"))); 
+    	logoView.imageProperty().set(new Image(getClass().getResourceAsStream(StudentUtil.IMAGE_PATH))); 
     	
     }
     
@@ -97,10 +97,10 @@ public class AssignmentsStudentPageController
 						newBorderPane.setAlignment(newBorderPane.getTop(), Pos.CENTER);
 						newBorderPane.setAlignment(newBorderPane.getBottom(), Pos.CENTER);
 						newBorderPane.setAlignment(newBorderPane.getCenter(), Pos.CENTER);
-						newBorderPane.getStyleClass().add(StudentUtil.BORDERPANESTYLE);
-						newBorderPane.getTop().getStyleClass().add(StudentUtil.TOPBORDERPANESTYLE);
-						newBorderPane.getCenter().getStyleClass().add(StudentUtil.CENTERBORDERPANESTYLE);
-						newBorderPane.getBottom().getStyleClass().add(StudentUtil.BOTTOMBORDERPANESTYLE);
+						newBorderPane.getStyleClass().add(StudentUtil.BORDER_PANE_STYLE);
+						newBorderPane.getTop().getStyleClass().add(StudentUtil.TOP_BORDER_PANE_STYLE);
+						newBorderPane.getCenter().getStyleClass().add(StudentUtil.CENTER_BORDER_PANE_STYLE);
+						newBorderPane.getBottom().getStyleClass().add(StudentUtil.BOTTOM_BORDER_PANE_STYLE);
 						
 						vBoxContainer.getChildren().add(newBorderPane);
 						

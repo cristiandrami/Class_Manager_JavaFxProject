@@ -76,7 +76,8 @@ public class ProfessorClient
 		catch (Exception e) 
 		{
 			out=null;
-			System.out.println("Errore qui");
+			e.getStackTrace();
+			System.out.println("Errore qui login prof");
 			return Protocol.ERROR;
 			
 		}
@@ -267,6 +268,11 @@ public class ProfessorClient
 		}
 		
 	}
+	public void loggout() 
+	{
+		sendMessage(Protocol.LOGOUT);
+		
+	}
 
 
 
@@ -289,6 +295,7 @@ public class ProfessorClient
 		in=null;
 		socket=null;
 	}
+
 
 	
 
