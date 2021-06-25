@@ -278,11 +278,11 @@ public class SceneHandler
 		
     }
 
-	public Optional<ButtonType> showYesNoDialog(String request) 
+	public Optional<ButtonType> showYesNoDialog(String request, String title) 
 	{
 		Alert alert = new Alert(AlertType.CONFIRMATION, request, ButtonType.YES, ButtonType.NO);
 		alert.initOwner(stage);
-		alert.setTitle("Aspetta");
+		alert.setTitle(title);
 		alert.setHeaderText("");
 		DialogPane dialog=alert.getDialogPane();
 		dialog.getStylesheets().add(getClass().getResource("/css/alert.css").toExternalForm());

@@ -52,6 +52,7 @@
          <children>
             <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="1030.0">
                <children>
+                  <Label text="Esporta in PDF " />
                   <Button fx:id="exportToPdf" mnemonicParsing="false" onAction="#exportPdfClicked" />
                </children>
             </HBox>

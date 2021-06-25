@@ -131,7 +131,7 @@ public class ProfessorVotesGestionPage {
     @FXML
     void updateVoteClicked(ActionEvent event) 
     {
-    	Optional<ButtonType> result= SceneHandler.getInstance().showYesNoDialog(ProfessorUtil.VOTE_YES_NO+ studentName+ " "+studentSurname);
+    	Optional<ButtonType> result= SceneHandler.getInstance().showYesNoDialog(ProfessorUtil.VOTE_YES_NO+ studentName+ " "+studentSurname, ProfessorUtil.VOTE_YES_NO_TITLE);
     	
     	if(result.get()== ButtonType.YES)
     	{

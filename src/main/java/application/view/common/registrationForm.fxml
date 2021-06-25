@@ -65,7 +65,7 @@
                <children>
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Label text="Codice iscrizione**">
+                        <Label text="Codice iscrizione">
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font></Label>
@@ -74,7 +74,7 @@
                   </VBox>
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Label fx:id="materiaLabel" prefHeight="16.0" prefWidth="248.0" text="Materia insegnata***">
+                        <Label fx:id="materiaLabel" prefHeight="16.0" prefWidth="248.0" text="Materia insegnata">
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font></Label>
@@ -87,7 +87,7 @@
                <children>
                   <VBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0" prefWidth="100.0">
                      <children>
-                        <Label text="Password**** ">
+                        <Label text="Password** ">
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>
@@ -111,12 +111,13 @@
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin></Button>
-            <VBox prefHeight="149.0" prefWidth="380.0">
+            <VBox prefHeight="107.0" prefWidth="396.0" style="-fx-background-color: #AAD8D3;">
                <children>
-                  <Label text="(*) l'username deve contenere solo lettere e numeri" />
-                  <Label text="(**) il codice di iscrizione viene fornito direttamente dalla scuola di appartenenza" wrapText="true" />
-                  <Label text="(***) la materia va inserita solo se si è un professore" />
-                  <Label text="(****) la password deve contenere:" />
+                  <Label text="(*) l'username deve contenere solo lettere e numeri">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin></Label>
+                  <Label text="(**) la password deve contenere:" />
                   <Label text="1) almeno una lettera maiuscola e una minuscola" />
                   <Label text="2) alemeno una cifra [0-9]" />
                   <Label text="3) un carattere speciale [@$!%*?&amp;]" />
@@ -125,6 +126,9 @@
                <VBox.margin>
                   <Insets top="35.0" />
                </VBox.margin>
+               <padding>
+                  <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+               </padding>
             </VBox>
          </children>
          <BorderPane.margin>

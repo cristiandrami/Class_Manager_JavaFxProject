@@ -98,7 +98,7 @@ public class ProfHomeController {
     @FXML
     void logoutClicked(ActionEvent event) 
     {
-    	Optional<ButtonType> result= SceneHandler.getInstance().showYesNoDialog(CommonUtil.LOGOUT_YES_NO);
+    	Optional<ButtonType> result= SceneHandler.getInstance().showYesNoDialog(CommonUtil.LOGOUT_YES_NO, CommonUtil.LOGOUT_YES_NO_TITLE);
     	
     	if(result.get()== ButtonType.YES)
     	{

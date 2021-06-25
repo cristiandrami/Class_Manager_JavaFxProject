@@ -28,6 +28,7 @@ public class CommonUtil
 		
 		//************************************************ COMMON ****************************************//
 		public static final String PDF_CREATED = "PDF correttamente creato e salvato!";
+		public static final String LOGOUT_YES_NO_TITLE = "Logout";
 		
 		
 		

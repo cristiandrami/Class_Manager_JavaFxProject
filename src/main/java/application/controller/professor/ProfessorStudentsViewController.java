@@ -160,7 +160,7 @@ public class ProfessorStudentsViewController
     @FXML
     void insertNoteclicked(ActionEvent event) 
     {
-    	Optional<ButtonType> result= SceneHandler.getInstance().showYesNoDialog(ProfessorUtil.NOTE_YES_NO+ studentName+ " "+studentSurname);
+    	Optional<ButtonType> result= SceneHandler.getInstance().showYesNoDialog(ProfessorUtil.NOTE_YES_NO+ studentName+ " "+studentSurname, ProfessorUtil.INSERT_NOTE_IN_DIALOG);
     	
     	if(result.get()== ButtonType.YES)
     	{

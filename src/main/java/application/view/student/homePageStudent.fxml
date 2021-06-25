@@ -83,7 +83,7 @@
                   </Label>
                </bottom>
                <top>
-                  <HBox alignment="CENTER_LEFT" prefHeight="49.0" prefWidth="1050.0" spacing="10.0" BorderPane.alignment="CENTER">
+                  <HBox alignment="CENTER_LEFT" prefHeight="49.0" prefWidth="1050.0" spacing="5.0" BorderPane.alignment="CENTER">
                      <children>
                         <Label textFill="#eeeeee">
                            <font>

@@ -21,12 +21,16 @@ public class ProfessorUtil
 	public static final String CHOOSE_PATH_PDF = "Scegli dove salvare il file pdf";
 	public static final String PDF_EXPORT_OK = "PDF correttamente esportato!" ;
 	public static final String NOTE_YES_NO = "Sei sicuro di voler inserire una nota disciplinare per: ";
+	public static final String INSERT_NOTE_IN_DIALOG = "Inserisci nota";
+	
 
 	//****************************** GESTION VOTES PAGE *******************************************************//
 	public static final String VOTE_PROBLEM = "Sembra esserci un problema con il voto inserito, assicurati che sia compreso tra 2 e 10";
 	public static final String VOTE_FORMAT_PROBLEM = "Sembra esserci un problema con il voto inserito, assicurati che sia un numero intero";
 	public static final String NEW_VOTE_PROMPT_TEXT = "Nuovo voto...";
 	public static final String VOTE_YES_NO = "Sei sicuro di voler aggiornare il voto di: ";
+	public static final String VOTE_YES_NO_TITLE = "Aggiorna voto";
+	
 	
 	
 
