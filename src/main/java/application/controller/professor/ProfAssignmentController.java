@@ -71,7 +71,8 @@ public class ProfAssignmentController
     	try 
     	{
 			SceneHandler.getInstance().setProfHomePage();
-		} catch (IOException e) 
+		} 
+    	catch (IOException e) 
     	{
 			System.out.println(ProfessorUtil.BACK_TO_HOME_PROBLEM);
 		}
