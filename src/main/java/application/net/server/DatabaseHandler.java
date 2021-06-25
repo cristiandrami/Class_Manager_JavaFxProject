@@ -148,6 +148,25 @@ public class DatabaseHandler
 		return result;
 		
 	}
+
+	public synchronized boolean existsProfessorForSubject(String materia, String classe) throws SQLException 
+	{
+		if(con==null || con.isClosed())
+			return false;
+		
+		String query= "SELECT User.username FROM User, ProfessoreMateria WHERE User.classeAppartenenza=? and ProfessoreMateria.prof=User.username and ProfessoreMateria.materia=?;";
+		PreparedStatement p= con.prepareStatement(query);
+		p.setString(1, classe);
+		p.setString(2, materia);
+		
+		ResultSet rs= p.executeQuery();
+		
+		boolean result= rs.next();
+		p.close();
+		
+		return result;
+		
+	}
 	
 	public synchronized boolean checkUser(UserAccess user) throws SQLException
 	{
@@ -706,6 +725,9 @@ public class DatabaseHandler
 		return student;
 		
 	}
+
+
+	
 
 	
 

@@ -301,6 +301,7 @@ public class RegistrationFormController
     	namePat=Pattern.compile(CommonUtil.NAME_PATTERN);
     	addListeners();
     	datePicker.getStyleClass().add("myData");
+    	
     	materiaField.setVisible(false);
     	materiaLabel.setVisible(false);
     	

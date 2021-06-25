@@ -83,7 +83,7 @@ public class ProfAssignmentController
     {
     	logoView.imageProperty().set(new Image(getClass().getResourceAsStream("/images/genericLogo.png"))); 
     	classLabel.setText(ProfessorClient.getInstance().getClasse());
-    	System.out.println(classLabel.getText());
+    	//sendAssignment.getStyleClass().add("blueButton");
     	
     }
 

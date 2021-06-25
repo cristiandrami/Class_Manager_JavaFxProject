@@ -16,14 +16,13 @@
 }
 .whiteButton:hover 
 {
--fx-background-color: #4CA1A3; 
--fx-font-size:  18px;
+-fx-font-size:  17px;
 -fx-cursor: hand;
 
 }
 .whiteButton:pressed
 {
--fx-background-color: #00adb5;
+-fx-background-color: #AAD8D3;
 }
 
 .blueButton
@@ -32,12 +31,11 @@
 }
 .blueButton:hover 
 {
--fx-background-color: #4CA1A3; 
--fx-font-size:  18px;
+-fx-font-size:  17px;
 -fx-cursor: hand;
 
 }
 .blueButton:pressed
 {
--fx-background-color: #eeeeee;
+-fx-background-color: #AAD8D3; 
 }

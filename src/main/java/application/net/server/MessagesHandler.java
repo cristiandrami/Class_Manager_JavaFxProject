@@ -6,6 +6,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
 
+import application.CommonUtil;
 import application.controller.RegistrationFormController;
 import application.net.client.UserAccess;
 import application.net.common.Protocol;
@@ -131,9 +132,16 @@ public class MessagesHandler extends Thread
 							
 						}
 						
-						else if(user.getType().equals(RegistrationFormController.PROFTYPE) && !DatabaseHandler.getInstance().existsSubject(user.getMateria()))
+						else if(user.getType().equals(CommonUtil.PROF_TYPE) && !DatabaseHandler.getInstance().existsSubject(user.getMateria()))
 						{
 							sendMessage(Protocol.SUBJECT_ERROR);
+							closeStreams();
+							return;
+							
+						}
+						else if(user.getType().equals(CommonUtil.PROF_TYPE) && DatabaseHandler.getInstance().existsProfessorForSubject(user.getMateria(), user.getClasse()))
+						{
+							sendMessage(Protocol.PROFESSOR_SUBJECT_EXISTS);
 							closeStreams();
 							return;
 							

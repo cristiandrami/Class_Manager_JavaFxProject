@@ -311,7 +311,7 @@ public class ProfessorStudentsViewController
 					Paragraph paragraph= new Paragraph("Studenti della classe "+ ProfessorClient.getInstance().getClasse()+"\n\n", classFont);
 					paragraph.setAlignment(Element.ALIGN_CENTER);
 					document.add(paragraph);
-					paragraph= new Paragraph("Materia: "+ ProfessorClient.getInstance().getMateria()+"\n\n", classFont);
+					paragraph= new Paragraph("Materia: "+ ProfessorClient.getInstance().getMateria().toUpperCase()+"\n\n", classFont);
 					paragraph.setAlignment(Element.ALIGN_CENTER);
 					document.add(paragraph);
 					

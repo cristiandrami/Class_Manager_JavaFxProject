@@ -72,7 +72,7 @@
                      <font>
                         <Font size="15.0" />
                      </font></TextArea>
-                  <Button fx:id="sendAssignment" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#sendAssignmentClicked" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #00adb5;" text="Assegna compito" textFill="#eeeeee">
+                  <Button fx:id="sendAssignment" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#sendAssignmentClicked" prefHeight="40.0" prefWidth="150.0" text="Assegna compito" textFill="#eeeeee">
                      <font>
                         <Font size="15.0" />
                      </font>

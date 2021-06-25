@@ -62,31 +62,8 @@
          </center>
          <top>
             <BorderPane minHeight="-Infinity" prefHeight="200.0" prefWidth="1050.0" style="-fx-background-color: #00adb5;" BorderPane.alignment="CENTER">
-               <center>
-                  <ImageView fx:id="logoView" fitHeight="120.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-                     <image>
-                        <Image url="@./" />
-                     </image>
-                     <BorderPane.margin>
-                        <Insets bottom="10.0" />
-                     </BorderPane.margin>
-                  </ImageView>
-               </center>
-               <bottom>
-                  <Label prefHeight="39.0" prefWidth="343.0" text="  Professor Home  Page" textFill="#eeeeee" BorderPane.alignment="TOP_CENTER">
-                     <BorderPane.margin>
-                        <Insets bottom="10.0" />
-                     </BorderPane.margin>
-                     <font>
-                        <Font size="25.0" />
-                     </font>
-                     <graphic>
-                        <FontAwesomeIcon fill="#eeeeee" iconName="HOME" size="50" />
-                     </graphic>
-                  </Label>
-               </bottom>
                <top>
-                  <HBox alignment="CENTER_LEFT" prefHeight="47.0" prefWidth="1050.0" spacing="15.0" BorderPane.alignment="CENTER">
+                  <HBox alignment="CENTER_LEFT" prefHeight="47.0" prefWidth="1050.0" spacing="20.0" BorderPane.alignment="CENTER">
                      <children>
                         <Label textFill="#eeeeee">
                            <font>
@@ -98,7 +75,7 @@
                         </Label>
                         <Label fx:id="profInfo" textFill="#eeeeee">
                            <font>
-                              <Font size="25.0" />
+                              <Font size="15.0" />
                            </font>
                         </Label>
                         <Label textFill="#eeeeee">
@@ -111,7 +88,7 @@
                         </Label>
                         <Label fx:id="materiaProf" textFill="#eeeeee">
                            <font>
-                              <Font size="25.0" />
+                              <Font size="15.0" />
                            </font>
                         </Label>
                      </children>
@@ -120,6 +97,29 @@
                      </BorderPane.margin>
                   </HBox>
                </top>
+               <bottom>
+                  <Label prefHeight="39.0" prefWidth="343.0" text="  Professor Home  Page" textFill="#eeeeee" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets bottom="10.0" />
+                     </BorderPane.margin>
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIcon fill="#eeeeee" iconName="HOME" size="50" />
+                     </graphic>
+                  </Label>
+               </bottom>
+               <center>
+                  <ImageView fx:id="logoView" fitHeight="120.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                     <image>
+                        <Image url="@./" />
+                     </image>
+                     <BorderPane.margin>
+                        <Insets bottom="10.0" />
+                     </BorderPane.margin>
+                  </ImageView>
+               </center>
             </BorderPane>
          </top>
       </BorderPane>

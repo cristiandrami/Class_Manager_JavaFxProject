@@ -61,8 +61,8 @@ public class SceneHandler
 		scene.setRoot(root);
 		stage.setScene(scene);
 		stage.setTitle("Class Manager");
-		stage.setHeight(900);
-		stage.setWidth(695);
+		stage.setHeight(805);
+		stage.setWidth(700);
 		stage.setResizable(false);
 		scene.getStylesheets().clear();
 		scene.getStylesheets().add(getClass().getResource("/css/registrationForm.css").toExternalForm());
@@ -132,7 +132,7 @@ public class SceneHandler
 		stage.setWidth(1050);
 		stage.setTitle("Class Manager");
 		scene.getStylesheets().clear();
-		scene.getStylesheets().add(getClass().getResource("/css/commonFont.css").toExternalForm());
+		scene.getStylesheets().add(getClass().getResource("/css/tableView.css").toExternalForm());
 		stage.setResizable(true);
 		stage.show();
 		

@@ -30,6 +30,7 @@ public class Protocol {
 	public final static String USER_LOGGED_ERROR= "L'utente è già loggato";
 	public final static String USER_EXISTS_ERROR= "L'username è già stato scelto, riprova con uno nuovo";
 	public final static String SUBJECT_ERROR= "La materia inserita non è presente nel database della scuola, riprova";
+	public static final String PROFESSOR_SUBJECT_EXISTS = "Sembra ci sia già un professore registrato per la stessa classe con la stessa materia di insegnamento, assicurati di aver inserito correttamente tutti i dati...";
 	
 	
 	

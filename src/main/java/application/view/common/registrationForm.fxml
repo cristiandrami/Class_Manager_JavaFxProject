@@ -10,7 +10,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="805.0" prefWidth="695.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.RegistrationFormController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="805.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.RegistrationFormController">
    <center>
       <VBox alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="400.0" spacing="25.0" BorderPane.alignment="CENTER">
          <children>
@@ -25,7 +25,7 @@
                         <TextField fx:id="username" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="170.0" />
                      </children>
                   </VBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0" spacing="50.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="16.0" prefWidth="400.0" spacing="60.0">
                      <children>
                         <VBox prefHeight="200.0" prefWidth="100.0">
                            <children>
@@ -52,7 +52,7 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </VBox>
-            <VBox minHeight="-Infinity" prefHeight="50.0" prefWidth="100.0">
+            <VBox minHeight="-Infinity" prefHeight="45.0" prefWidth="400.0">
                <children>
                   <Label text="Data di nascita">
                      <font>
@@ -61,7 +61,7 @@
                   <DatePicker fx:id="datePicker" prefHeight="30.0" prefWidth="170.0" />
                </children>
             </VBox>
-            <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0" prefWidth="200.0" spacing="50.0">
+            <HBox alignment="CENTER" prefHeight="31.0" prefWidth="400.0" spacing="60.0">
                <children>
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
@@ -78,34 +78,54 @@
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font></Label>
-                        <TextField fx:id="materiaField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="170.0" />
+                        <TextField fx:id="materiaField" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="170.0" />
                      </children>
                   </VBox>
                </children>
             </HBox>
-            <VBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0" prefWidth="100.0">
+            <HBox prefHeight="50.0" prefWidth="200.0" spacing="60.0">
                <children>
-                  <Label text="Password**** ">
-                     <font>
-                        <Font name="System Bold" size="13.0" />
-                     </font></Label>
-                  <PasswordField fx:id="passwordField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="170.0" />
+                  <VBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0" prefWidth="100.0">
+                     <children>
+                        <Label text="Password**** ">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <PasswordField fx:id="passwordField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="170.0" />
+                     </children>
+                  </VBox>
+                  <VBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0" prefWidth="100.0">
+                     <children>
+                        <Label text="Ripeti password">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <PasswordField fx:id="repeatPasswordField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="170.0" />
+                     </children>
+                  </VBox>
                </children>
-            </VBox>
-            <VBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0" prefWidth="100.0">
+            </HBox>
+            <Button fx:id="registerButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#registerClicked" prefHeight="40.0" prefWidth="120.0" style="-fx-text-fill: #eeeeee;" text="Registrati">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin></Button>
+            <VBox prefHeight="149.0" prefWidth="380.0">
                <children>
-                  <Label text="Ripeti password">
-                     <font>
-                        <Font name="System Bold" size="13.0" />
-                     </font></Label>
-                  <PasswordField fx:id="repeatPasswordField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="170.0" />
+                  <Label text="(*) l'username deve contenere solo lettere e numeri" />
+                  <Label text="(**) il codice di iscrizione viene fornito direttamente dalla scuola di appartenenza" wrapText="true" />
+                  <Label text="(***) la materia va inserita solo se si è un professore" />
+                  <Label text="(****) la password deve contenere:" />
+                  <Label text="1) almeno una lettera maiuscola e una minuscola" />
+                  <Label text="2) alemeno una cifra [0-9]" />
+                  <Label text="3) un carattere speciale [@$!%*?&amp;]" />
+                  <Label text="4) deve contenere almeno 8 caratteri ma massimo 20." />
                </children>
+               <VBox.margin>
+                  <Insets top="35.0" />
+               </VBox.margin>
             </VBox>
-            <Button fx:id="registerButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#registerClicked" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #00adb5; -fx-text-fill: #eeeeee;" text="Registrati" />
-            <TextArea editable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="200.0" prefWidth="423.0" style="-: ;" text="(*) l'username deve contenere solo lettere e numeri&#10;(**) il codice di iscrizione viene fornito direttamente &#10;dalla scuola di appartenenza&#10;(***) la materia va inserita solo se si è un professore&#10;(****) la password deve contenere:&#10;1) almeno una lettera maiuscola e una minuscola&#10;2) alemeno una cifra [0-9]&#10;3) un carattere speciale [@$!%*?&amp;]&#10;4) deve contenere almeno 8 caratteri ma massimo 20.&#10;&#10;" wrapText="true">
-               <font>
-                  <Font name="System Bold" size="12.5" />
-               </font></TextArea>
          </children>
          <BorderPane.margin>
             <Insets bottom="30.0" left="20.0" right="20.0" top="20.0" />
@@ -139,7 +159,7 @@
                </children>
             </HBox>
          </top>
-         <center>
+         <bottom>
             <Label text=" REGISTRATION FORM" textFill="#eeeeee" BorderPane.alignment="CENTER">
                <font>
                   <Font size="35.0" />
@@ -151,7 +171,7 @@
                   <Insets bottom="10.0" />
                </BorderPane.margin>
             </Label>
-         </center>
+         </bottom>
       </BorderPane>
    </top>
 </BorderPane>

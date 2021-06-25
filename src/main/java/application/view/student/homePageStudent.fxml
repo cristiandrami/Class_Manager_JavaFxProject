@@ -95,7 +95,7 @@
                         </Label>
                         <Label fx:id="studentInfo" textFill="#eeeeee">
                            <font>
-                              <Font size="25.0" />
+                              <Font size="15.0" />
                            </font>
                         </Label>
                      </children>
