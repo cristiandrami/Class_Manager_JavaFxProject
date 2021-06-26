@@ -25,6 +25,7 @@ public class MessagesHandler extends Thread
 	private ObjectInputStream in;
 	private ObjectOutputStream out;
 	private String username="";
+	private String re="";
 	
 	
 	
@@ -78,7 +79,7 @@ public class MessagesHandler extends Thread
 				
 				//se l'input è per fare il login allota provo a fare il check e se non va bene mando un messaggio di errore e ritorno
 					input = (String) in.readObject();
-					
+					re=input;
 					
 					while(input.equals(Protocol.GETTYPEFROMCODE) || input.equals(Protocol.GETCLASSFROMCODE))
 					{
@@ -291,16 +292,19 @@ public class MessagesHandler extends Thread
 						{
 							UsersHandler.removeUser(username);
 							System.out.println("[SERVER] USER "+username+" DISCONNECTED");
+							sendMessage(Protocol.OK);
 							closeStreams();
 							return;
 						}
+						
+						re=request;
 						
 						
 					}
 			}
 		catch(Exception e)
 		{
-			e.getStackTrace();
+			
 			// SE QUI ho avuto qualche problema di connessione tolgo l'utente da quelli online
 			if(!username.equals(""))
 			{
@@ -312,7 +316,7 @@ public class MessagesHandler extends Thread
 				
 			}
 			else
-			{   //System.out.println("Errore qui");
+			{  
 				sendMessage(Protocol.ERROR);	
 			}
 			

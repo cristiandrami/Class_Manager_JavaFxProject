@@ -68,8 +68,7 @@ public class CommonClient
 		catch (Exception e) 
 		{
 			out=null;
-			e.getStackTrace();
-			System.out.println("Errore qui login common");
+			
 			return Protocol.ERROR;
 			
 		}
@@ -90,8 +89,7 @@ public class CommonClient
 		catch (Exception e) 
 		{
 			out=null;
-			e.getStackTrace();
-			System.out.println("Errore qui tipo da codice");
+			
 			return Protocol.ERROR;
 			
 		}
@@ -110,8 +108,7 @@ public class CommonClient
 		catch (Exception e) 
 		{
 			out=null;
-			e.getStackTrace();
-			System.out.println("Errore qui classe da codice");
+			
 			return Protocol.ERROR;
 			
 		}

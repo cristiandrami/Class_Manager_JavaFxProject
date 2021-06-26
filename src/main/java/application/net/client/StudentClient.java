@@ -80,8 +80,6 @@ import javafx.collections.ObservableList;
 			catch (Exception e) 
 			{
 				out=null;
-				e.getStackTrace();
-				System.out.println("Errore qui login studente");
 				return Protocol.ERROR;
 				
 				
@@ -157,60 +155,22 @@ import javafx.collections.ObservableList;
 				
 			}
 		}
-		/*
-		public String getUnsufficientVotes() 
+		public void logout() 
 		{
-			sendMessage(Protocol.GETUNSUFFICIENTSTUDENTVOTES);
+			sendMessage(Protocol.LOGOUT);
 			try 
 			{
 				
 				String result= (String) in.readObject();
-				return result;
+				
 		
 			} 
 			catch (Exception e) 
 			{
 				out=null;
-				return Protocol.ERROR;
 			}
 			
 		}
-		
-		public String getSufficientVotes() 
-		{
-			sendMessage(Protocol.GETSUFFICIENTSTUDENTVOTES);
-			try 
-			{
-				
-				String result= (String) in.readObject();
-				return result;
-		
-			} 
-			catch (Exception e) 
-			{
-				out=null;
-				return Protocol.ERROR;
-			}
-		}
-		
-		public String getWaitingVotes() 
-		{
-			sendMessage(Protocol.GETSTUDENTSWAITINGVOTES);
-			try 
-			{
-				
-				String result= (String) in.readObject();
-				return result;
-		
-			} 
-			catch (Exception e) 
-			{
-				out=null;
-				return Protocol.ERROR;
-			}
-			
-		}
-		*/
 		public ArrayList<AssignmentModel> getAssignments() 
 		{
 				sendMessage(Protocol.GETASSIGNMENTS);
@@ -276,12 +236,7 @@ import javafx.collections.ObservableList;
 			socket=null;
 		}
 
-		public void logout() 
-		{
-			sendMessage(Protocol.LOGOUT);
-			
-		}
-
+		
 		
 	
 		

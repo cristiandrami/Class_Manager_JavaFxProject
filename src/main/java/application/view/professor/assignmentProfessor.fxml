@@ -42,16 +42,16 @@
                               <FontAwesomeIcon fill="#eeeeee" iconName="ARROW_LEFT" size="30" text=" " />
                            </graphic>
                         </Button>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0" HBox.hgrow="ALWAYS">
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" HBox.hgrow="ALWAYS">
                            <children>
-                              <Label maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" text="Classe" textFill="#eeeeee">
+                              <Label maxWidth="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="112.0" text="Classe" textFill="#eeeeee">
                                  <font>
-                                    <Font name="System Bold" size="40.0" />
+                                    <Font name="System Bold" size="30.0" />
                                  </font>
                               </Label>
                               <Label fx:id="classLabel" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="80.0" textFill="#eeeeee">
                                  <font>
-                                    <Font name="System Bold" size="40.0" />
+                                    <Font name="System Bold" size="30.0" />
                                  </font></Label>
                            </children>
                         </HBox>

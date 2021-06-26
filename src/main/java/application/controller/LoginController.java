@@ -6,6 +6,7 @@ import java.sql.SQLException;
 
 import application.CommonUtil;
 import application.SceneHandler;
+import application.net.client.CommonClient;
 import application.net.client.ProfessorClient;
 import application.net.client.StudentClient;
 import application.net.common.Protocol;
@@ -69,7 +70,8 @@ public class LoginController
     @FXML
     void exitClicked(ActionEvent event) 
     {
-    	ProfessorClient.getInstance().reset();
+    	//StudentClient.getInstance().reset();
+    	//ProfessorClient.getInstance().reset();
     	System.exit(0);
 
     }
@@ -95,9 +97,6 @@ public class LoginController
 					} 
 					catch (IOException e) 
 					{
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						
 					}
 				}
 				else

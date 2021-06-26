@@ -101,7 +101,7 @@
                   </HBox>
                </top>
                <bottom>
-                  <Label prefHeight="39.0" prefWidth="343.0" text="  Professor Home  Page" textFill="#eeeeee" BorderPane.alignment="CENTER">
+                  <Label prefHeight="39.0" prefWidth="350.0" text="  Home Page Professore" textFill="#eeeeee" BorderPane.alignment="CENTER">
                      <BorderPane.margin>
                         <Insets bottom="10.0" />
                      </BorderPane.margin>

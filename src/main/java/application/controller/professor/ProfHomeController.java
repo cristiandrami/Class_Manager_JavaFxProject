@@ -105,7 +105,7 @@ public class ProfHomeController {
     		try 
 	    	{
 				SceneHandler.getInstance().setLogin();
-				ProfessorClient.getInstance().loggout();
+				ProfessorClient.getInstance().logout();
 				ProfessorClient.getInstance().reset();
 				StudentClient.getInstance().reset();
 				CommonClient.getInstance().reset();

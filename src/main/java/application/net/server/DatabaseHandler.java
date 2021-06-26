@@ -532,7 +532,7 @@ public class DatabaseHandler
 		if(con==null || con.isClosed()|| profUsername.equals(""))
 			return null;
 		
-		System.out.println(profUsername);
+		//System.out.println(profUsername);
 		String query2= "SELECT user.nome, user.cognome FROM user "
 				+ "WHERE user.username=?;";
 		PreparedStatement p2= con.prepareStatement(query2);
@@ -694,7 +694,7 @@ public class DatabaseHandler
 		if(con==null || con.isClosed()|| studentUsername.equals(""))
 			return null;
 		
-		System.out.println(studentUsername);
+		//System.out.println(studentUsername);
 		String query2= "SELECT user.nome, user.cognome, user.dataNascita, user.classeAppartenenza FROM user "
 				+ "WHERE user.username=?;";
 		PreparedStatement p2= con.prepareStatement(query2);

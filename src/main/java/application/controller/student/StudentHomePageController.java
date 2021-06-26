@@ -98,7 +98,6 @@ public class StudentHomePageController {
 				SceneHandler.getInstance().setLogin();
 				StudentClient.getInstance().logout();
 				ProfessorClient.getInstance().reset();
-	
 				StudentClient.getInstance().reset();
 				CommonClient.getInstance().reset();
 			} 

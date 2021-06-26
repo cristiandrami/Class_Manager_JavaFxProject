@@ -33,7 +33,7 @@
             </Button>
          </top>
          <bottom>
-            <Label text="Andamento scolastico" textFill="#eeeeee" BorderPane.alignment="CENTER">
+            <Label text=" Andamento scolastico" textFill="#eeeeee" BorderPane.alignment="CENTER">
                <graphic>
                   <FontAwesomeIcon fill="#eeeeee" iconName="GROUP" size="40" />
                </graphic>

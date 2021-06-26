@@ -1,9 +1,13 @@
 package application.controller;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import com.sun.javafx.scene.control.DatePickerContent;
 
 import application.CommonUtil;
 import application.SceneHandler;
@@ -18,12 +22,15 @@ import javafx.event.ActionEvent;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.skin.DatePickerSkin;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.util.Callback;
 
 
 public class RegistrationFormController 
@@ -305,9 +312,45 @@ public class RegistrationFormController
     	materiaField.setVisible(false);
     	materiaLabel.setVisible(false);
     	
+    	setDateMaximumValue();
+    	
     }
     
-    private boolean checkRepeatPass(String pass, String repeat)
+    private void setDateMaximumValue() 
+    {
+    	//ora mi setto la data massima da scegliere nel date picker perchè voglio che parta dal 2004
+    	//uso un oggetto date picker per impostargli il valore di 1 gennaio 2004
+    	DatePicker maxDate = new DatePicker(); 
+    	maxDate.setValue(LocalDate.of(2009, Month.JANUARY, 1)); 
+    	final Callback<DatePicker, DateCell> dayCellFactory;
+    	
+    	//mi setto le celle del data picker che usero in modo che possa scegliere solo quelle prima del 2008
+    	dayCellFactory = (final DatePicker datePicker) -> new DateCell() {
+    	    @Override
+    	    public void updateItem(LocalDate item, boolean empty) {
+    	        super.updateItem(item, empty);
+    	        //disabilito tutte le date dopo il 2008 e gli associo un colore rosso chiaro
+    	        if(item.isAfter(maxDate.getValue())) 
+    	        {
+    	            setDisable(true);
+    	            setStyle("-fx-background-color: #ffc0cb;"); 
+    	        }
+    	    }
+    	};
+    	//qui gli sto dicendo che deve seguire le condizioni gestite precedentemente con il cell factory
+    	datePicker.setDayCellFactory(dayCellFactory);
+    	
+    	// a questo punto quando lo apro voglio che mi venga mostrata una data del 2008 
+    	datePicker.setOnShown(e -> {
+    	    if (datePicker.getValue() == null && datePicker.getSkin() instanceof DatePickerSkin) {
+    	        DatePickerSkin skin = (DatePickerSkin) datePicker.getSkin();
+    	        DatePickerContent popupContent = (DatePickerContent) skin.getPopupContent();
+    	        popupContent.goToDate(LocalDate.now().minusYears(13), true);
+    	    }
+    	});
+		
+	}
+	private boolean checkRepeatPass(String pass, String repeat)
     {
     	return pass.equals(repeat);
     }
