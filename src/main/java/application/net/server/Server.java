@@ -26,6 +26,7 @@ public class Server implements Runnable
 		catch (IOException e) 
 		{
 			System.out.println("ERROR WHILE SERVER CREATION (PORT CAN BE ALREADY USED)");
+			return;
 		}
 		Thread t= new Thread(this);
 		t.start();

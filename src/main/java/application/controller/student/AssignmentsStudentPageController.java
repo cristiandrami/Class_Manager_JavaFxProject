@@ -48,6 +48,7 @@ public class AssignmentsStudentPageController
     	try 
     	{
 			SceneHandler.getInstance().setStudentHomePage();
+			refreshAssignments.cancel();
 		} catch (IOException e) 
     	{
 			System.out.println(StudentUtil.BACK_TO_HOME_PROBLEM);

@@ -102,6 +102,9 @@ public class PerformanceStudentPageController
     	try 
     	{
 			SceneHandler.getInstance().setStudentHomePage();
+			refreshGraphic.cancel();
+			refreshVotes.cancel();
+			
 		} 
     	catch (IOException e) 
     	{

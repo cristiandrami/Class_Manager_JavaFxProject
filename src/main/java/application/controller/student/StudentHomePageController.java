@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Optional;
 
 import application.CommonUtil;
+import application.MainApplication;
 import application.SceneHandler;
 import application.net.client.CommonClient;
 import application.net.client.ProfessorClient;
@@ -100,7 +101,8 @@ public class StudentHomePageController {
 				ProfessorClient.getInstance().reset();
 				StudentClient.getInstance().reset();
 				CommonClient.getInstance().reset();
-			} 
+							
+	    	} 
 	    	catch (Exception e) 
 	    	{
 				

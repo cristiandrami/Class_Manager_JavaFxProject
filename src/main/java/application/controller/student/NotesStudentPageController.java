@@ -44,6 +44,7 @@ public class NotesStudentPageController {
     	try 
     	{
 			SceneHandler.getInstance().setStudentHomePage();
+			refreshNotes.cancel();
 		} catch (IOException e) 
     	{
 			System.out.println(StudentUtil.BACK_TO_HOME_PROBLEM);
